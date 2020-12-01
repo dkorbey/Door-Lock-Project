@@ -19,8 +19,8 @@
  * @brief Number of visible lines and characters per line of the 
  *        display.
  */
-#define LCD_LINES       2
-#define LCD_DISP_LENGTH 16
+#define LCD_LINES       4
+#define LCD_DISP_LENGTH 20
 
 /**
  * @brief 4-bit mode definition of LCD signals on the Arduino Uno LCD
