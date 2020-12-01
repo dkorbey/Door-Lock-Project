@@ -1,2 +1,2 @@
 # Door Lock Project
-Door lock project for Digital Electronics 2
+Door lock project for Digital-Electronics-2
