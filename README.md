@@ -1,2 +1,2 @@
-#The Mighty Dumbledoor
+# The Mighty Dumbledoor
 Door lock project for Digital-Electronics-2
