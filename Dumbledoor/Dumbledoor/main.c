@@ -43,6 +43,7 @@ int8_t comparePins(char input[]);	//Compares the typed pin with the correct pins
 char inPin[4] = "----";		// Input Pin (the pin user pressed)
 int8_t inID = -1;			// Input ID (the ID of the typed Pin, if pin is wrong the Id value is -1)
 uint8_t timerStage = 0;		// Sets the stage of the delay. 0: No Counter, 1: 5s Counter, 2: 3s Counter
+uint8_t wrongTypeCnt = 0;	// Stores the wrong attempts of entering the pin
 
 const char pins[4][4] = {
 						"1234",		// ID = 0
@@ -116,22 +117,22 @@ ISR(TIMER0_OVF_vect)
 {
 	volatile static char pressedKey = ' ';		// Pressed Key
 	volatile static uint8_t pinDigitCnt = 0;	// Contains the index value of the pin
-	volatile static uint8_t getPin = 0;			// Get Pin --> 0: No, 1:Yes
+	volatile static uint8_t scanningStage = 0;	// Get Pin --> 0: None, 1: getPin, 2: Standby
 	
 	// Scan the Keypad
 	pressedKey = keypad_scan();
 	
-	// If user pressed *
-	if(pressedKey == '#' && getPin == 0)
+	// If user pressed #
+	if(pressedKey == '#' && scanningStage == 0)
 	{
 		// DoorBell
 		// Wait 3s ??
 		// Standby
 	}
-	//If user pressed #
-	else if(pressedKey == '*' && getPin == 0)
+	//If user pressed *
+	else if(pressedKey == '*' && scanningStage == 0)
 	{
-		getPin = 1;			// Enable getPin
+		scanningStage = 1;			// Enable getPin
 		timerStage = 1;		// Start 5 second timer
 		pinDigitCnt = 0;	// Set pin input index to 0
 						
@@ -142,9 +143,10 @@ ISR(TIMER0_OVF_vect)
 	}
 		
 	// If getPin enabled get the typed pin
-	if(getPin == 1 && pressedKey!= ' ')
+	if(scanningStage == 1)
 	{
-		if(pressedKey != '*' && pressedKey != '#')
+		// Scan the entered pin
+		if(pressedKey != '*' && pressedKey != '#' && pressedKey!= ' ')
 		{
 			// Put the pressed key into inputPin var
 			inPin[pinDigitCnt] = pressedKey;
@@ -155,38 +157,41 @@ ISR(TIMER0_OVF_vect)
 				
 			// Increase the counter
 			pinDigitCnt++;
-				
-			if(timerStage == 0 || pinDigitCnt > 3)
+		}
+		
+		// If 5s is up or the user typed all the digits of the pin enter here
+		// and compare typed pin with the correct ones
+		if(timerStage == 0 || pinDigitCnt > 3)
+		{
+			scanningStage = 2;
+			
+			inID = comparePins(inPin);
+			
+			// Typed pin is incorrect
+			if(inID == -1)
 			{
-				getPin = 0;
-				pinDigitCnt = 0;
-					
-				inID = comparePins(inPin);
-					
-				// Typed pin is incorrect
-				if(inID == -1)
-				{
-					// If user typed pin before the timer finish stop the timer
-					timerStage = 0;
-					wrongPin();
-					// Wait 3s
-					// Standby
-				}
-				else if(inID >= 0 && inID < 4)
-				{
-					// If user typed pin before the timer finish stop the timer
-					timerStage = 0;
-					correctPin(inID);
-					// Wait 3s
-					// Standby
-				}
+				// If user typed pin before the timer finish stop the timer
+				timerStage = 0;
+				wrongPin();
+			}
+			else if(inID >= 0 && inID < 4)
+			{
+				// If user typed pin before the timer finish stop the timer
+				timerStage = 0;
+				correctPin(inID);
 			}
 		}
-		else
+	}
+	
+	// Changing the status to the standby
+	if(scanningStage == 2)
+	{
+		timerStage = 2;
+		if(timerStage == 0)
 		{
-			// error
-			// Wait 3s
-			// standby
+			scanningStage = 0;
+			pinDigitCnt = 0;
+			standby();
 		}
 	}
 }
@@ -213,6 +218,15 @@ ISR(TIMER1_OVF_vect)
 			lcd_puts(itoa((6-timerCnt), string1, 10));
 		else
 			lcd_puts(itoa(timerCnt, string1, 10));
+	}
+	else if(timerStage == 2)
+	{
+		timerCnt++;
+		if(timerCnt >= 4)
+		{
+			timerCnt = 0;
+			timerStage = 0;
+		}
 	}
 	
 	uart_puts(itoa(timerStage, string1, 10));
