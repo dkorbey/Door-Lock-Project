@@ -23,57 +23,70 @@ uint8_t columns[3] = {CN0,CN1,CN2};
 
 /* Function definitions ----------------------------------------------*/
 void keypad_init() {
-	//Set all rows to output
-	GPIO_config_output(&DDRC, RN0);
-	GPIO_config_output(&DDRC, RN1);
-	GPIO_config_output(&DDRC, RN2);
-	GPIO_config_output(&DDRC, RN3);
-	//Set all rows to high
-	GPIO_write_high(&PORTC, RN0);
-	GPIO_write_high(&PORTC, RN1);
-	GPIO_write_high(&PORTC, RN2);
-	GPIO_write_high(&PORTC, RN3);
+	//Set all columns to output
+	GPIO_config_output(&DDRC, CN0);
+	GPIO_config_output(&DDRC, CN1);
+	GPIO_config_output(&DDRC, CN2);
+	//Set all columns to high
+	GPIO_write_high(&PORTC, CN0);
+	GPIO_write_high(&PORTC, CN1);
+	GPIO_write_high(&PORTC, CN2);
 	
-	//Set all columns to input with pull-up resistor
-	GPIO_config_input_pullup(&DDRC, CN0);
-	GPIO_config_input_pullup(&DDRC, CN1);
-	GPIO_config_input_pullup(&DDRC, CN2);
+	//Set all rows to input with pull-up resistor
+	GPIO_config_input_pullup(&DDRC, RN0);
+	GPIO_config_input_pullup(&DDRC, RN1);
+	GPIO_config_input_pullup(&DDRC, RN2);
+	GPIO_config_input_pullup(&DDRC, RN3);
 }
 
 /*--------------------------------------------------------------------*/
 uint8_t keypad_scan() {
+	static uint8_t isKeyPressed = 0;
 	uint8_t rowN = -1;          // Row Number
 	uint8_t colN = -1;          // Column Number
 	char pKey = ' ';           // Pressed Key
 	
-	for(uint8_t i = 0; i<4; i++)
+	for(uint8_t i = 0; i<3; i++)
 	{
 		
-		//Set all rows to high
-		GPIO_write_high(&PORTC, RN0);
-		GPIO_write_high(&PORTC, RN1);
-		GPIO_write_high(&PORTC, RN2);
-		GPIO_write_high(&PORTC, RN3);
+		//Set all columns to high
+		GPIO_write_high(&PORTC, CN0);
+		GPIO_write_high(&PORTC, CN1);
+		GPIO_write_high(&PORTC, CN2);
+	
+		// Make current column low and set the variable
+		GPIO_write_low(&PORTC, columns[i]);
+		colN = i;
 		
-		// Make current row low and set the variable
-		GPIO_write_low(&PORTC, rows[i]);
-		rowN = i;
-		
-		// Check each column
-		for(uint8_t j = 0; j<3; j++)
+		// Check each row
+		for(uint8_t j = 0; j<4; j++)
 		{
 			
 			// If it is low the button is pressed (current row x low valued column)
-			if(GPIO_read(&PINC, columns[j]) == 0)
+			if(GPIO_read(&PINC, rows[j]) == 0)
 			{
-				colN = j;
+				rowN = j;
 				// From the row and column number get the pressed key
 				pKey = keyPadChar[rowN][colN];
-				/*break;*/
 			}
 		}
+		
+		// If a key pressed stop the current scanning cycle
+		if(pKey != ' ')
+			break;
 	}
 	
-	// Return the pressed key
-	return pKey;
+	if(pKey != ' ' && isKeyPressed == 0)
+	{
+		isKeyPressed = 1;
+		// Return the pressed key
+		return pKey;
+	}
+	else
+	{
+		isKeyPressed = 0;
+		// Return ' '
+		return ' ';
+	}
+	
 }
