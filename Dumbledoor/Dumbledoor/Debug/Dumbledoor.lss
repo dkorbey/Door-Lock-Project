@@ -3,31 +3,31 @@ Dumbledoor.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000128  00800100  00000c78  00000d0c  2**0
+  0 .data         0000014c  00800100  00000d70  00000e04  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         00000c78  00000000  00000000  00000094  2**1
+  1 .text         00000d70  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          0000008c  00800228  00800228  00000e34  2**0
+  2 .bss          0000010e  0080024c  0080024c  00000f50  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  00000e34  2**0
+  3 .comment      00000030  00000000  00000000  00000f50  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000e64  2**2
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000f80  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 000001a8  00000000  00000000  00000ea4  2**0
+  5 .debug_aranges 000001a8  00000000  00000000  00000fc0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   000022f8  00000000  00000000  0000104c  2**0
+  6 .debug_info   000025f7  00000000  00000000  00001168  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000cec  00000000  00000000  00003344  2**0
+  7 .debug_abbrev 00000d1c  00000000  00000000  0000375f  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00001162  00000000  00000000  00004030  2**0
+  8 .debug_line   00001209  00000000  00000000  0000447b  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000494  00000000  00000000  00005194  2**2
+  9 .debug_frame  000004b0  00000000  00000000  00005684  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    0000079f  00000000  00000000  00005628  2**0
+ 10 .debug_str    000007c5  00000000  00000000  00005b34  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00001159  00000000  00000000  00005dc7  2**0
+ 11 .debug_loc    000012b9  00000000  00000000  000062f9  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 000001a0  00000000  00000000  00006f20  2**0
+ 12 .debug_ranges 000001a8  00000000  00000000  000075b2  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -49,10 +49,10 @@ Disassembly of section .text:
   34:	0c 94 f7 01 	jmp	0x3ee	; 0x3ee <__vector_13>
   38:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   3c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
-  40:	0c 94 c0 04 	jmp	0x980	; 0x980 <__vector_16>
+  40:	0c 94 3c 05 	jmp	0xa78	; 0xa78 <__vector_16>
   44:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
-  48:	0c 94 70 05 	jmp	0xae0	; 0xae0 <__vector_18>
-  4c:	0c 94 9e 05 	jmp	0xb3c	; 0xb3c <__vector_19>
+  48:	0c 94 ec 05 	jmp	0xbd8	; 0xbd8 <__vector_18>
+  4c:	0c 94 1a 06 	jmp	0xc34	; 0xc34 <__vector_19>
   50:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   54:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   58:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
@@ -72,18 +72,18 @@ Disassembly of section .text:
   74:	12 e0       	ldi	r17, 0x02	; 2
   76:	a0 e0       	ldi	r26, 0x00	; 0
   78:	b1 e0       	ldi	r27, 0x01	; 1
-  7a:	e8 e7       	ldi	r30, 0x78	; 120
-  7c:	fc e0       	ldi	r31, 0x0C	; 12
+  7a:	e0 e7       	ldi	r30, 0x70	; 112
+  7c:	fd e0       	ldi	r31, 0x0D	; 13
   7e:	02 c0       	rjmp	.+4      	; 0x84 <__do_copy_data+0x10>
   80:	05 90       	lpm	r0, Z+
   82:	0d 92       	st	X+, r0
-  84:	a8 32       	cpi	r26, 0x28	; 40
+  84:	ac 34       	cpi	r26, 0x4C	; 76
   86:	b1 07       	cpc	r27, r17
   88:	d9 f7       	brne	.-10     	; 0x80 <__do_copy_data+0xc>
 
 0000008a <__do_clear_bss>:
-  8a:	22 e0       	ldi	r18, 0x02	; 2
-  8c:	a8 e2       	ldi	r26, 0x28	; 40
+  8a:	23 e0       	ldi	r18, 0x03	; 3
+  8c:	ac e4       	ldi	r26, 0x4C	; 76
   8e:	b2 e0       	ldi	r27, 0x02	; 2
   90:	01 c0       	rjmp	.+2      	; 0x94 <.do_clear_bss_start>
 
@@ -91,11 +91,11 @@ Disassembly of section .text:
   92:	1d 92       	st	X+, r1
 
 00000094 <.do_clear_bss_start>:
-  94:	a4 3b       	cpi	r26, 0xB4	; 180
+  94:	aa 35       	cpi	r26, 0x5A	; 90
   96:	b2 07       	cpc	r27, r18
   98:	e1 f7       	brne	.-8      	; 0x92 <.do_clear_bss_loop>
   9a:	0e 94 d1 03 	call	0x7a2	; 0x7a2 <main>
-  9e:	0c 94 3a 06 	jmp	0xc74	; 0xc74 <_exit>
+  9e:	0c 94 b6 06 	jmp	0xd6c	; 0xd6c <_exit>
 
 000000a2 <__bad_interrupt>:
   a2:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -318,15 +318,15 @@ Disassembly of section .text:
  254:	61 f6       	brne	.-104    	; 0x1ee <keypad_scan+0x48>
  256:	0b c0       	rjmp	.+22     	; 0x26e <keypad_scan+0xc8>
  258:	81 e0       	ldi	r24, 0x01	; 1
- 25a:	80 93 28 02 	sts	0x0228, r24	; 0x800228 <__data_end>
+ 25a:	80 93 4c 02 	sts	0x024C, r24	; 0x80024c <__data_end>
  25e:	87 2d       	mov	r24, r7
  260:	09 c0       	rjmp	.+18     	; 0x274 <keypad_scan+0xce>
- 262:	80 91 28 02 	lds	r24, 0x0228	; 0x800228 <__data_end>
+ 262:	80 91 4c 02 	lds	r24, 0x024C	; 0x80024c <__data_end>
  266:	88 23       	and	r24, r24
  268:	b9 f3       	breq	.-18     	; 0x258 <keypad_scan+0xb2>
  26a:	80 e2       	ldi	r24, 0x20	; 32
  26c:	03 c0       	rjmp	.+6      	; 0x274 <keypad_scan+0xce>
- 26e:	10 92 28 02 	sts	0x0228, r1	; 0x800228 <__data_end>
+ 26e:	10 92 4c 02 	sts	0x024C, r1	; 0x80024c <__data_end>
  272:	80 e2       	ldi	r24, 0x20	; 32
  274:	df 91       	pop	r29
  276:	cf 91       	pop	r28
@@ -558,11 +558,11 @@ ISR(TIMER1_OVF_vect)
 	
 	// Standby status for the counter
 	if(timerStage == 0)
- 422:	80 91 2e 02 	lds	r24, 0x022E	; 0x80022e <timerStage>
+ 422:	80 91 54 02 	lds	r24, 0x0254	; 0x800254 <timerStage>
  426:	81 11       	cpse	r24, r1
  428:	03 c0       	rjmp	.+6      	; 0x430 <__LOCK_REGION_LENGTH__+0x30>
 		timerCnt = 0;	
- 42a:	10 92 2d 02 	sts	0x022D, r1	; 0x80022d <timerCnt>
+ 42a:	10 92 53 02 	sts	0x0253, r1	; 0x800253 <timerCnt>
  42e:	4d c0       	rjmp	.+154    	; 0x4ca <__LOCK_REGION_LENGTH__+0xca>
 	// 5s Count
 	else if(timerStage == 1)
@@ -570,7 +570,7 @@ ISR(TIMER1_OVF_vect)
  432:	29 f5       	brne	.+74     	; 0x47e <__LOCK_REGION_LENGTH__+0x7e>
 	{
 		timerCnt++;
- 434:	80 91 2d 02 	lds	r24, 0x022D	; 0x80022d <timerCnt>
+ 434:	80 91 53 02 	lds	r24, 0x0253	; 0x800253 <timerCnt>
  438:	8f 5f       	subi	r24, 0xFF	; 255
 		if(timerCnt >= 6)
  43a:	86 30       	cpi	r24, 0x06	; 6
@@ -581,14 +581,14 @@ ISR(TIMER1_OVF_vect)
 	else if(timerStage == 1)
 	{
 		timerCnt++;
- 43e:	80 93 2d 02 	sts	0x022D, r24	; 0x80022d <timerCnt>
+ 43e:	80 93 53 02 	sts	0x0253, r24	; 0x800253 <timerCnt>
  442:	04 c0       	rjmp	.+8      	; 0x44c <__LOCK_REGION_LENGTH__+0x4c>
 		if(timerCnt >= 6)
 		{
 			timerCnt = 0;
- 444:	10 92 2d 02 	sts	0x022D, r1	; 0x80022d <timerCnt>
+ 444:	10 92 53 02 	sts	0x0253, r1	; 0x800253 <timerCnt>
 			timerStage = 0;
- 448:	10 92 2e 02 	sts	0x022E, r1	; 0x80022e <timerStage>
+ 448:	10 92 54 02 	sts	0x0254, r1	; 0x800254 <timerStage>
 		}
 		
 		// Configure LCD
@@ -606,7 +606,7 @@ ISR(TIMER1_OVF_vect)
     } else {
 	extern char *__itoa_ncheck (int, char *, unsigned char);
 	return __itoa_ncheck (__val, __s, __radix);
- 45c:	90 91 2d 02 	lds	r25, 0x022D	; 0x80022d <timerCnt>
+ 45c:	90 91 53 02 	lds	r25, 0x0253	; 0x800253 <timerCnt>
  460:	4a e0       	ldi	r20, 0x0A	; 10
  462:	be 01       	movw	r22, r28
  464:	6f 5f       	subi	r22, 0xFF	; 255
@@ -617,7 +617,7 @@ ISR(TIMER1_OVF_vect)
  46e:	e9 1b       	sub	r30, r25
  470:	f1 09       	sbc	r31, r1
  472:	cf 01       	movw	r24, r30
- 474:	0e 94 05 06 	call	0xc0a	; 0xc0a <__itoa_ncheck>
+ 474:	0e 94 81 06 	call	0xd02	; 0xd02 <__itoa_ncheck>
 		lcd_puts(itoa((6-timerCnt), string1, 10));
  478:	0e 94 a5 01 	call	0x34a	; 0x34a <lcd_puts>
  47c:	26 c0       	rjmp	.+76     	; 0x4ca <__LOCK_REGION_LENGTH__+0xca>
@@ -628,7 +628,7 @@ ISR(TIMER1_OVF_vect)
  480:	21 f5       	brne	.+72     	; 0x4ca <__LOCK_REGION_LENGTH__+0xca>
 	{
 		timerCnt++;
- 482:	80 91 2d 02 	lds	r24, 0x022D	; 0x80022d <timerCnt>
+ 482:	80 91 53 02 	lds	r24, 0x0253	; 0x800253 <timerCnt>
  486:	8f 5f       	subi	r24, 0xFF	; 255
 		if(timerCnt >= 4)
  488:	84 30       	cpi	r24, 0x04	; 4
@@ -639,14 +639,14 @@ ISR(TIMER1_OVF_vect)
 	else if(timerStage == 2)
 	{
 		timerCnt++;
- 48c:	80 93 2d 02 	sts	0x022D, r24	; 0x80022d <timerCnt>
+ 48c:	80 93 53 02 	sts	0x0253, r24	; 0x800253 <timerCnt>
  490:	04 c0       	rjmp	.+8      	; 0x49a <__LOCK_REGION_LENGTH__+0x9a>
 		if(timerCnt >= 4)
 		{
 			timerCnt = 0;
- 492:	10 92 2d 02 	sts	0x022D, r1	; 0x80022d <timerCnt>
+ 492:	10 92 53 02 	sts	0x0253, r1	; 0x800253 <timerCnt>
 			timerStage = 0;
- 496:	10 92 2e 02 	sts	0x022E, r1	; 0x80022e <timerStage>
+ 496:	10 92 54 02 	sts	0x0254, r1	; 0x800254 <timerStage>
 		}
 		
 		// Configure LCD
@@ -658,7 +658,7 @@ ISR(TIMER1_OVF_vect)
  4a2:	89 e1       	ldi	r24, 0x19	; 25
  4a4:	91 e0       	ldi	r25, 0x01	; 1
  4a6:	0e 94 a5 01 	call	0x34a	; 0x34a <lcd_puts>
- 4aa:	90 91 2d 02 	lds	r25, 0x022D	; 0x80022d <timerCnt>
+ 4aa:	90 91 53 02 	lds	r25, 0x0253	; 0x800253 <timerCnt>
  4ae:	4a e0       	ldi	r20, 0x0A	; 10
  4b0:	be 01       	movw	r22, r28
  4b2:	6f 5f       	subi	r22, 0xFF	; 255
@@ -669,7 +669,7 @@ ISR(TIMER1_OVF_vect)
  4bc:	e9 1b       	sub	r30, r25
  4be:	f1 09       	sbc	r31, r1
  4c0:	cf 01       	movw	r24, r30
- 4c2:	0e 94 05 06 	call	0xc0a	; 0xc0a <__itoa_ncheck>
+ 4c2:	0e 94 81 06 	call	0xd02	; 0xd02 <__itoa_ncheck>
 		lcd_puts(itoa((4-timerCnt), string1, 10));
  4c6:	0e 94 a5 01 	call	0x34a	; 0x34a <lcd_puts>
 	}
@@ -722,7 +722,7 @@ ISR(TIMER2_OVF_vect)
 	
 	// Buzzer at standby
 	if(buzzerStage == 0)
- 516:	80 91 2c 02 	lds	r24, 0x022C	; 0x80022c <buzzerStage>
+ 516:	80 91 52 02 	lds	r24, 0x0252	; 0x800252 <buzzerStage>
  51a:	81 11       	cpse	r24, r1
  51c:	0b c0       	rjmp	.+22     	; 0x534 <__vector_9+0x40>
 	{
@@ -751,19 +751,19 @@ ISR(TIMER2_OVF_vect)
  53e:	0e 94 7e 00 	call	0xfc	; 0xfc <GPIO_write_high>
 		
 		buzzerCnt++;
- 542:	80 91 29 02 	lds	r24, 0x0229	; 0x800229 <buzzerCnt.2019>
+ 542:	80 91 4d 02 	lds	r24, 0x024D	; 0x80024d <buzzerCnt.2021>
  546:	8f 5f       	subi	r24, 0xFF	; 255
- 548:	80 93 29 02 	sts	0x0229, r24	; 0x800229 <buzzerCnt.2019>
+ 548:	80 93 4d 02 	sts	0x024D, r24	; 0x80024d <buzzerCnt.2021>
 		if(buzzerCnt == 10)
- 54c:	80 91 29 02 	lds	r24, 0x0229	; 0x800229 <buzzerCnt.2019>
+ 54c:	80 91 4d 02 	lds	r24, 0x024D	; 0x80024d <buzzerCnt.2021>
  550:	8a 30       	cpi	r24, 0x0A	; 10
  552:	09 f0       	breq	.+2      	; 0x556 <__vector_9+0x62>
  554:	d9 c0       	rjmp	.+434    	; 0x708 <__vector_9+0x214>
 		{
 			buzzerCnt = 0;
- 556:	10 92 29 02 	sts	0x0229, r1	; 0x800229 <buzzerCnt.2019>
+ 556:	10 92 4d 02 	sts	0x024D, r1	; 0x80024d <buzzerCnt.2021>
 			buzzerStage = 0;
- 55a:	10 92 2c 02 	sts	0x022C, r1	; 0x80022c <buzzerStage>
+ 55a:	10 92 52 02 	sts	0x0252, r1	; 0x800252 <buzzerStage>
  55e:	d4 c0       	rjmp	.+424    	; 0x708 <__vector_9+0x214>
 		}
 	}
@@ -779,19 +779,19 @@ ISR(TIMER2_OVF_vect)
  56a:	0e 94 7e 00 	call	0xfc	; 0xfc <GPIO_write_high>
 		
 		buzzerCnt++;
- 56e:	80 91 29 02 	lds	r24, 0x0229	; 0x800229 <buzzerCnt.2019>
+ 56e:	80 91 4d 02 	lds	r24, 0x024D	; 0x80024d <buzzerCnt.2021>
  572:	8f 5f       	subi	r24, 0xFF	; 255
- 574:	80 93 29 02 	sts	0x0229, r24	; 0x800229 <buzzerCnt.2019>
+ 574:	80 93 4d 02 	sts	0x024D, r24	; 0x80024d <buzzerCnt.2021>
 		if(buzzerCnt == 50)
- 578:	80 91 29 02 	lds	r24, 0x0229	; 0x800229 <buzzerCnt.2019>
+ 578:	80 91 4d 02 	lds	r24, 0x024D	; 0x80024d <buzzerCnt.2021>
  57c:	82 33       	cpi	r24, 0x32	; 50
  57e:	09 f0       	breq	.+2      	; 0x582 <__vector_9+0x8e>
  580:	c3 c0       	rjmp	.+390    	; 0x708 <__vector_9+0x214>
 		{
 			buzzerCnt = 0;
- 582:	10 92 29 02 	sts	0x0229, r1	; 0x800229 <buzzerCnt.2019>
+ 582:	10 92 4d 02 	sts	0x024D, r1	; 0x80024d <buzzerCnt.2021>
 			buzzerStage = 0;
- 586:	10 92 2c 02 	sts	0x022C, r1	; 0x80022c <buzzerStage>
+ 586:	10 92 52 02 	sts	0x0252, r1	; 0x800252 <buzzerStage>
  58a:	be c0       	rjmp	.+380    	; 0x708 <__vector_9+0x214>
 		}
 	}
@@ -807,11 +807,11 @@ ISR(TIMER2_OVF_vect)
  596:	0e 94 7e 00 	call	0xfc	; 0xfc <GPIO_write_high>
 		
 		buzzerCnt++;
- 59a:	80 91 29 02 	lds	r24, 0x0229	; 0x800229 <buzzerCnt.2019>
+ 59a:	80 91 4d 02 	lds	r24, 0x024D	; 0x80024d <buzzerCnt.2021>
  59e:	8f 5f       	subi	r24, 0xFF	; 255
- 5a0:	80 93 29 02 	sts	0x0229, r24	; 0x800229 <buzzerCnt.2019>
+ 5a0:	80 93 4d 02 	sts	0x024D, r24	; 0x80024d <buzzerCnt.2021>
 		if((buzzerCnt % 10) == 0)
- 5a4:	20 91 29 02 	lds	r18, 0x0229	; 0x800229 <buzzerCnt.2019>
+ 5a4:	20 91 4d 02 	lds	r18, 0x024D	; 0x80024d <buzzerCnt.2021>
  5a8:	8d ec       	ldi	r24, 0xCD	; 205
  5aa:	28 9f       	mul	r18, r24
  5ac:	81 2d       	mov	r24, r1
@@ -834,15 +834,15 @@ ISR(TIMER2_OVF_vect)
  5ca:	0e 94 8a 00 	call	0x114	; 0x114 <GPIO_toggle>
 		}
 		if(buzzerCnt == 50)
- 5ce:	80 91 29 02 	lds	r24, 0x0229	; 0x800229 <buzzerCnt.2019>
+ 5ce:	80 91 4d 02 	lds	r24, 0x024D	; 0x80024d <buzzerCnt.2021>
  5d2:	82 33       	cpi	r24, 0x32	; 50
  5d4:	09 f0       	breq	.+2      	; 0x5d8 <__vector_9+0xe4>
  5d6:	98 c0       	rjmp	.+304    	; 0x708 <__vector_9+0x214>
 		{
 			buzzerCnt = 0;
- 5d8:	10 92 29 02 	sts	0x0229, r1	; 0x800229 <buzzerCnt.2019>
+ 5d8:	10 92 4d 02 	sts	0x024D, r1	; 0x80024d <buzzerCnt.2021>
 			buzzerStage = 0;
- 5dc:	10 92 2c 02 	sts	0x022C, r1	; 0x80022c <buzzerStage>
+ 5dc:	10 92 52 02 	sts	0x0252, r1	; 0x800252 <buzzerStage>
  5e0:	93 c0       	rjmp	.+294    	; 0x708 <__vector_9+0x214>
 		}
 	}
@@ -859,11 +859,11 @@ ISR(TIMER2_OVF_vect)
  5ee:	0e 94 7e 00 	call	0xfc	; 0xfc <GPIO_write_high>
 		
 		buzzerCnt++;
- 5f2:	80 91 29 02 	lds	r24, 0x0229	; 0x800229 <buzzerCnt.2019>
+ 5f2:	80 91 4d 02 	lds	r24, 0x024D	; 0x80024d <buzzerCnt.2021>
  5f6:	8f 5f       	subi	r24, 0xFF	; 255
- 5f8:	80 93 29 02 	sts	0x0229, r24	; 0x800229 <buzzerCnt.2019>
+ 5f8:	80 93 4d 02 	sts	0x024D, r24	; 0x80024d <buzzerCnt.2021>
 		if(buzzerCnt == 10)
- 5fc:	80 91 29 02 	lds	r24, 0x0229	; 0x800229 <buzzerCnt.2019>
+ 5fc:	80 91 4d 02 	lds	r24, 0x024D	; 0x80024d <buzzerCnt.2021>
  600:	8a 30       	cpi	r24, 0x0A	; 10
  602:	29 f4       	brne	.+10     	; 0x60e <__vector_9+0x11a>
 			GPIO_toggle(&PORTB, doorBell);
@@ -872,7 +872,7 @@ ISR(TIMER2_OVF_vect)
  608:	90 e0       	ldi	r25, 0x00	; 0
  60a:	0e 94 8a 00 	call	0x114	; 0x114 <GPIO_toggle>
 		if(buzzerCnt == 15)
- 60e:	80 91 29 02 	lds	r24, 0x0229	; 0x800229 <buzzerCnt.2019>
+ 60e:	80 91 4d 02 	lds	r24, 0x024D	; 0x80024d <buzzerCnt.2021>
  612:	8f 30       	cpi	r24, 0x0F	; 15
  614:	29 f4       	brne	.+10     	; 0x620 <__vector_9+0x12c>
 			GPIO_toggle(&PORTB, doorBell);
@@ -881,7 +881,7 @@ ISR(TIMER2_OVF_vect)
  61a:	90 e0       	ldi	r25, 0x00	; 0
  61c:	0e 94 8a 00 	call	0x114	; 0x114 <GPIO_toggle>
 		if(buzzerCnt == 20)
- 620:	80 91 29 02 	lds	r24, 0x0229	; 0x800229 <buzzerCnt.2019>
+ 620:	80 91 4d 02 	lds	r24, 0x024D	; 0x80024d <buzzerCnt.2021>
  624:	84 31       	cpi	r24, 0x14	; 20
  626:	29 f4       	brne	.+10     	; 0x632 <__vector_9+0x13e>
 			GPIO_toggle(&PORTB, doorBell);
@@ -890,7 +890,7 @@ ISR(TIMER2_OVF_vect)
  62c:	90 e0       	ldi	r25, 0x00	; 0
  62e:	0e 94 8a 00 	call	0x114	; 0x114 <GPIO_toggle>
 		if(buzzerCnt == 30)
- 632:	80 91 29 02 	lds	r24, 0x0229	; 0x800229 <buzzerCnt.2019>
+ 632:	80 91 4d 02 	lds	r24, 0x024D	; 0x80024d <buzzerCnt.2021>
  636:	8e 31       	cpi	r24, 0x1E	; 30
  638:	29 f4       	brne	.+10     	; 0x644 <__vector_9+0x150>
 			GPIO_toggle(&PORTB, doorBell);
@@ -899,7 +899,7 @@ ISR(TIMER2_OVF_vect)
  63e:	90 e0       	ldi	r25, 0x00	; 0
  640:	0e 94 8a 00 	call	0x114	; 0x114 <GPIO_toggle>
 		if(buzzerCnt == 35)
- 644:	80 91 29 02 	lds	r24, 0x0229	; 0x800229 <buzzerCnt.2019>
+ 644:	80 91 4d 02 	lds	r24, 0x024D	; 0x80024d <buzzerCnt.2021>
  648:	83 32       	cpi	r24, 0x23	; 35
  64a:	29 f4       	brne	.+10     	; 0x656 <__vector_9+0x162>
 			GPIO_toggle(&PORTB, doorBell);
@@ -908,7 +908,7 @@ ISR(TIMER2_OVF_vect)
  650:	90 e0       	ldi	r25, 0x00	; 0
  652:	0e 94 8a 00 	call	0x114	; 0x114 <GPIO_toggle>
 		if(buzzerCnt == 40)
- 656:	80 91 29 02 	lds	r24, 0x0229	; 0x800229 <buzzerCnt.2019>
+ 656:	80 91 4d 02 	lds	r24, 0x024D	; 0x80024d <buzzerCnt.2021>
  65a:	88 32       	cpi	r24, 0x28	; 40
  65c:	29 f4       	brne	.+10     	; 0x668 <__vector_9+0x174>
 			GPIO_toggle(&PORTB, doorBell);
@@ -917,7 +917,7 @@ ISR(TIMER2_OVF_vect)
  662:	90 e0       	ldi	r25, 0x00	; 0
  664:	0e 94 8a 00 	call	0x114	; 0x114 <GPIO_toggle>
 		if(buzzerCnt == 50)
- 668:	80 91 29 02 	lds	r24, 0x0229	; 0x800229 <buzzerCnt.2019>
+ 668:	80 91 4d 02 	lds	r24, 0x024D	; 0x80024d <buzzerCnt.2021>
  66c:	82 33       	cpi	r24, 0x32	; 50
  66e:	29 f4       	brne	.+10     	; 0x67a <__vector_9+0x186>
 			GPIO_toggle(&PORTB, doorBell);
@@ -926,7 +926,7 @@ ISR(TIMER2_OVF_vect)
  674:	90 e0       	ldi	r25, 0x00	; 0
  676:	0e 94 8a 00 	call	0x114	; 0x114 <GPIO_toggle>
 		if(buzzerCnt == 60)
- 67a:	80 91 29 02 	lds	r24, 0x0229	; 0x800229 <buzzerCnt.2019>
+ 67a:	80 91 4d 02 	lds	r24, 0x024D	; 0x80024d <buzzerCnt.2021>
  67e:	8c 33       	cpi	r24, 0x3C	; 60
  680:	29 f4       	brne	.+10     	; 0x68c <__vector_9+0x198>
 			GPIO_toggle(&PORTB, doorBell);
@@ -935,7 +935,7 @@ ISR(TIMER2_OVF_vect)
  686:	90 e0       	ldi	r25, 0x00	; 0
  688:	0e 94 8a 00 	call	0x114	; 0x114 <GPIO_toggle>
 		if(buzzerCnt == 65)
- 68c:	80 91 29 02 	lds	r24, 0x0229	; 0x800229 <buzzerCnt.2019>
+ 68c:	80 91 4d 02 	lds	r24, 0x024D	; 0x80024d <buzzerCnt.2021>
  690:	81 34       	cpi	r24, 0x41	; 65
  692:	29 f4       	brne	.+10     	; 0x69e <__vector_9+0x1aa>
 			GPIO_toggle(&PORTB, doorBell);
@@ -944,7 +944,7 @@ ISR(TIMER2_OVF_vect)
  698:	90 e0       	ldi	r25, 0x00	; 0
  69a:	0e 94 8a 00 	call	0x114	; 0x114 <GPIO_toggle>
 		if(buzzerCnt == 70)
- 69e:	80 91 29 02 	lds	r24, 0x0229	; 0x800229 <buzzerCnt.2019>
+ 69e:	80 91 4d 02 	lds	r24, 0x024D	; 0x80024d <buzzerCnt.2021>
  6a2:	86 34       	cpi	r24, 0x46	; 70
  6a4:	29 f4       	brne	.+10     	; 0x6b0 <__vector_9+0x1bc>
 			GPIO_toggle(&PORTB, doorBell);
@@ -953,7 +953,7 @@ ISR(TIMER2_OVF_vect)
  6aa:	90 e0       	ldi	r25, 0x00	; 0
  6ac:	0e 94 8a 00 	call	0x114	; 0x114 <GPIO_toggle>
 		if(buzzerCnt == 80)
- 6b0:	80 91 29 02 	lds	r24, 0x0229	; 0x800229 <buzzerCnt.2019>
+ 6b0:	80 91 4d 02 	lds	r24, 0x024D	; 0x80024d <buzzerCnt.2021>
  6b4:	80 35       	cpi	r24, 0x50	; 80
  6b6:	29 f4       	brne	.+10     	; 0x6c2 <__vector_9+0x1ce>
 			GPIO_toggle(&PORTB, doorBell);
@@ -962,7 +962,7 @@ ISR(TIMER2_OVF_vect)
  6bc:	90 e0       	ldi	r25, 0x00	; 0
  6be:	0e 94 8a 00 	call	0x114	; 0x114 <GPIO_toggle>
 		if(buzzerCnt == 85)
- 6c2:	80 91 29 02 	lds	r24, 0x0229	; 0x800229 <buzzerCnt.2019>
+ 6c2:	80 91 4d 02 	lds	r24, 0x024D	; 0x80024d <buzzerCnt.2021>
  6c6:	85 35       	cpi	r24, 0x55	; 85
  6c8:	29 f4       	brne	.+10     	; 0x6d4 <__vector_9+0x1e0>
 			GPIO_toggle(&PORTB, doorBell);
@@ -971,7 +971,7 @@ ISR(TIMER2_OVF_vect)
  6ce:	90 e0       	ldi	r25, 0x00	; 0
  6d0:	0e 94 8a 00 	call	0x114	; 0x114 <GPIO_toggle>
 		if(buzzerCnt == 90)
- 6d4:	80 91 29 02 	lds	r24, 0x0229	; 0x800229 <buzzerCnt.2019>
+ 6d4:	80 91 4d 02 	lds	r24, 0x024D	; 0x80024d <buzzerCnt.2021>
  6d8:	8a 35       	cpi	r24, 0x5A	; 90
  6da:	29 f4       	brne	.+10     	; 0x6e6 <__vector_9+0x1f2>
 			GPIO_toggle(&PORTB, doorBell);
@@ -980,7 +980,7 @@ ISR(TIMER2_OVF_vect)
  6e0:	90 e0       	ldi	r25, 0x00	; 0
  6e2:	0e 94 8a 00 	call	0x114	; 0x114 <GPIO_toggle>
 		if(buzzerCnt == 100)
- 6e6:	80 91 29 02 	lds	r24, 0x0229	; 0x800229 <buzzerCnt.2019>
+ 6e6:	80 91 4d 02 	lds	r24, 0x024D	; 0x80024d <buzzerCnt.2021>
  6ea:	84 36       	cpi	r24, 0x64	; 100
  6ec:	29 f4       	brne	.+10     	; 0x6f8 <__vector_9+0x204>
 			GPIO_toggle(&PORTB, doorBell);
@@ -990,14 +990,14 @@ ISR(TIMER2_OVF_vect)
  6f4:	0e 94 8a 00 	call	0x114	; 0x114 <GPIO_toggle>
 			
 		if(buzzerCnt == 100)
- 6f8:	80 91 29 02 	lds	r24, 0x0229	; 0x800229 <buzzerCnt.2019>
+ 6f8:	80 91 4d 02 	lds	r24, 0x024D	; 0x80024d <buzzerCnt.2021>
  6fc:	84 36       	cpi	r24, 0x64	; 100
  6fe:	21 f4       	brne	.+8      	; 0x708 <__vector_9+0x214>
 		{
 			buzzerCnt = 0;
- 700:	10 92 29 02 	sts	0x0229, r1	; 0x800229 <buzzerCnt.2019>
+ 700:	10 92 4d 02 	sts	0x024D, r1	; 0x80024d <buzzerCnt.2021>
 			buzzerStage = 0;
- 704:	10 92 2c 02 	sts	0x022C, r1	; 0x80022c <buzzerStage>
+ 704:	10 92 52 02 	sts	0x0252, r1	; 0x800252 <buzzerStage>
 		}
 	}
 }
@@ -1227,7 +1227,7 @@ int main(void)
     uart_init(UART_BAUD_SELECT(9600, F_CPU));
  858:	89 e0       	ldi	r24, 0x09	; 9
  85a:	90 e0       	ldi	r25, 0x00	; 0
- 85c:	0e 94 c8 05 	call	0xb90	; 0xb90 <uart_init>
+ 85c:	0e 94 44 06 	call	0xc88	; 0xc88 <uart_init>
 	
     // Enables interrupts by setting the global interrupt mask
     sei();
@@ -1242,7 +1242,7 @@ void ringDoorBell()
 	// Correct Pin Buzzer
 	buzzerStage = 4;
  864:	84 e0       	ldi	r24, 0x04	; 4
- 866:	80 93 2c 02 	sts	0x022C, r24	; 0x80022c <buzzerStage>
+ 866:	80 93 52 02 	sts	0x0252, r24	; 0x800252 <buzzerStage>
 	
 	// Clear the lcd screen
 	lcd_clrscr();
@@ -1263,646 +1263,809 @@ void ringDoorBell()
 
 void correctPin(uint8_t ID)
 {	
- 880:	cf 93       	push	r28
- 882:	df 93       	push	r29
- 884:	c8 2f       	mov	r28, r24
+ 880:	0f 93       	push	r16
+ 882:	1f 93       	push	r17
+ 884:	cf 93       	push	r28
+ 886:	df 93       	push	r29
+ 888:	00 d0       	rcall	.+0      	; 0x88a <correctPin+0xa>
+ 88a:	cd b7       	in	r28, 0x3d	; 61
+ 88c:	de b7       	in	r29, 0x3e	; 62
+ 88e:	08 2f       	mov	r16, r24
+	char string2[2] = "  ";
+ 890:	80 e2       	ldi	r24, 0x20	; 32
+ 892:	90 e2       	ldi	r25, 0x20	; 32
+ 894:	9a 83       	std	Y+2, r25	; 0x02
+ 896:	89 83       	std	Y+1, r24	; 0x01
+	
 	// Unlock the door
 	GPIO_write_high(&PORTB, Relay);	
- 886:	63 e0       	ldi	r22, 0x03	; 3
- 888:	85 e2       	ldi	r24, 0x25	; 37
- 88a:	90 e0       	ldi	r25, 0x00	; 0
- 88c:	0e 94 7e 00 	call	0xfc	; 0xfc <GPIO_write_high>
+ 898:	63 e0       	ldi	r22, 0x03	; 3
+ 89a:	85 e2       	ldi	r24, 0x25	; 37
+ 89c:	90 e0       	ldi	r25, 0x00	; 0
+ 89e:	0e 94 7e 00 	call	0xfc	; 0xfc <GPIO_write_high>
 
 	// Light up the green led
 	GPIO_write_high(&PORTB, greenLed);
- 890:	67 e0       	ldi	r22, 0x07	; 7
- 892:	85 e2       	ldi	r24, 0x25	; 37
- 894:	90 e0       	ldi	r25, 0x00	; 0
- 896:	0e 94 7e 00 	call	0xfc	; 0xfc <GPIO_write_high>
+ 8a2:	67 e0       	ldi	r22, 0x07	; 7
+ 8a4:	85 e2       	ldi	r24, 0x25	; 37
+ 8a6:	90 e0       	ldi	r25, 0x00	; 0
+ 8a8:	0e 94 7e 00 	call	0xfc	; 0xfc <GPIO_write_high>
 	
 	// Correct Pin Buzzer
 	buzzerStage = 2;
- 89a:	82 e0       	ldi	r24, 0x02	; 2
- 89c:	80 93 2c 02 	sts	0x022C, r24	; 0x80022c <buzzerStage>
+ 8ac:	82 e0       	ldi	r24, 0x02	; 2
+ 8ae:	80 93 52 02 	sts	0x0252, r24	; 0x800252 <buzzerStage>
+	
+	// Update Correct Attempts
+	correctAttempts++;
+ 8b2:	80 91 51 02 	lds	r24, 0x0251	; 0x800251 <correctAttempts>
+ 8b6:	8f 5f       	subi	r24, 0xFF	; 255
+ 8b8:	80 93 51 02 	sts	0x0251, r24	; 0x800251 <correctAttempts>
 	
 	// Clear the lcd screen
 	lcd_clrscr();
- 8a0:	0e 94 9d 01 	call	0x33a	; 0x33a <lcd_clrscr>
+ 8bc:	0e 94 9d 01 	call	0x33a	; 0x33a <lcd_clrscr>
 	// Print to lcd screen
-	lcd_gotoxy(0,1);
- 8a4:	61 e0       	ldi	r22, 0x01	; 1
- 8a6:	80 e0       	ldi	r24, 0x00	; 0
- 8a8:	0e 94 87 01 	call	0x30e	; 0x30e <lcd_gotoxy>
+	lcd_gotoxy(1,1);
+ 8c0:	61 e0       	ldi	r22, 0x01	; 1
+ 8c2:	81 e0       	ldi	r24, 0x01	; 1
+ 8c4:	0e 94 87 01 	call	0x30e	; 0x30e <lcd_gotoxy>
 	lcd_puts("Correct pin.");
- 8ac:	82 e8       	ldi	r24, 0x82	; 130
- 8ae:	91 e0       	ldi	r25, 0x01	; 1
- 8b0:	0e 94 a5 01 	call	0x34a	; 0x34a <lcd_puts>
-	lcd_gotoxy(0,2);
- 8b4:	62 e0       	ldi	r22, 0x02	; 2
- 8b6:	80 e0       	ldi	r24, 0x00	; 0
- 8b8:	0e 94 87 01 	call	0x30e	; 0x30e <lcd_gotoxy>
+ 8c8:	82 e8       	ldi	r24, 0x82	; 130
+ 8ca:	91 e0       	ldi	r25, 0x01	; 1
+ 8cc:	0e 94 a5 01 	call	0x34a	; 0x34a <lcd_puts>
+	lcd_gotoxy(1,2);
+ 8d0:	62 e0       	ldi	r22, 0x02	; 2
+ 8d2:	81 e0       	ldi	r24, 0x01	; 1
+ 8d4:	0e 94 87 01 	call	0x30e	; 0x30e <lcd_gotoxy>
 	lcd_puts("Hello ");
- 8bc:	8f e8       	ldi	r24, 0x8F	; 143
- 8be:	91 e0       	ldi	r25, 0x01	; 1
- 8c0:	0e 94 a5 01 	call	0x34a	; 0x34a <lcd_puts>
+ 8d8:	8f e8       	ldi	r24, 0x8F	; 143
+ 8da:	91 e0       	ldi	r25, 0x01	; 1
+ 8dc:	0e 94 a5 01 	call	0x34a	; 0x34a <lcd_puts>
 	lcd_puts(names[ID]);
- 8c4:	8d e0       	ldi	r24, 0x0D	; 13
- 8c6:	c8 9f       	mul	r28, r24
- 8c8:	e0 01       	movw	r28, r0
- 8ca:	11 24       	eor	r1, r1
- 8cc:	cc 51       	subi	r28, 0x1C	; 28
- 8ce:	de 4f       	sbci	r29, 0xFE	; 254
- 8d0:	ce 01       	movw	r24, r28
- 8d2:	0e 94 a5 01 	call	0x34a	; 0x34a <lcd_puts>
+ 8e0:	8d e0       	ldi	r24, 0x0D	; 13
+ 8e2:	08 9f       	mul	r16, r24
+ 8e4:	80 01       	movw	r16, r0
+ 8e6:	11 24       	eor	r1, r1
+ 8e8:	09 5f       	subi	r16, 0xF9	; 249
+ 8ea:	1d 4f       	sbci	r17, 0xFD	; 253
+ 8ec:	c8 01       	movw	r24, r16
+ 8ee:	0e 94 a5 01 	call	0x34a	; 0x34a <lcd_puts>
 	
 	// UART
 	uart_puts(names[ID]);
- 8d6:	ce 01       	movw	r24, r28
- 8d8:	0e 94 f6 05 	call	0xbec	; 0xbec <uart_puts>
+ 8f2:	c8 01       	movw	r24, r16
+ 8f4:	0e 94 72 06 	call	0xce4	; 0xce4 <uart_puts>
 	uart_puts(" entered to the room!");
- 8dc:	86 e9       	ldi	r24, 0x96	; 150
- 8de:	91 e0       	ldi	r25, 0x01	; 1
- 8e0:	0e 94 f6 05 	call	0xbec	; 0xbec <uart_puts>
+ 8f8:	86 e9       	ldi	r24, 0x96	; 150
+ 8fa:	91 e0       	ldi	r25, 0x01	; 1
+ 8fc:	0e 94 72 06 	call	0xce4	; 0xce4 <uart_puts>
 	uart_puts("\r\n");	
- 8e4:	8c ea       	ldi	r24, 0xAC	; 172
- 8e6:	91 e0       	ldi	r25, 0x01	; 1
- 8e8:	0e 94 f6 05 	call	0xbec	; 0xbec <uart_puts>
+ 900:	8c ea       	ldi	r24, 0xAC	; 172
+ 902:	91 e0       	ldi	r25, 0x01	; 1
+ 904:	0e 94 72 06 	call	0xce4	; 0xce4 <uart_puts>
+	uart_puts("Total Attempts: ");
+ 908:	8f ea       	ldi	r24, 0xAF	; 175
+ 90a:	91 e0       	ldi	r25, 0x01	; 1
+ 90c:	0e 94 72 06 	call	0xce4	; 0xce4 <uart_puts>
+	uart_puts("\r\n");
+ 910:	8c ea       	ldi	r24, 0xAC	; 172
+ 912:	91 e0       	ldi	r25, 0x01	; 1
+ 914:	0e 94 72 06 	call	0xce4	; 0xce4 <uart_puts>
+	uart_puts("Correct: ");
+ 918:	80 ec       	ldi	r24, 0xC0	; 192
+ 91a:	91 e0       	ldi	r25, 0x01	; 1
+ 91c:	0e 94 72 06 	call	0xce4	; 0xce4 <uart_puts>
+ 920:	80 91 51 02 	lds	r24, 0x0251	; 0x800251 <correctAttempts>
+ 924:	4a e0       	ldi	r20, 0x0A	; 10
+ 926:	be 01       	movw	r22, r28
+ 928:	6f 5f       	subi	r22, 0xFF	; 255
+ 92a:	7f 4f       	sbci	r23, 0xFF	; 255
+ 92c:	90 e0       	ldi	r25, 0x00	; 0
+ 92e:	0e 94 81 06 	call	0xd02	; 0xd02 <__itoa_ncheck>
+	uart_puts(itoa(correctAttempts, string2, 10));
+ 932:	0e 94 72 06 	call	0xce4	; 0xce4 <uart_puts>
+	uart_puts("\r\n");
+ 936:	8c ea       	ldi	r24, 0xAC	; 172
+ 938:	91 e0       	ldi	r25, 0x01	; 1
+ 93a:	0e 94 72 06 	call	0xce4	; 0xce4 <uart_puts>
+	uart_puts("Wrong: ");
+ 93e:	8a ec       	ldi	r24, 0xCA	; 202
+ 940:	91 e0       	ldi	r25, 0x01	; 1
+ 942:	0e 94 72 06 	call	0xce4	; 0xce4 <uart_puts>
+ 946:	80 91 50 02 	lds	r24, 0x0250	; 0x800250 <wrongAttempts>
+ 94a:	4a e0       	ldi	r20, 0x0A	; 10
+ 94c:	be 01       	movw	r22, r28
+ 94e:	6f 5f       	subi	r22, 0xFF	; 255
+ 950:	7f 4f       	sbci	r23, 0xFF	; 255
+ 952:	90 e0       	ldi	r25, 0x00	; 0
+ 954:	0e 94 81 06 	call	0xd02	; 0xd02 <__itoa_ncheck>
+	uart_puts(itoa(wrongAttempts, string2, 10));
+ 958:	0e 94 72 06 	call	0xce4	; 0xce4 <uart_puts>
+	uart_puts("\r\n");
+ 95c:	8c ea       	ldi	r24, 0xAC	; 172
+ 95e:	91 e0       	ldi	r25, 0x01	; 1
+ 960:	0e 94 72 06 	call	0xce4	; 0xce4 <uart_puts>
 }
- 8ec:	df 91       	pop	r29
- 8ee:	cf 91       	pop	r28
- 8f0:	08 95       	ret
+ 964:	0f 90       	pop	r0
+ 966:	0f 90       	pop	r0
+ 968:	df 91       	pop	r29
+ 96a:	cf 91       	pop	r28
+ 96c:	1f 91       	pop	r17
+ 96e:	0f 91       	pop	r16
+ 970:	08 95       	ret
 
-000008f2 <wrongPin>:
+00000972 <wrongPin>:
 
 void wrongPin()
-{
+{	
+ 972:	cf 93       	push	r28
+ 974:	df 93       	push	r29
+ 976:	00 d0       	rcall	.+0      	; 0x978 <wrongPin+0x6>
+ 978:	cd b7       	in	r28, 0x3d	; 61
+ 97a:	de b7       	in	r29, 0x3e	; 62
+	char string2[2] = "  ";
+ 97c:	80 e2       	ldi	r24, 0x20	; 32
+ 97e:	90 e2       	ldi	r25, 0x20	; 32
+ 980:	9a 83       	std	Y+2, r25	; 0x02
+ 982:	89 83       	std	Y+1, r24	; 0x01
+	
 	// Light up the red led
 	GPIO_write_high(&PORTB, redLed);
- 8f2:	66 e0       	ldi	r22, 0x06	; 6
- 8f4:	85 e2       	ldi	r24, 0x25	; 37
- 8f6:	90 e0       	ldi	r25, 0x00	; 0
- 8f8:	0e 94 7e 00 	call	0xfc	; 0xfc <GPIO_write_high>
+ 984:	66 e0       	ldi	r22, 0x06	; 6
+ 986:	85 e2       	ldi	r24, 0x25	; 37
+ 988:	90 e0       	ldi	r25, 0x00	; 0
+ 98a:	0e 94 7e 00 	call	0xfc	; 0xfc <GPIO_write_high>
 	
 	// Correct Pin Buzzer
 	buzzerStage = 3;
- 8fc:	83 e0       	ldi	r24, 0x03	; 3
- 8fe:	80 93 2c 02 	sts	0x022C, r24	; 0x80022c <buzzerStage>
+ 98e:	83 e0       	ldi	r24, 0x03	; 3
+ 990:	80 93 52 02 	sts	0x0252, r24	; 0x800252 <buzzerStage>
+	
+	// Update Wrong Attempts
+	wrongAttempts++;
+ 994:	80 91 50 02 	lds	r24, 0x0250	; 0x800250 <wrongAttempts>
+ 998:	8f 5f       	subi	r24, 0xFF	; 255
+ 99a:	80 93 50 02 	sts	0x0250, r24	; 0x800250 <wrongAttempts>
 	
 	// Clear the lcd screen
 	lcd_clrscr();
- 902:	0e 94 9d 01 	call	0x33a	; 0x33a <lcd_clrscr>
+ 99e:	0e 94 9d 01 	call	0x33a	; 0x33a <lcd_clrscr>
 	// Print to lcd screen
 	lcd_gotoxy(2,2);
- 906:	62 e0       	ldi	r22, 0x02	; 2
- 908:	82 e0       	ldi	r24, 0x02	; 2
- 90a:	0e 94 87 01 	call	0x30e	; 0x30e <lcd_gotoxy>
+ 9a2:	62 e0       	ldi	r22, 0x02	; 2
+ 9a4:	82 e0       	ldi	r24, 0x02	; 2
+ 9a6:	0e 94 87 01 	call	0x30e	; 0x30e <lcd_gotoxy>
 	lcd_puts("Wrong pin.");
- 90e:	8f ea       	ldi	r24, 0xAF	; 175
- 910:	91 e0       	ldi	r25, 0x01	; 1
- 912:	0e 94 a5 01 	call	0x34a	; 0x34a <lcd_puts>
+ 9aa:	82 ed       	ldi	r24, 0xD2	; 210
+ 9ac:	91 e0       	ldi	r25, 0x01	; 1
+ 9ae:	0e 94 a5 01 	call	0x34a	; 0x34a <lcd_puts>
 	
 	// UART
 	uart_puts("Wrong attempt to enter!");
- 916:	8a eb       	ldi	r24, 0xBA	; 186
- 918:	91 e0       	ldi	r25, 0x01	; 1
- 91a:	0e 94 f6 05 	call	0xbec	; 0xbec <uart_puts>
+ 9b2:	8d ed       	ldi	r24, 0xDD	; 221
+ 9b4:	91 e0       	ldi	r25, 0x01	; 1
+ 9b6:	0e 94 72 06 	call	0xce4	; 0xce4 <uart_puts>
 	uart_puts("\r\n");
- 91e:	8c ea       	ldi	r24, 0xAC	; 172
- 920:	91 e0       	ldi	r25, 0x01	; 1
- 922:	0e 94 f6 05 	call	0xbec	; 0xbec <uart_puts>
- 926:	08 95       	ret
-
-00000928 <comparePins>:
+ 9ba:	8c ea       	ldi	r24, 0xAC	; 172
+ 9bc:	91 e0       	ldi	r25, 0x01	; 1
+ 9be:	0e 94 72 06 	call	0xce4	; 0xce4 <uart_puts>
+	uart_puts("Total Attempts: ");
+ 9c2:	8f ea       	ldi	r24, 0xAF	; 175
+ 9c4:	91 e0       	ldi	r25, 0x01	; 1
+ 9c6:	0e 94 72 06 	call	0xce4	; 0xce4 <uart_puts>
+	uart_puts("\r\n");
+ 9ca:	8c ea       	ldi	r24, 0xAC	; 172
+ 9cc:	91 e0       	ldi	r25, 0x01	; 1
+ 9ce:	0e 94 72 06 	call	0xce4	; 0xce4 <uart_puts>
+	uart_puts("Correct: ");
+ 9d2:	80 ec       	ldi	r24, 0xC0	; 192
+ 9d4:	91 e0       	ldi	r25, 0x01	; 1
+ 9d6:	0e 94 72 06 	call	0xce4	; 0xce4 <uart_puts>
+ 9da:	80 91 51 02 	lds	r24, 0x0251	; 0x800251 <correctAttempts>
+ 9de:	4a e0       	ldi	r20, 0x0A	; 10
+ 9e0:	be 01       	movw	r22, r28
+ 9e2:	6f 5f       	subi	r22, 0xFF	; 255
+ 9e4:	7f 4f       	sbci	r23, 0xFF	; 255
+ 9e6:	90 e0       	ldi	r25, 0x00	; 0
+ 9e8:	0e 94 81 06 	call	0xd02	; 0xd02 <__itoa_ncheck>
+	uart_puts(itoa(correctAttempts, string2, 10));
+ 9ec:	0e 94 72 06 	call	0xce4	; 0xce4 <uart_puts>
+	uart_puts("\r\n");
+ 9f0:	8c ea       	ldi	r24, 0xAC	; 172
+ 9f2:	91 e0       	ldi	r25, 0x01	; 1
+ 9f4:	0e 94 72 06 	call	0xce4	; 0xce4 <uart_puts>
+	uart_puts("Wrong: ");
+ 9f8:	8a ec       	ldi	r24, 0xCA	; 202
+ 9fa:	91 e0       	ldi	r25, 0x01	; 1
+ 9fc:	0e 94 72 06 	call	0xce4	; 0xce4 <uart_puts>
+ a00:	80 91 50 02 	lds	r24, 0x0250	; 0x800250 <wrongAttempts>
+ a04:	4a e0       	ldi	r20, 0x0A	; 10
+ a06:	be 01       	movw	r22, r28
+ a08:	6f 5f       	subi	r22, 0xFF	; 255
+ a0a:	7f 4f       	sbci	r23, 0xFF	; 255
+ a0c:	90 e0       	ldi	r25, 0x00	; 0
+ a0e:	0e 94 81 06 	call	0xd02	; 0xd02 <__itoa_ncheck>
+	uart_puts(itoa(wrongAttempts, string2, 10));
+ a12:	0e 94 72 06 	call	0xce4	; 0xce4 <uart_puts>
+	uart_puts("\r\n");
+ a16:	8c ea       	ldi	r24, 0xAC	; 172
+ a18:	91 e0       	ldi	r25, 0x01	; 1
+ a1a:	0e 94 72 06 	call	0xce4	; 0xce4 <uart_puts>
 }
+ a1e:	0f 90       	pop	r0
+ a20:	0f 90       	pop	r0
+ a22:	df 91       	pop	r29
+ a24:	cf 91       	pop	r28
+ a26:	08 95       	ret
+
+00000a28 <comparePins>:
 
 int8_t comparePins(char input[])
 {
- 928:	0f 93       	push	r16
- 92a:	1f 93       	push	r17
- 92c:	cf 93       	push	r28
- 92e:	df 93       	push	r29
- 930:	ac 01       	movw	r20, r24
+ a28:	1f 93       	push	r17
+ a2a:	cf 93       	push	r28
+ a2c:	df 93       	push	r29
+ a2e:	bc 01       	movw	r22, r24
 	{
 		// Compare 4-digit input pin with the registers pin
 		// Ex. pi
 		for(uint8_t b = 0; b<4; b++)
 		{
 			if(input[b] == pins[a][b])
- 932:	fc 01       	movw	r30, r24
- 934:	80 81       	ld	r24, Z
- 936:	c8 e1       	ldi	r28, 0x18	; 24
- 938:	d2 e0       	ldi	r29, 0x02	; 2
- 93a:	08 e2       	ldi	r16, 0x28	; 40
- 93c:	12 e0       	ldi	r17, 0x02	; 2
-	// pins[0], pins[1], pins[2], pins[3]
-	for(uint8_t a = 0; a<4; a++)
-	{
-		// Compare 4-digit input pin with the registers pin
-		// Ex. pi
-		for(uint8_t b = 0; b<4; b++)
- 93e:	61 e0       	ldi	r22, 0x01	; 1
- 940:	0f c0       	rjmp	.+30     	; 0x960 <comparePins+0x38>
- 942:	92 2f       	mov	r25, r18
-		{
-			if(input[b] == pins[a][b])
- 944:	3d 91       	ld	r19, X+
- 946:	21 91       	ld	r18, Z+
- 948:	32 13       	cpse	r19, r18
- 94a:	06 c0       	rjmp	.+12     	; 0x958 <comparePins+0x30>
-	// pins[0], pins[1], pins[2], pins[3]
-	for(uint8_t a = 0; a<4; a++)
-	{
-		// Compare 4-digit input pin with the registers pin
-		// Ex. pi
-		for(uint8_t b = 0; b<4; b++)
- 94c:	21 e0       	ldi	r18, 0x01	; 1
- 94e:	29 0f       	add	r18, r25
- 950:	24 30       	cpi	r18, 0x04	; 4
- 952:	b9 f7       	brne	.-18     	; 0x942 <comparePins+0x1a>
-				pinId = -1;
-				break;
-			}
-		}
-		// If an active pin is found, stop comparing
-		if(pinId != -1)
- 954:	9f 3f       	cpi	r25, 0xFF	; 255
- 956:	71 f4       	brne	.+28     	; 0x974 <comparePins+0x4c>
- 958:	24 96       	adiw	r28, 0x04	; 4
+ a30:	fc 01       	movw	r30, r24
+ a32:	10 81       	ld	r17, Z
+ a34:	cb e3       	ldi	r28, 0x3B	; 59
+ a36:	d2 e0       	ldi	r29, 0x02	; 2
 {
 	int8_t pinId = -1;	// Active pin ID, If -1 no active pins
 
 	// Checking each registered pin
 	// pins[0], pins[1], pins[2], pins[3]
 	for(uint8_t a = 0; a<4; a++)
- 95a:	c0 17       	cp	r28, r16
- 95c:	d1 07       	cpc	r29, r17
- 95e:	49 f0       	breq	.+18     	; 0x972 <comparePins+0x4a>
+ a38:	30 e0       	ldi	r19, 0x00	; 0
+ a3a:	ac 01       	movw	r20, r24
+ a3c:	4c 5f       	subi	r20, 0xFC	; 252
+ a3e:	5f 4f       	sbci	r21, 0xFF	; 255
+ a40:	0e c0       	rjmp	.+28     	; 0xa5e <comparePins+0x36>
 	{
 		// Compare 4-digit input pin with the registers pin
 		// Ex. pi
 		for(uint8_t b = 0; b<4; b++)
 		{
 			if(input[b] == pins[a][b])
- 960:	98 81       	ld	r25, Y
- 962:	89 13       	cpse	r24, r25
- 964:	f9 cf       	rjmp	.-14     	; 0x958 <comparePins+0x30>
- 966:	da 01       	movw	r26, r20
- 968:	11 96       	adiw	r26, 0x01	; 1
- 96a:	fe 01       	movw	r30, r28
- 96c:	31 96       	adiw	r30, 0x01	; 1
+ a42:	21 91       	ld	r18, Z+
+ a44:	9d 91       	ld	r25, X+
+ a46:	29 13       	cpse	r18, r25
+ a48:	06 c0       	rjmp	.+12     	; 0xa56 <comparePins+0x2e>
 	// pins[0], pins[1], pins[2], pins[3]
 	for(uint8_t a = 0; a<4; a++)
 	{
 		// Compare 4-digit input pin with the registers pin
 		// Ex. pi
 		for(uint8_t b = 0; b<4; b++)
- 96e:	96 2f       	mov	r25, r22
- 970:	e9 cf       	rjmp	.-46     	; 0x944 <comparePins+0x1c>
- 972:	9f ef       	ldi	r25, 0xFF	; 255
+ a4a:	e4 17       	cp	r30, r20
+ a4c:	f5 07       	cpc	r31, r21
+ a4e:	c9 f7       	brne	.-14     	; 0xa42 <comparePins+0x1a>
+		{
+			if(input[b] == pins[a][b])
+			{
+				pinId = a;
+ a50:	83 2f       	mov	r24, r19
+				pinId = -1;
+				break;
+			}
+		}
+		// If an active pin is found, stop comparing
+		if(pinId != -1)
+ a52:	3f 3f       	cpi	r19, 0xFF	; 255
+ a54:	69 f4       	brne	.+26     	; 0xa70 <comparePins+0x48>
+{
+	int8_t pinId = -1;	// Active pin ID, If -1 no active pins
+
+	// Checking each registered pin
+	// pins[0], pins[1], pins[2], pins[3]
+	for(uint8_t a = 0; a<4; a++)
+ a56:	3f 5f       	subi	r19, 0xFF	; 255
+ a58:	24 96       	adiw	r28, 0x04	; 4
+ a5a:	34 30       	cpi	r19, 0x04	; 4
+ a5c:	41 f0       	breq	.+16     	; 0xa6e <comparePins+0x46>
+	{
+		// Compare 4-digit input pin with the registers pin
+		// Ex. pi
+		for(uint8_t b = 0; b<4; b++)
+		{
+			if(input[b] == pins[a][b])
+ a5e:	98 81       	ld	r25, Y
+ a60:	19 13       	cpse	r17, r25
+ a62:	f9 cf       	rjmp	.-14     	; 0xa56 <comparePins+0x2e>
+ a64:	fb 01       	movw	r30, r22
+ a66:	31 96       	adiw	r30, 0x01	; 1
+ a68:	de 01       	movw	r26, r28
+ a6a:	11 96       	adiw	r26, 0x01	; 1
+ a6c:	ea cf       	rjmp	.-44     	; 0xa42 <comparePins+0x1a>
+ a6e:	8f ef       	ldi	r24, 0xFF	; 255
 		if(pinId != -1)
 		break;
 	}
 	
 	return pinId;
- 974:	89 2f       	mov	r24, r25
- 976:	df 91       	pop	r29
- 978:	cf 91       	pop	r28
- 97a:	1f 91       	pop	r17
- 97c:	0f 91       	pop	r16
- 97e:	08 95       	ret
+ a70:	df 91       	pop	r29
+ a72:	cf 91       	pop	r28
+ a74:	1f 91       	pop	r17
+ a76:	08 95       	ret
 
-00000980 <__vector_16>:
+00000a78 <__vector_16>:
 }
 
 /* Interrupt handlers ------------------------------------------------*/
 //	Interrupt Handler for scanning keypad, getting the typed pin and then compare the pin
 ISR(TIMER0_OVF_vect)
 {
- 980:	1f 92       	push	r1
- 982:	0f 92       	push	r0
- 984:	0f b6       	in	r0, 0x3f	; 63
- 986:	0f 92       	push	r0
- 988:	11 24       	eor	r1, r1
- 98a:	2f 93       	push	r18
- 98c:	3f 93       	push	r19
- 98e:	4f 93       	push	r20
- 990:	5f 93       	push	r21
- 992:	6f 93       	push	r22
- 994:	7f 93       	push	r23
- 996:	8f 93       	push	r24
- 998:	9f 93       	push	r25
- 99a:	af 93       	push	r26
- 99c:	bf 93       	push	r27
- 99e:	ef 93       	push	r30
- 9a0:	ff 93       	push	r31
+ a78:	1f 92       	push	r1
+ a7a:	0f 92       	push	r0
+ a7c:	0f b6       	in	r0, 0x3f	; 63
+ a7e:	0f 92       	push	r0
+ a80:	11 24       	eor	r1, r1
+ a82:	2f 93       	push	r18
+ a84:	3f 93       	push	r19
+ a86:	4f 93       	push	r20
+ a88:	5f 93       	push	r21
+ a8a:	6f 93       	push	r22
+ a8c:	7f 93       	push	r23
+ a8e:	8f 93       	push	r24
+ a90:	9f 93       	push	r25
+ a92:	af 93       	push	r26
+ a94:	bf 93       	push	r27
+ a96:	ef 93       	push	r30
+ a98:	ff 93       	push	r31
 	volatile static char pressedKey = ' ';		// Pressed Key
 	volatile static uint8_t pinDigitCnt = 0;	// Contains the index value of the pin
 	volatile static uint8_t scanningStage = 0;	// Get Pin --> 0: None, 1: getPin, 2: Standby
 	
 	// Scan the Keypad
 	pressedKey = keypad_scan();
- 9a2:	0e 94 d3 00 	call	0x1a6	; 0x1a6 <keypad_scan>
- 9a6:	80 93 13 01 	sts	0x0113, r24	; 0x800113 <pressedKey.2005>
+ a9a:	0e 94 d3 00 	call	0x1a6	; 0x1a6 <keypad_scan>
+ a9e:	80 93 13 01 	sts	0x0113, r24	; 0x800113 <pressedKey.2007>
 	
 	// Key Press Buzzer
 	if(pressedKey != ' ')
- 9aa:	80 91 13 01 	lds	r24, 0x0113	; 0x800113 <pressedKey.2005>
- 9ae:	80 32       	cpi	r24, 0x20	; 32
- 9b0:	19 f0       	breq	.+6      	; 0x9b8 <__vector_16+0x38>
+ aa2:	80 91 13 01 	lds	r24, 0x0113	; 0x800113 <pressedKey.2007>
+ aa6:	80 32       	cpi	r24, 0x20	; 32
+ aa8:	19 f0       	breq	.+6      	; 0xab0 <__vector_16+0x38>
 		buzzerStage = 1;
- 9b2:	81 e0       	ldi	r24, 0x01	; 1
- 9b4:	80 93 2c 02 	sts	0x022C, r24	; 0x80022c <buzzerStage>
+ aaa:	81 e0       	ldi	r24, 0x01	; 1
+ aac:	80 93 52 02 	sts	0x0252, r24	; 0x800252 <buzzerStage>
 	
 	// If user pressed #
 	if(pressedKey == '#' && scanningStage == 0)
- 9b8:	80 91 13 01 	lds	r24, 0x0113	; 0x800113 <pressedKey.2005>
- 9bc:	83 32       	cpi	r24, 0x23	; 35
- 9be:	61 f4       	brne	.+24     	; 0x9d8 <__vector_16+0x58>
- 9c0:	80 91 2b 02 	lds	r24, 0x022B	; 0x80022b <scanningStage.2007>
- 9c4:	81 11       	cpse	r24, r1
- 9c6:	08 c0       	rjmp	.+16     	; 0x9d8 <__vector_16+0x58>
+ ab0:	80 91 13 01 	lds	r24, 0x0113	; 0x800113 <pressedKey.2007>
+ ab4:	83 32       	cpi	r24, 0x23	; 35
+ ab6:	61 f4       	brne	.+24     	; 0xad0 <__vector_16+0x58>
+ ab8:	80 91 4f 02 	lds	r24, 0x024F	; 0x80024f <scanningStage.2009>
+ abc:	81 11       	cpse	r24, r1
+ abe:	08 c0       	rjmp	.+16     	; 0xad0 <__vector_16+0x58>
 	{
 		ringDoorBell();
- 9c8:	0e 94 32 04 	call	0x864	; 0x864 <ringDoorBell>
+ ac0:	0e 94 32 04 	call	0x864	; 0x864 <ringDoorBell>
 		// Wait 3s and than standby
 		scanningStage = 2;
- 9cc:	82 e0       	ldi	r24, 0x02	; 2
- 9ce:	80 93 2b 02 	sts	0x022B, r24	; 0x80022b <scanningStage.2007>
+ ac4:	82 e0       	ldi	r24, 0x02	; 2
+ ac6:	80 93 4f 02 	sts	0x024F, r24	; 0x80024f <scanningStage.2009>
 		timerStage = 2;
- 9d2:	80 93 2e 02 	sts	0x022E, r24	; 0x80022e <timerStage>
- 9d6:	19 c0       	rjmp	.+50     	; 0xa0a <__vector_16+0x8a>
+ aca:	80 93 54 02 	sts	0x0254, r24	; 0x800254 <timerStage>
+ ace:	19 c0       	rjmp	.+50     	; 0xb02 <__vector_16+0x8a>
 	}
 	//If user pressed *
 	else if(pressedKey == '*' && scanningStage == 0)
- 9d8:	80 91 13 01 	lds	r24, 0x0113	; 0x800113 <pressedKey.2005>
- 9dc:	8a 32       	cpi	r24, 0x2A	; 42
- 9de:	a9 f4       	brne	.+42     	; 0xa0a <__vector_16+0x8a>
- 9e0:	80 91 2b 02 	lds	r24, 0x022B	; 0x80022b <scanningStage.2007>
- 9e4:	81 11       	cpse	r24, r1
- 9e6:	11 c0       	rjmp	.+34     	; 0xa0a <__vector_16+0x8a>
+ ad0:	80 91 13 01 	lds	r24, 0x0113	; 0x800113 <pressedKey.2007>
+ ad4:	8a 32       	cpi	r24, 0x2A	; 42
+ ad6:	a9 f4       	brne	.+42     	; 0xb02 <__vector_16+0x8a>
+ ad8:	80 91 4f 02 	lds	r24, 0x024F	; 0x80024f <scanningStage.2009>
+ adc:	81 11       	cpse	r24, r1
+ ade:	11 c0       	rjmp	.+34     	; 0xb02 <__vector_16+0x8a>
 	{
 		scanningStage = 1;			// Enable getPin
- 9e8:	81 e0       	ldi	r24, 0x01	; 1
- 9ea:	80 93 2b 02 	sts	0x022B, r24	; 0x80022b <scanningStage.2007>
+ ae0:	81 e0       	ldi	r24, 0x01	; 1
+ ae2:	80 93 4f 02 	sts	0x024F, r24	; 0x80024f <scanningStage.2009>
 		timerStage = 1;		// Start 5 second timer
- 9ee:	80 93 2e 02 	sts	0x022E, r24	; 0x80022e <timerStage>
+ ae6:	80 93 54 02 	sts	0x0254, r24	; 0x800254 <timerStage>
 		pinDigitCnt = 0;	// Set pin input index to 0
- 9f2:	10 92 2a 02 	sts	0x022A, r1	; 0x80022a <pinDigitCnt.2006>
+ aea:	10 92 4e 02 	sts	0x024E, r1	; 0x80024e <pinDigitCnt.2008>
 						
 		// Configure lcd
 		lcd_clrscr();
- 9f6:	0e 94 9d 01 	call	0x33a	; 0x33a <lcd_clrscr>
+ aee:	0e 94 9d 01 	call	0x33a	; 0x33a <lcd_clrscr>
 		lcd_gotoxy(2,1);
- 9fa:	61 e0       	ldi	r22, 0x01	; 1
- 9fc:	82 e0       	ldi	r24, 0x02	; 2
- 9fe:	0e 94 87 01 	call	0x30e	; 0x30e <lcd_gotoxy>
+ af2:	61 e0       	ldi	r22, 0x01	; 1
+ af4:	82 e0       	ldi	r24, 0x02	; 2
+ af6:	0e 94 87 01 	call	0x30e	; 0x30e <lcd_gotoxy>
 		lcd_puts("--Enter the pin--");
- a02:	82 ed       	ldi	r24, 0xD2	; 210
- a04:	91 e0       	ldi	r25, 0x01	; 1
- a06:	0e 94 a5 01 	call	0x34a	; 0x34a <lcd_puts>
+ afa:	85 ef       	ldi	r24, 0xF5	; 245
+ afc:	91 e0       	ldi	r25, 0x01	; 1
+ afe:	0e 94 a5 01 	call	0x34a	; 0x34a <lcd_puts>
 	}
 		
 	// If getPin enabled get the typed pin
 	if(scanningStage == 1)
- a0a:	80 91 2b 02 	lds	r24, 0x022B	; 0x80022b <scanningStage.2007>
- a0e:	81 30       	cpi	r24, 0x01	; 1
- a10:	09 f0       	breq	.+2      	; 0xa14 <__vector_16+0x94>
- a12:	46 c0       	rjmp	.+140    	; 0xaa0 <__vector_16+0x120>
+ b02:	80 91 4f 02 	lds	r24, 0x024F	; 0x80024f <scanningStage.2009>
+ b06:	81 30       	cpi	r24, 0x01	; 1
+ b08:	09 f0       	breq	.+2      	; 0xb0c <__vector_16+0x94>
+ b0a:	46 c0       	rjmp	.+140    	; 0xb98 <__vector_16+0x120>
 	{
 		// Scan the entered pin
 		if(pressedKey != '*' && pressedKey != '#' && pressedKey!= ' ')
- a14:	80 91 13 01 	lds	r24, 0x0113	; 0x800113 <pressedKey.2005>
- a18:	8a 32       	cpi	r24, 0x2A	; 42
- a1a:	f9 f0       	breq	.+62     	; 0xa5a <__vector_16+0xda>
- a1c:	80 91 13 01 	lds	r24, 0x0113	; 0x800113 <pressedKey.2005>
- a20:	83 32       	cpi	r24, 0x23	; 35
- a22:	d9 f0       	breq	.+54     	; 0xa5a <__vector_16+0xda>
- a24:	80 91 13 01 	lds	r24, 0x0113	; 0x800113 <pressedKey.2005>
- a28:	80 32       	cpi	r24, 0x20	; 32
- a2a:	b9 f0       	breq	.+46     	; 0xa5a <__vector_16+0xda>
+ b0c:	80 91 13 01 	lds	r24, 0x0113	; 0x800113 <pressedKey.2007>
+ b10:	8a 32       	cpi	r24, 0x2A	; 42
+ b12:	f9 f0       	breq	.+62     	; 0xb52 <__vector_16+0xda>
+ b14:	80 91 13 01 	lds	r24, 0x0113	; 0x800113 <pressedKey.2007>
+ b18:	83 32       	cpi	r24, 0x23	; 35
+ b1a:	d9 f0       	breq	.+54     	; 0xb52 <__vector_16+0xda>
+ b1c:	80 91 13 01 	lds	r24, 0x0113	; 0x800113 <pressedKey.2007>
+ b20:	80 32       	cpi	r24, 0x20	; 32
+ b22:	b9 f0       	breq	.+46     	; 0xb52 <__vector_16+0xda>
 		{
 			// Put the pressed key into inputPin var
 			inPin[pinDigitCnt] = pressedKey;
- a2c:	e0 91 2a 02 	lds	r30, 0x022A	; 0x80022a <pinDigitCnt.2006>
- a30:	80 91 13 01 	lds	r24, 0x0113	; 0x800113 <pressedKey.2005>
- a34:	f0 e0       	ldi	r31, 0x00	; 0
- a36:	eb 5e       	subi	r30, 0xEB	; 235
- a38:	fe 4f       	sbci	r31, 0xFE	; 254
- a3a:	80 83       	st	Z, r24
+ b24:	e0 91 4e 02 	lds	r30, 0x024E	; 0x80024e <pinDigitCnt.2008>
+ b28:	80 91 13 01 	lds	r24, 0x0113	; 0x800113 <pressedKey.2007>
+ b2c:	f0 e0       	ldi	r31, 0x00	; 0
+ b2e:	eb 5e       	subi	r30, 0xEB	; 235
+ b30:	fe 4f       	sbci	r31, 0xFE	; 254
+ b32:	80 83       	st	Z, r24
 				
 			// Configure lcd
 			lcd_gotoxy((pinDigitCnt + 8),2);
- a3c:	80 91 2a 02 	lds	r24, 0x022A	; 0x80022a <pinDigitCnt.2006>
- a40:	62 e0       	ldi	r22, 0x02	; 2
- a42:	88 5f       	subi	r24, 0xF8	; 248
- a44:	0e 94 87 01 	call	0x30e	; 0x30e <lcd_gotoxy>
+ b34:	80 91 4e 02 	lds	r24, 0x024E	; 0x80024e <pinDigitCnt.2008>
+ b38:	62 e0       	ldi	r22, 0x02	; 2
+ b3a:	88 5f       	subi	r24, 0xF8	; 248
+ b3c:	0e 94 87 01 	call	0x30e	; 0x30e <lcd_gotoxy>
 			lcd_putc(pressedKey);
- a48:	80 91 13 01 	lds	r24, 0x0113	; 0x800113 <pressedKey.2005>
- a4c:	0e 94 a1 01 	call	0x342	; 0x342 <lcd_putc>
+ b40:	80 91 13 01 	lds	r24, 0x0113	; 0x800113 <pressedKey.2007>
+ b44:	0e 94 a1 01 	call	0x342	; 0x342 <lcd_putc>
 				
 			// Increase the counter
 			pinDigitCnt++;
- a50:	80 91 2a 02 	lds	r24, 0x022A	; 0x80022a <pinDigitCnt.2006>
- a54:	8f 5f       	subi	r24, 0xFF	; 255
- a56:	80 93 2a 02 	sts	0x022A, r24	; 0x80022a <pinDigitCnt.2006>
+ b48:	80 91 4e 02 	lds	r24, 0x024E	; 0x80024e <pinDigitCnt.2008>
+ b4c:	8f 5f       	subi	r24, 0xFF	; 255
+ b4e:	80 93 4e 02 	sts	0x024E, r24	; 0x80024e <pinDigitCnt.2008>
 		}
 		
 		// If 5s is up or the user typed all the digits of the pin enter here
 		// and compare typed pin with the correct ones
 		if(timerStage == 0 || pinDigitCnt > 3)
- a5a:	80 91 2e 02 	lds	r24, 0x022E	; 0x80022e <timerStage>
- a5e:	88 23       	and	r24, r24
- a60:	21 f0       	breq	.+8      	; 0xa6a <__vector_16+0xea>
- a62:	80 91 2a 02 	lds	r24, 0x022A	; 0x80022a <pinDigitCnt.2006>
- a66:	84 30       	cpi	r24, 0x04	; 4
- a68:	40 f1       	brcs	.+80     	; 0xaba <__vector_16+0x13a>
+ b52:	80 91 54 02 	lds	r24, 0x0254	; 0x800254 <timerStage>
+ b56:	88 23       	and	r24, r24
+ b58:	21 f0       	breq	.+8      	; 0xb62 <__vector_16+0xea>
+ b5a:	80 91 4e 02 	lds	r24, 0x024E	; 0x80024e <pinDigitCnt.2008>
+ b5e:	84 30       	cpi	r24, 0x04	; 4
+ b60:	40 f1       	brcs	.+80     	; 0xbb2 <__vector_16+0x13a>
 		{	
 			// Compare the typed pin and the correct pins
 			inID = comparePins(inPin);
- a6a:	85 e1       	ldi	r24, 0x15	; 21
- a6c:	91 e0       	ldi	r25, 0x01	; 1
- a6e:	0e 94 94 04 	call	0x928	; 0x928 <comparePins>
- a72:	80 93 14 01 	sts	0x0114, r24	; 0x800114 <inID>
+ b62:	85 e1       	ldi	r24, 0x15	; 21
+ b64:	91 e0       	ldi	r25, 0x01	; 1
+ b66:	0e 94 14 05 	call	0xa28	; 0xa28 <comparePins>
+ b6a:	80 93 14 01 	sts	0x0114, r24	; 0x800114 <inID>
 			
 			// If user typed pin before the timer finish stop the timer			
 			timerStage = 0;
- a76:	10 92 2e 02 	sts	0x022E, r1	; 0x80022e <timerStage>
+ b6e:	10 92 54 02 	sts	0x0254, r1	; 0x800254 <timerStage>
 			timerCnt = 0;
- a7a:	10 92 2d 02 	sts	0x022D, r1	; 0x80022d <timerCnt>
+ b72:	10 92 53 02 	sts	0x0253, r1	; 0x800253 <timerCnt>
 			
 			// Typed pin is incorrect
 			if(inID == -1)
- a7e:	8f 3f       	cpi	r24, 0xFF	; 255
- a80:	19 f4       	brne	.+6      	; 0xa88 <__vector_16+0x108>
+ b76:	8f 3f       	cpi	r24, 0xFF	; 255
+ b78:	19 f4       	brne	.+6      	; 0xb80 <__vector_16+0x108>
 			{
 				wrongPin();
- a82:	0e 94 79 04 	call	0x8f2	; 0x8f2 <wrongPin>
- a86:	04 c0       	rjmp	.+8      	; 0xa90 <__vector_16+0x110>
+ b7a:	0e 94 b9 04 	call	0x972	; 0x972 <wrongPin>
+ b7e:	04 c0       	rjmp	.+8      	; 0xb88 <__vector_16+0x110>
 			}
 			else if(inID >= 0 && inID < 4)
- a88:	84 30       	cpi	r24, 0x04	; 4
- a8a:	10 f4       	brcc	.+4      	; 0xa90 <__vector_16+0x110>
+ b80:	84 30       	cpi	r24, 0x04	; 4
+ b82:	10 f4       	brcc	.+4      	; 0xb88 <__vector_16+0x110>
 			{
 				correctPin(inID);
- a8c:	0e 94 40 04 	call	0x880	; 0x880 <correctPin>
+ b84:	0e 94 40 04 	call	0x880	; 0x880 <correctPin>
 			}
-			
+		
 			pinDigitCnt = 0;
- a90:	10 92 2a 02 	sts	0x022A, r1	; 0x80022a <pinDigitCnt.2006>
+ b88:	10 92 4e 02 	sts	0x024E, r1	; 0x80024e <pinDigitCnt.2008>
 			scanningStage = 2;
- a94:	82 e0       	ldi	r24, 0x02	; 2
- a96:	80 93 2b 02 	sts	0x022B, r24	; 0x80022b <scanningStage.2007>
+ b8c:	82 e0       	ldi	r24, 0x02	; 2
+ b8e:	80 93 4f 02 	sts	0x024F, r24	; 0x80024f <scanningStage.2009>
 			timerStage = 2;
- a9a:	80 93 2e 02 	sts	0x022E, r24	; 0x80022e <timerStage>
- a9e:	0d c0       	rjmp	.+26     	; 0xaba <__vector_16+0x13a>
+ b92:	80 93 54 02 	sts	0x0254, r24	; 0x800254 <timerStage>
+ b96:	0d c0       	rjmp	.+26     	; 0xbb2 <__vector_16+0x13a>
 		}
 	}
 	
 	// Changing the status to the standby
 	if(scanningStage == 2)
- aa0:	80 91 2b 02 	lds	r24, 0x022B	; 0x80022b <scanningStage.2007>
- aa4:	82 30       	cpi	r24, 0x02	; 2
- aa6:	59 f4       	brne	.+22     	; 0xabe <__vector_16+0x13e>
+ b98:	80 91 4f 02 	lds	r24, 0x024F	; 0x80024f <scanningStage.2009>
+ b9c:	82 30       	cpi	r24, 0x02	; 2
+ b9e:	59 f4       	brne	.+22     	; 0xbb6 <__vector_16+0x13e>
 	{
 		if(timerStage == 0)
- aa8:	80 91 2e 02 	lds	r24, 0x022E	; 0x80022e <timerStage>
- aac:	81 11       	cpse	r24, r1
- aae:	07 c0       	rjmp	.+14     	; 0xabe <__vector_16+0x13e>
+ ba0:	80 91 54 02 	lds	r24, 0x0254	; 0x800254 <timerStage>
+ ba4:	81 11       	cpse	r24, r1
+ ba6:	07 c0       	rjmp	.+14     	; 0xbb6 <__vector_16+0x13e>
 		{
 			scanningStage = 0;
- ab0:	10 92 2b 02 	sts	0x022B, r1	; 0x80022b <scanningStage.2007>
+ ba8:	10 92 4f 02 	sts	0x024F, r1	; 0x80024f <scanningStage.2009>
 			standby();
- ab4:	0e 94 95 03 	call	0x72a	; 0x72a <standby>
+ bac:	0e 94 95 03 	call	0x72a	; 0x72a <standby>
 		}
 	}
 }
- ab8:	02 c0       	rjmp	.+4      	; 0xabe <__vector_16+0x13e>
+ bb0:	02 c0       	rjmp	.+4      	; 0xbb6 <__vector_16+0x13e>
 			timerStage = 2;
 		}
 	}
 	
 	// Changing the status to the standby
 	if(scanningStage == 2)
- aba:	80 91 2b 02 	lds	r24, 0x022B	; 0x80022b <scanningStage.2007>
+ bb2:	80 91 4f 02 	lds	r24, 0x024F	; 0x80024f <scanningStage.2009>
 		{
 			scanningStage = 0;
 			standby();
 		}
 	}
 }
- abe:	ff 91       	pop	r31
- ac0:	ef 91       	pop	r30
- ac2:	bf 91       	pop	r27
- ac4:	af 91       	pop	r26
- ac6:	9f 91       	pop	r25
- ac8:	8f 91       	pop	r24
- aca:	7f 91       	pop	r23
- acc:	6f 91       	pop	r22
- ace:	5f 91       	pop	r21
- ad0:	4f 91       	pop	r20
- ad2:	3f 91       	pop	r19
- ad4:	2f 91       	pop	r18
- ad6:	0f 90       	pop	r0
- ad8:	0f be       	out	0x3f, r0	; 63
- ada:	0f 90       	pop	r0
- adc:	1f 90       	pop	r1
- ade:	18 95       	reti
+ bb6:	ff 91       	pop	r31
+ bb8:	ef 91       	pop	r30
+ bba:	bf 91       	pop	r27
+ bbc:	af 91       	pop	r26
+ bbe:	9f 91       	pop	r25
+ bc0:	8f 91       	pop	r24
+ bc2:	7f 91       	pop	r23
+ bc4:	6f 91       	pop	r22
+ bc6:	5f 91       	pop	r21
+ bc8:	4f 91       	pop	r20
+ bca:	3f 91       	pop	r19
+ bcc:	2f 91       	pop	r18
+ bce:	0f 90       	pop	r0
+ bd0:	0f be       	out	0x3f, r0	; 63
+ bd2:	0f 90       	pop	r0
+ bd4:	1f 90       	pop	r1
+ bd6:	18 95       	reti
 
-00000ae0 <__vector_18>:
- ae0:	1f 92       	push	r1
- ae2:	0f 92       	push	r0
- ae4:	0f b6       	in	r0, 0x3f	; 63
- ae6:	0f 92       	push	r0
- ae8:	11 24       	eor	r1, r1
- aea:	2f 93       	push	r18
- aec:	8f 93       	push	r24
- aee:	9f 93       	push	r25
- af0:	ef 93       	push	r30
- af2:	ff 93       	push	r31
- af4:	80 91 c0 00 	lds	r24, 0x00C0	; 0x8000c0 <__DATA_REGION_ORIGIN__+0x60>
- af8:	20 91 c6 00 	lds	r18, 0x00C6	; 0x8000c6 <__DATA_REGION_ORIGIN__+0x66>
- afc:	8c 71       	andi	r24, 0x1C	; 28
- afe:	e0 91 31 02 	lds	r30, 0x0231	; 0x800231 <UART_RxHead>
- b02:	ef 5f       	subi	r30, 0xFF	; 255
- b04:	ef 73       	andi	r30, 0x3F	; 63
- b06:	90 91 30 02 	lds	r25, 0x0230	; 0x800230 <UART_RxTail>
- b0a:	e9 17       	cp	r30, r25
- b0c:	39 f0       	breq	.+14     	; 0xb1c <__vector_18+0x3c>
- b0e:	e0 93 31 02 	sts	0x0231, r30	; 0x800231 <UART_RxHead>
- b12:	f0 e0       	ldi	r31, 0x00	; 0
- b14:	ec 5c       	subi	r30, 0xCC	; 204
- b16:	fd 4f       	sbci	r31, 0xFD	; 253
- b18:	20 83       	st	Z, r18
- b1a:	01 c0       	rjmp	.+2      	; 0xb1e <__vector_18+0x3e>
- b1c:	82 e0       	ldi	r24, 0x02	; 2
- b1e:	90 91 2f 02 	lds	r25, 0x022F	; 0x80022f <UART_LastRxError>
- b22:	89 2b       	or	r24, r25
- b24:	80 93 2f 02 	sts	0x022F, r24	; 0x80022f <UART_LastRxError>
- b28:	ff 91       	pop	r31
- b2a:	ef 91       	pop	r30
- b2c:	9f 91       	pop	r25
- b2e:	8f 91       	pop	r24
- b30:	2f 91       	pop	r18
- b32:	0f 90       	pop	r0
- b34:	0f be       	out	0x3f, r0	; 63
- b36:	0f 90       	pop	r0
- b38:	1f 90       	pop	r1
- b3a:	18 95       	reti
+00000bd8 <__vector_18>:
+    /* store buffer index */
+    UART_RxTail = tmptail;
 
-00000b3c <__vector_19>:
- b3c:	1f 92       	push	r1
- b3e:	0f 92       	push	r0
- b40:	0f b6       	in	r0, 0x3f	; 63
- b42:	0f 92       	push	r0
- b44:	11 24       	eor	r1, r1
- b46:	8f 93       	push	r24
- b48:	9f 93       	push	r25
- b4a:	ef 93       	push	r30
- b4c:	ff 93       	push	r31
- b4e:	90 91 33 02 	lds	r25, 0x0233	; 0x800233 <UART_TxHead>
- b52:	80 91 32 02 	lds	r24, 0x0232	; 0x800232 <UART_TxTail>
- b56:	98 17       	cp	r25, r24
- b58:	69 f0       	breq	.+26     	; 0xb74 <__vector_19+0x38>
- b5a:	e0 91 32 02 	lds	r30, 0x0232	; 0x800232 <UART_TxTail>
- b5e:	ef 5f       	subi	r30, 0xFF	; 255
- b60:	ef 73       	andi	r30, 0x3F	; 63
- b62:	e0 93 32 02 	sts	0x0232, r30	; 0x800232 <UART_TxTail>
- b66:	f0 e0       	ldi	r31, 0x00	; 0
- b68:	ec 58       	subi	r30, 0x8C	; 140
- b6a:	fd 4f       	sbci	r31, 0xFD	; 253
- b6c:	80 81       	ld	r24, Z
- b6e:	80 93 c6 00 	sts	0x00C6, r24	; 0x8000c6 <__DATA_REGION_ORIGIN__+0x66>
- b72:	05 c0       	rjmp	.+10     	; 0xb7e <__vector_19+0x42>
- b74:	e1 ec       	ldi	r30, 0xC1	; 193
- b76:	f0 e0       	ldi	r31, 0x00	; 0
- b78:	80 81       	ld	r24, Z
- b7a:	8f 7d       	andi	r24, 0xDF	; 223
- b7c:	80 83       	st	Z, r24
- b7e:	ff 91       	pop	r31
- b80:	ef 91       	pop	r30
- b82:	9f 91       	pop	r25
- b84:	8f 91       	pop	r24
- b86:	0f 90       	pop	r0
- b88:	0f be       	out	0x3f, r0	; 63
- b8a:	0f 90       	pop	r0
- b8c:	1f 90       	pop	r1
- b8e:	18 95       	reti
+    UART_LastRxError = 0;
+    return (lastRxError << 8) + data;
+}/* uart_getc */
+ bd8:	1f 92       	push	r1
+ bda:	0f 92       	push	r0
+ bdc:	0f b6       	in	r0, 0x3f	; 63
+ bde:	0f 92       	push	r0
+ be0:	11 24       	eor	r1, r1
+ be2:	2f 93       	push	r18
+ be4:	8f 93       	push	r24
+ be6:	9f 93       	push	r25
+ be8:	ef 93       	push	r30
+ bea:	ff 93       	push	r31
+ bec:	80 91 c0 00 	lds	r24, 0x00C0	; 0x8000c0 <__DATA_REGION_ORIGIN__+0x60>
+ bf0:	20 91 c6 00 	lds	r18, 0x00C6	; 0x8000c6 <__DATA_REGION_ORIGIN__+0x66>
+ bf4:	8c 71       	andi	r24, 0x1C	; 28
+ bf6:	e0 91 57 02 	lds	r30, 0x0257	; 0x800257 <UART_RxHead>
+ bfa:	ef 5f       	subi	r30, 0xFF	; 255
+ bfc:	ef 77       	andi	r30, 0x7F	; 127
+ bfe:	90 91 56 02 	lds	r25, 0x0256	; 0x800256 <UART_RxTail>
+ c02:	e9 17       	cp	r30, r25
+ c04:	39 f0       	breq	.+14     	; 0xc14 <__vector_18+0x3c>
+ c06:	e0 93 57 02 	sts	0x0257, r30	; 0x800257 <UART_RxHead>
+ c0a:	f0 e0       	ldi	r31, 0x00	; 0
+ c0c:	e6 5a       	subi	r30, 0xA6	; 166
+ c0e:	fd 4f       	sbci	r31, 0xFD	; 253
+ c10:	20 83       	st	Z, r18
+ c12:	01 c0       	rjmp	.+2      	; 0xc16 <__vector_18+0x3e>
+ c14:	82 e0       	ldi	r24, 0x02	; 2
+ c16:	90 91 55 02 	lds	r25, 0x0255	; 0x800255 <UART_LastRxError>
+ c1a:	89 2b       	or	r24, r25
+ c1c:	80 93 55 02 	sts	0x0255, r24	; 0x800255 <UART_LastRxError>
+ c20:	ff 91       	pop	r31
+ c22:	ef 91       	pop	r30
+ c24:	9f 91       	pop	r25
+ c26:	8f 91       	pop	r24
+ c28:	2f 91       	pop	r18
+ c2a:	0f 90       	pop	r0
+ c2c:	0f be       	out	0x3f, r0	; 63
+ c2e:	0f 90       	pop	r0
+ c30:	1f 90       	pop	r1
+ c32:	18 95       	reti
 
-00000b90 <uart_init>:
- b90:	10 92 33 02 	sts	0x0233, r1	; 0x800233 <UART_TxHead>
- b94:	10 92 32 02 	sts	0x0232, r1	; 0x800232 <UART_TxTail>
- b98:	10 92 31 02 	sts	0x0231, r1	; 0x800231 <UART_RxHead>
- b9c:	10 92 30 02 	sts	0x0230, r1	; 0x800230 <UART_RxTail>
- ba0:	99 23       	and	r25, r25
- ba2:	1c f4       	brge	.+6      	; 0xbaa <uart_init+0x1a>
- ba4:	22 e0       	ldi	r18, 0x02	; 2
- ba6:	20 93 c0 00 	sts	0x00C0, r18	; 0x8000c0 <__DATA_REGION_ORIGIN__+0x60>
- baa:	90 78       	andi	r25, 0x80	; 128
- bac:	90 93 c5 00 	sts	0x00C5, r25	; 0x8000c5 <__DATA_REGION_ORIGIN__+0x65>
- bb0:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__DATA_REGION_ORIGIN__+0x64>
- bb4:	88 e9       	ldi	r24, 0x98	; 152
- bb6:	80 93 c1 00 	sts	0x00C1, r24	; 0x8000c1 <__DATA_REGION_ORIGIN__+0x61>
- bba:	86 e0       	ldi	r24, 0x06	; 6
- bbc:	80 93 c2 00 	sts	0x00C2, r24	; 0x8000c2 <__DATA_REGION_ORIGIN__+0x62>
- bc0:	08 95       	ret
+00000c34 <__vector_19>:
+ c34:	1f 92       	push	r1
+ c36:	0f 92       	push	r0
+ c38:	0f b6       	in	r0, 0x3f	; 63
+ c3a:	0f 92       	push	r0
+ c3c:	11 24       	eor	r1, r1
+ c3e:	8f 93       	push	r24
+ c40:	9f 93       	push	r25
+ c42:	ef 93       	push	r30
+ c44:	ff 93       	push	r31
+ c46:	90 91 59 02 	lds	r25, 0x0259	; 0x800259 <UART_TxHead>
+ c4a:	80 91 58 02 	lds	r24, 0x0258	; 0x800258 <UART_TxTail>
+ c4e:	98 17       	cp	r25, r24
+ c50:	69 f0       	breq	.+26     	; 0xc6c <__vector_19+0x38>
+ c52:	e0 91 58 02 	lds	r30, 0x0258	; 0x800258 <UART_TxTail>
+ c56:	ef 5f       	subi	r30, 0xFF	; 255
+ c58:	ef 77       	andi	r30, 0x7F	; 127
+ c5a:	e0 93 58 02 	sts	0x0258, r30	; 0x800258 <UART_TxTail>
+ c5e:	f0 e0       	ldi	r31, 0x00	; 0
+ c60:	e6 52       	subi	r30, 0x26	; 38
+ c62:	fd 4f       	sbci	r31, 0xFD	; 253
+ c64:	80 81       	ld	r24, Z
+ c66:	80 93 c6 00 	sts	0x00C6, r24	; 0x8000c6 <__DATA_REGION_ORIGIN__+0x66>
+ c6a:	05 c0       	rjmp	.+10     	; 0xc76 <__vector_19+0x42>
+ c6c:	e1 ec       	ldi	r30, 0xC1	; 193
+ c6e:	f0 e0       	ldi	r31, 0x00	; 0
+ c70:	80 81       	ld	r24, Z
+ c72:	8f 7d       	andi	r24, 0xDF	; 223
+ c74:	80 83       	st	Z, r24
+ c76:	ff 91       	pop	r31
+ c78:	ef 91       	pop	r30
+ c7a:	9f 91       	pop	r25
+ c7c:	8f 91       	pop	r24
+ c7e:	0f 90       	pop	r0
+ c80:	0f be       	out	0x3f, r0	; 63
+ c82:	0f 90       	pop	r0
+ c84:	1f 90       	pop	r1
+ c86:	18 95       	reti
 
-00000bc2 <uart_putc>:
- bc2:	20 91 33 02 	lds	r18, 0x0233	; 0x800233 <UART_TxHead>
- bc6:	2f 5f       	subi	r18, 0xFF	; 255
- bc8:	2f 73       	andi	r18, 0x3F	; 63
- bca:	90 91 32 02 	lds	r25, 0x0232	; 0x800232 <UART_TxTail>
- bce:	29 17       	cp	r18, r25
- bd0:	e1 f3       	breq	.-8      	; 0xbca <uart_putc+0x8>
- bd2:	e2 2f       	mov	r30, r18
- bd4:	f0 e0       	ldi	r31, 0x00	; 0
- bd6:	ec 58       	subi	r30, 0x8C	; 140
- bd8:	fd 4f       	sbci	r31, 0xFD	; 253
- bda:	80 83       	st	Z, r24
- bdc:	20 93 33 02 	sts	0x0233, r18	; 0x800233 <UART_TxHead>
- be0:	e1 ec       	ldi	r30, 0xC1	; 193
- be2:	f0 e0       	ldi	r31, 0x00	; 0
- be4:	80 81       	ld	r24, Z
- be6:	80 62       	ori	r24, 0x20	; 32
- be8:	80 83       	st	Z, r24
- bea:	08 95       	ret
+00000c88 <uart_init>:
+ c88:	10 92 59 02 	sts	0x0259, r1	; 0x800259 <UART_TxHead>
+ c8c:	10 92 58 02 	sts	0x0258, r1	; 0x800258 <UART_TxTail>
+ c90:	10 92 57 02 	sts	0x0257, r1	; 0x800257 <UART_RxHead>
+ c94:	10 92 56 02 	sts	0x0256, r1	; 0x800256 <UART_RxTail>
+ c98:	99 23       	and	r25, r25
+ c9a:	1c f4       	brge	.+6      	; 0xca2 <uart_init+0x1a>
+ c9c:	22 e0       	ldi	r18, 0x02	; 2
+ c9e:	20 93 c0 00 	sts	0x00C0, r18	; 0x8000c0 <__DATA_REGION_ORIGIN__+0x60>
+ ca2:	90 78       	andi	r25, 0x80	; 128
+ ca4:	90 93 c5 00 	sts	0x00C5, r25	; 0x8000c5 <__DATA_REGION_ORIGIN__+0x65>
+ ca8:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__DATA_REGION_ORIGIN__+0x64>
+ cac:	88 e9       	ldi	r24, 0x98	; 152
+ cae:	80 93 c1 00 	sts	0x00C1, r24	; 0x8000c1 <__DATA_REGION_ORIGIN__+0x61>
+ cb2:	86 e0       	ldi	r24, 0x06	; 6
+ cb4:	80 93 c2 00 	sts	0x00C2, r24	; 0x8000c2 <__DATA_REGION_ORIGIN__+0x62>
+ cb8:	08 95       	ret
 
-00000bec <uart_puts>:
- bec:	cf 93       	push	r28
- bee:	df 93       	push	r29
- bf0:	ec 01       	movw	r28, r24
- bf2:	88 81       	ld	r24, Y
- bf4:	88 23       	and	r24, r24
- bf6:	31 f0       	breq	.+12     	; 0xc04 <uart_puts+0x18>
- bf8:	21 96       	adiw	r28, 0x01	; 1
- bfa:	0e 94 e1 05 	call	0xbc2	; 0xbc2 <uart_putc>
- bfe:	89 91       	ld	r24, Y+
- c00:	81 11       	cpse	r24, r1
- c02:	fb cf       	rjmp	.-10     	; 0xbfa <uart_puts+0xe>
- c04:	df 91       	pop	r29
- c06:	cf 91       	pop	r28
- c08:	08 95       	ret
+00000cba <uart_putc>:
+void uart_putc(unsigned char data)
+{
+    unsigned char tmphead;
 
-00000c0a <__itoa_ncheck>:
- c0a:	bb 27       	eor	r27, r27
- c0c:	4a 30       	cpi	r20, 0x0A	; 10
- c0e:	31 f4       	brne	.+12     	; 0xc1c <__itoa_ncheck+0x12>
- c10:	99 23       	and	r25, r25
- c12:	22 f4       	brpl	.+8      	; 0xc1c <__itoa_ncheck+0x12>
- c14:	bd e2       	ldi	r27, 0x2D	; 45
- c16:	90 95       	com	r25
- c18:	81 95       	neg	r24
- c1a:	9f 4f       	sbci	r25, 0xFF	; 255
- c1c:	0c 94 11 06 	jmp	0xc22	; 0xc22 <__utoa_common>
 
-00000c20 <__utoa_ncheck>:
- c20:	bb 27       	eor	r27, r27
+    tmphead = (UART_TxHead + 1) & UART_TX_BUFFER_MASK;
+ cba:	20 91 59 02 	lds	r18, 0x0259	; 0x800259 <UART_TxHead>
+ cbe:	2f 5f       	subi	r18, 0xFF	; 255
+ cc0:	2f 77       	andi	r18, 0x7F	; 127
 
-00000c22 <__utoa_common>:
- c22:	fb 01       	movw	r30, r22
- c24:	55 27       	eor	r21, r21
- c26:	aa 27       	eor	r26, r26
- c28:	88 0f       	add	r24, r24
- c2a:	99 1f       	adc	r25, r25
- c2c:	aa 1f       	adc	r26, r26
- c2e:	a4 17       	cp	r26, r20
- c30:	10 f0       	brcs	.+4      	; 0xc36 <__utoa_common+0x14>
- c32:	a4 1b       	sub	r26, r20
- c34:	83 95       	inc	r24
- c36:	50 51       	subi	r21, 0x10	; 16
- c38:	b9 f7       	brne	.-18     	; 0xc28 <__utoa_common+0x6>
- c3a:	a0 5d       	subi	r26, 0xD0	; 208
- c3c:	aa 33       	cpi	r26, 0x3A	; 58
- c3e:	08 f0       	brcs	.+2      	; 0xc42 <__utoa_common+0x20>
- c40:	a9 5d       	subi	r26, 0xD9	; 217
- c42:	a1 93       	st	Z+, r26
- c44:	00 97       	sbiw	r24, 0x00	; 0
- c46:	79 f7       	brne	.-34     	; 0xc26 <__utoa_common+0x4>
- c48:	b1 11       	cpse	r27, r1
- c4a:	b1 93       	st	Z+, r27
- c4c:	11 92       	st	Z+, r1
- c4e:	cb 01       	movw	r24, r22
- c50:	0c 94 2a 06 	jmp	0xc54	; 0xc54 <strrev>
+    while (tmphead == UART_TxTail)
+ cc2:	90 91 58 02 	lds	r25, 0x0258	; 0x800258 <UART_TxTail>
+ cc6:	29 17       	cp	r18, r25
+ cc8:	e1 f3       	breq	.-8      	; 0xcc2 <uart_putc+0x8>
+    {
+        ;/* wait for free space in buffer */
+    }
 
-00000c54 <strrev>:
- c54:	dc 01       	movw	r26, r24
- c56:	fc 01       	movw	r30, r24
- c58:	67 2f       	mov	r22, r23
- c5a:	71 91       	ld	r23, Z+
- c5c:	77 23       	and	r23, r23
- c5e:	e1 f7       	brne	.-8      	; 0xc58 <strrev+0x4>
- c60:	32 97       	sbiw	r30, 0x02	; 2
- c62:	04 c0       	rjmp	.+8      	; 0xc6c <strrev+0x18>
- c64:	7c 91       	ld	r23, X
- c66:	6d 93       	st	X+, r22
- c68:	70 83       	st	Z, r23
- c6a:	62 91       	ld	r22, -Z
- c6c:	ae 17       	cp	r26, r30
- c6e:	bf 07       	cpc	r27, r31
- c70:	c8 f3       	brcs	.-14     	; 0xc64 <strrev+0x10>
- c72:	08 95       	ret
+    UART_TxBuf[tmphead] = data;
+ cca:	e2 2f       	mov	r30, r18
+ ccc:	f0 e0       	ldi	r31, 0x00	; 0
+ cce:	e6 52       	subi	r30, 0x26	; 38
+ cd0:	fd 4f       	sbci	r31, 0xFD	; 253
+ cd2:	80 83       	st	Z, r24
+    UART_TxHead         = tmphead;
+ cd4:	20 93 59 02 	sts	0x0259, r18	; 0x800259 <UART_TxHead>
 
-00000c74 <_exit>:
- c74:	f8 94       	cli
+    /* enable UDRE interrupt */
+    UART0_CONTROL |= _BV(UART0_UDRIE);
+ cd8:	e1 ec       	ldi	r30, 0xC1	; 193
+ cda:	f0 e0       	ldi	r31, 0x00	; 0
+ cdc:	80 81       	ld	r24, Z
+ cde:	80 62       	ori	r24, 0x20	; 32
+ ce0:	80 83       	st	Z, r24
+ ce2:	08 95       	ret
 
-00000c76 <__stop_program>:
- c76:	ff cf       	rjmp	.-2      	; 0xc76 <__stop_program>
+00000ce4 <uart_puts>:
+ * Purpose:  transmit string to UART
+ * Input:    string to be transmitted
+ * Returns:  none
+ **************************************************************************/
+void uart_puts(const char *s)
+{
+ ce4:	cf 93       	push	r28
+ ce6:	df 93       	push	r29
+ ce8:	ec 01       	movw	r28, r24
+    while (*s)
+ cea:	88 81       	ld	r24, Y
+ cec:	88 23       	and	r24, r24
+ cee:	31 f0       	breq	.+12     	; 0xcfc <uart_puts+0x18>
+ cf0:	21 96       	adiw	r28, 0x01	; 1
+        uart_putc(*s++);
+ cf2:	0e 94 5d 06 	call	0xcba	; 0xcba <uart_putc>
+ * Input:    string to be transmitted
+ * Returns:  none
+ **************************************************************************/
+void uart_puts(const char *s)
+{
+    while (*s)
+ cf6:	89 91       	ld	r24, Y+
+ cf8:	81 11       	cpse	r24, r1
+ cfa:	fb cf       	rjmp	.-10     	; 0xcf2 <uart_puts+0xe>
+        uart_putc(*s++);
+}/* uart_puts */
+ cfc:	df 91       	pop	r29
+ cfe:	cf 91       	pop	r28
+ d00:	08 95       	ret
+
+00000d02 <__itoa_ncheck>:
+ d02:	bb 27       	eor	r27, r27
+ d04:	4a 30       	cpi	r20, 0x0A	; 10
+ d06:	31 f4       	brne	.+12     	; 0xd14 <__itoa_ncheck+0x12>
+ d08:	99 23       	and	r25, r25
+ d0a:	22 f4       	brpl	.+8      	; 0xd14 <__itoa_ncheck+0x12>
+ d0c:	bd e2       	ldi	r27, 0x2D	; 45
+ d0e:	90 95       	com	r25
+ d10:	81 95       	neg	r24
+ d12:	9f 4f       	sbci	r25, 0xFF	; 255
+ d14:	0c 94 8d 06 	jmp	0xd1a	; 0xd1a <__utoa_common>
+
+00000d18 <__utoa_ncheck>:
+ d18:	bb 27       	eor	r27, r27
+
+00000d1a <__utoa_common>:
+ d1a:	fb 01       	movw	r30, r22
+ d1c:	55 27       	eor	r21, r21
+ d1e:	aa 27       	eor	r26, r26
+ d20:	88 0f       	add	r24, r24
+ d22:	99 1f       	adc	r25, r25
+ d24:	aa 1f       	adc	r26, r26
+ d26:	a4 17       	cp	r26, r20
+ d28:	10 f0       	brcs	.+4      	; 0xd2e <__utoa_common+0x14>
+ d2a:	a4 1b       	sub	r26, r20
+ d2c:	83 95       	inc	r24
+ d2e:	50 51       	subi	r21, 0x10	; 16
+ d30:	b9 f7       	brne	.-18     	; 0xd20 <__utoa_common+0x6>
+ d32:	a0 5d       	subi	r26, 0xD0	; 208
+ d34:	aa 33       	cpi	r26, 0x3A	; 58
+ d36:	08 f0       	brcs	.+2      	; 0xd3a <__utoa_common+0x20>
+ d38:	a9 5d       	subi	r26, 0xD9	; 217
+ d3a:	a1 93       	st	Z+, r26
+ d3c:	00 97       	sbiw	r24, 0x00	; 0
+ d3e:	79 f7       	brne	.-34     	; 0xd1e <__utoa_common+0x4>
+ d40:	b1 11       	cpse	r27, r1
+ d42:	b1 93       	st	Z+, r27
+ d44:	11 92       	st	Z+, r1
+ d46:	cb 01       	movw	r24, r22
+ d48:	0c 94 a6 06 	jmp	0xd4c	; 0xd4c <strrev>
+
+00000d4c <strrev>:
+ d4c:	dc 01       	movw	r26, r24
+ d4e:	fc 01       	movw	r30, r24
+ d50:	67 2f       	mov	r22, r23
+ d52:	71 91       	ld	r23, Z+
+ d54:	77 23       	and	r23, r23
+ d56:	e1 f7       	brne	.-8      	; 0xd50 <strrev+0x4>
+ d58:	32 97       	sbiw	r30, 0x02	; 2
+ d5a:	04 c0       	rjmp	.+8      	; 0xd64 <strrev+0x18>
+ d5c:	7c 91       	ld	r23, X
+ d5e:	6d 93       	st	X+, r22
+ d60:	70 83       	st	Z, r23
+ d62:	62 91       	ld	r22, -Z
+ d64:	ae 17       	cp	r26, r30
+ d66:	bf 07       	cpc	r27, r31
+ d68:	c8 f3       	brcs	.-14     	; 0xd5c <strrev+0x10>
+ d6a:	08 95       	ret
+
+00000d6c <_exit>:
+ d6c:	f8 94       	cli
+
+00000d6e <__stop_program>:
+ d6e:	ff cf       	rjmp	.-2      	; 0xd6e <__stop_program>

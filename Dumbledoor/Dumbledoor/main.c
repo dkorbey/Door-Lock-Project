@@ -40,12 +40,14 @@ int8_t comparePins(char input[]);	//Compares the typed pin with the correct pins
 									// if correct returns the user ID if not returns -1
 							
 /* Global Variables --------------------------------------------------*/
-char inPin[4] = "----";		// Input Pin (the pin user pressed)
+char inPin[4] = "    ";		// Input Pin (the pin user pressed)
 int8_t inID = -1;			// Input ID (the ID of the typed Pin, if pin is wrong the Id value is -1)
 uint8_t timerStage = 0;		// Sets the stage of the delay. 0: No Counter, 1: 5s Counter, 2: 3s Counter
 uint8_t timerCnt = 0;		// Delay Counter
 uint8_t wrongTypeCnt = 0;	// Stores the wrong attempts of entering the pin
 uint8_t buzzerStage = 0;	// Sets the buzzer stage  0: Standby, 1: button press, 2: correct pin, 3: wrong pin, 4: door bell
+uint8_t correctAttempts = 0;
+uint8_t wrongAttempts = 0;
 
 const char pins[4][4] = {
 						"1234",		// ID = 0
@@ -192,7 +194,7 @@ ISR(TIMER0_OVF_vect)
 			{
 				correctPin(inID);
 			}
-			
+		
 			pinDigitCnt = 0;
 			scanningStage = 2;
 			timerStage = 2;
@@ -390,6 +392,8 @@ void ringDoorBell()
 
 void correctPin(uint8_t ID)
 {	
+	char string2[2] = "  ";
+	
 	// Unlock the door
 	GPIO_write_high(&PORTB, Relay);	
 
@@ -399,12 +403,15 @@ void correctPin(uint8_t ID)
 	// Correct Pin Buzzer
 	buzzerStage = 2;
 	
+	// Update Correct Attempts
+	correctAttempts++;
+	
 	// Clear the lcd screen
 	lcd_clrscr();
 	// Print to lcd screen
-	lcd_gotoxy(0,1);
+	lcd_gotoxy(1,1);
 	lcd_puts("Correct pin.");
-	lcd_gotoxy(0,2);
+	lcd_gotoxy(1,2);
 	lcd_puts("Hello ");
 	lcd_puts(names[ID]);
 	
@@ -412,15 +419,28 @@ void correctPin(uint8_t ID)
 	uart_puts(names[ID]);
 	uart_puts(" entered to the room!");
 	uart_puts("\r\n");	
+	uart_puts("Total Attempts: ");
+	uart_puts("\r\n");
+	uart_puts("Correct: ");
+	uart_puts(itoa(correctAttempts, string2, 10));
+	uart_puts("\r\n");
+	uart_puts("Wrong: ");
+	uart_puts(itoa(wrongAttempts, string2, 10));
+	uart_puts("\r\n");
 }
 
 void wrongPin()
-{
+{	
+	char string2[2] = "  ";
+	
 	// Light up the red led
 	GPIO_write_high(&PORTB, redLed);
 	
 	// Correct Pin Buzzer
 	buzzerStage = 3;
+	
+	// Update Wrong Attempts
+	wrongAttempts++;
 	
 	// Clear the lcd screen
 	lcd_clrscr();
@@ -430,6 +450,14 @@ void wrongPin()
 	
 	// UART
 	uart_puts("Wrong attempt to enter!");
+	uart_puts("\r\n");
+	uart_puts("Total Attempts: ");
+	uart_puts("\r\n");
+	uart_puts("Correct: ");
+	uart_puts(itoa(correctAttempts, string2, 10));
+	uart_puts("\r\n");
+	uart_puts("Wrong: ");
+	uart_puts(itoa(wrongAttempts, string2, 10));
 	uart_puts("\r\n");
 }
 
@@ -447,7 +475,7 @@ int8_t comparePins(char input[])
 		{
 			if(input[b] == pins[a][b])
 			{
-				pinId = b;
+				pinId = a;
 			}
 			else
 			{
