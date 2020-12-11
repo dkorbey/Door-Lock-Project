@@ -61,6 +61,13 @@ const char names[4][13] = {
 						"Mr Baglamac",	// ID = 2
 						"Mr Demiroren"	// ID = 3
 						};
+						
+uint8_t customChar[16] = {
+	// addr 0: Heart
+	0b00000, 0b00000, 0b01010, 0b11111, 0b01110, 0b00100, 0b00000, 0b00000,
+	// addr 1: Bell
+	0b00000, 0b00100, 0b01110, 0b01110, 0b11111, 0b00100, 0b00000, 0b00000
+};
 
 int main(void)
 {
@@ -69,7 +76,18 @@ int main(void)
 	
 	// Initialize the Key Pad
 	keypad_init();
-
+	
+	/*Defining and Printing a custom characters*/
+	// Set pointer to beginning of CGRAM memory
+	lcd_command(1 << LCD_CGRAM);
+	for (uint8_t i = 0; i < 16; i++)
+	{
+		// Store all new chars to memory line by line
+		lcd_data(customChar[i]);
+	}
+	// Set DDRAM address
+	lcd_command(1 << LCD_DDRAM);
+	
 	// Configure the Leds as output and set low
 	GPIO_config_output(&DDRB, greenLed);
 	GPIO_config_output(&DDRB, redLed);
@@ -386,8 +404,12 @@ void ringDoorBell()
 	// Clear the lcd screen
 	lcd_clrscr();
 	// Print to lcd screen
-	lcd_gotoxy(0,2);
-	lcd_puts("Door bell is ringed");
+	lcd_gotoxy(2,2);
+	lcd_puts("Door bell is");
+	lcd_gotoxy(2,3);
+	lcd_puts("ringed. ");
+	lcd_putc(1);
+	lcd_putc(1);
 }
 
 void correctPin(uint8_t ID)
@@ -409,10 +431,13 @@ void correctPin(uint8_t ID)
 	// Clear the lcd screen
 	lcd_clrscr();
 	// Print to lcd screen
-	lcd_gotoxy(1,1);
+	lcd_gotoxy(2,1);
 	lcd_puts("Correct pin.");
-	lcd_gotoxy(1,2);
-	lcd_puts("Hello ");
+	lcd_gotoxy(2,2);
+	lcd_putc(0);
+	lcd_puts("Hello");
+	lcd_putc(0);
+	lcd_gotoxy(2,3);
 	lcd_puts(names[ID]);
 	
 	// UART
