@@ -45,7 +45,7 @@ int8_t inID = -1;			// Input ID (the ID of the typed Pin, if pin is wrong the Id
 uint8_t timerStage = 0;		// Sets the stage of the delay. 0: No Counter, 1: 5s Counter, 2: 3s Counter
 uint8_t timerCnt = 0;		// Delay Counter
 uint8_t wrongTypeCnt = 0;	// Stores the wrong attempts of entering the pin
-uint8_t buzzerStage = 0;	// Sets the buzzer stage 0: button press, 1: correct pin, 2: wrong pin, 3: door bell
+uint8_t buzzerStage = 0;	// Sets the buzzer stage  0: Standby, 1: button press, 2: correct pin, 3: wrong pin, 4: door bell
 
 const char pins[4][4] = {
 						"1234",		// ID = 0
@@ -259,6 +259,7 @@ ISR(TIMER2_OVF_vect)
 	if(buzzerStage == 0)
 	{
 		GPIO_write_low(&PORTB, Buzzer);
+		GPIO_write_low(&PORTB, doorBell);
 	}
 	
 	// Button press buzzer
@@ -280,6 +281,63 @@ ISR(TIMER2_OVF_vect)
 		
 		buzzerCnt++;
 		if(buzzerCnt == 50)
+		{
+			buzzerCnt = 0;
+			buzzerStage = 0;
+		}
+	}
+	// Wrong Pin Buzzer
+	else if(buzzerStage == 3)
+	{
+		GPIO_write_high(&PORTB, Buzzer);
+		
+		buzzerCnt++;
+		if((buzzerCnt % 10) == 0)
+		{
+			GPIO_toggle(&PORTB, Buzzer);
+		}
+		if(buzzerCnt == 50)
+		{
+			buzzerCnt = 0;
+			buzzerStage = 0;
+		}
+	}
+	// Door Bell Buzzer
+	else if(buzzerStage == 4)
+	{
+		GPIO_write_high(&PORTB, doorBell);
+		
+		buzzerCnt++;
+		if(buzzerCnt == 10)
+			GPIO_toggle(&PORTB, doorBell);
+		if(buzzerCnt == 15)
+			GPIO_toggle(&PORTB, doorBell);
+		if(buzzerCnt == 20)
+			GPIO_toggle(&PORTB, doorBell);
+		if(buzzerCnt == 30)
+			GPIO_toggle(&PORTB, doorBell);
+		if(buzzerCnt == 35)
+			GPIO_toggle(&PORTB, doorBell);
+		if(buzzerCnt == 40)
+			GPIO_toggle(&PORTB, doorBell);
+		if(buzzerCnt == 50)
+			GPIO_toggle(&PORTB, doorBell);
+		if(buzzerCnt == 60)
+			GPIO_toggle(&PORTB, doorBell);
+		if(buzzerCnt == 65)
+			GPIO_toggle(&PORTB, doorBell);
+		if(buzzerCnt == 70)
+			GPIO_toggle(&PORTB, doorBell);
+		if(buzzerCnt == 80)
+			GPIO_toggle(&PORTB, doorBell);
+		if(buzzerCnt == 85)
+			GPIO_toggle(&PORTB, doorBell);
+		if(buzzerCnt == 90)
+			GPIO_toggle(&PORTB, doorBell);
+		if(buzzerCnt == 100)
+			GPIO_toggle(&PORTB, doorBell);
+			
+		if(buzzerCnt == 100)
 		{
 			buzzerCnt = 0;
 			buzzerStage = 0;
@@ -319,7 +377,10 @@ void standby()
 }
 
 void ringDoorBell() 
-{
+{	
+	// Correct Pin Buzzer
+	buzzerStage = 4;
+	
 	// Clear the lcd screen
 	lcd_clrscr();
 	// Print to lcd screen
@@ -357,6 +418,9 @@ void wrongPin()
 {
 	// Light up the red led
 	GPIO_write_high(&PORTB, redLed);
+	
+	// Correct Pin Buzzer
+	buzzerStage = 3;
 	
 	// Clear the lcd screen
 	lcd_clrscr();
