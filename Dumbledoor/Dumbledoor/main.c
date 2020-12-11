@@ -43,7 +43,9 @@ int8_t comparePins(char input[]);	//Compares the typed pin with the correct pins
 char inPin[4] = "----";		// Input Pin (the pin user pressed)
 int8_t inID = -1;			// Input ID (the ID of the typed Pin, if pin is wrong the Id value is -1)
 uint8_t timerStage = 0;		// Sets the stage of the delay. 0: No Counter, 1: 5s Counter, 2: 3s Counter
+uint8_t timerCnt = 0;		// Delay Counter
 uint8_t wrongTypeCnt = 0;	// Stores the wrong attempts of entering the pin
+uint8_t buzzerStage = 0;	// Sets the buzzer stage 0: button press, 1: correct pin, 2: wrong pin, 3: door bell
 
 const char pins[4][4] = {
 						"1234",		// ID = 0
@@ -97,6 +99,11 @@ int main(void)
 	TIM1_overflow_1s();
 	TIM1_overflow_interrupt_enable();
 	
+	// Configure Timer/Counter2 to control and send PWM signals to buzzers
+	// Enable interrupt and set the overflow prescaler to 16ms
+	TIM2_overflow_16ms();
+	TIM2_overflow_interrupt_enable();
+	
     // Initialize UART to asynchronous, 8N1, 9600
     uart_init(UART_BAUD_SELECT(9600, F_CPU));
 	
@@ -113,6 +120,7 @@ int main(void)
 }
 
 /* Interrupt handlers ------------------------------------------------*/
+//	Interrupt Handler for scanning keypad, getting the typed pin and then compare the pin
 ISR(TIMER0_OVF_vect)
 {
 	volatile static char pressedKey = ' ';		// Pressed Key
@@ -122,12 +130,17 @@ ISR(TIMER0_OVF_vect)
 	// Scan the Keypad
 	pressedKey = keypad_scan();
 	
+	// Key Press Buzzer
+	if(pressedKey != ' ')
+		buzzerStage = 1;
+	
 	// If user pressed #
 	if(pressedKey == '#' && scanningStage == 0)
 	{
-		// DoorBell
-		// Wait 3s ??
-		// Standby
+		ringDoorBell();
+		// Wait 3s and than standby
+		scanningStage = 2;
+		timerStage = 2;
 	}
 	//If user pressed *
 	else if(pressedKey == '*' && scanningStage == 0)
@@ -162,47 +175,51 @@ ISR(TIMER0_OVF_vect)
 		// If 5s is up or the user typed all the digits of the pin enter here
 		// and compare typed pin with the correct ones
 		if(timerStage == 0 || pinDigitCnt > 3)
-		{
-			scanningStage = 2;
-			
+		{	
+			// Compare the typed pin and the correct pins
 			inID = comparePins(inPin);
+			
+			// If user typed pin before the timer finish stop the timer			
+			timerStage = 0;
+			timerCnt = 0;
 			
 			// Typed pin is incorrect
 			if(inID == -1)
 			{
-				// If user typed pin before the timer finish stop the timer
-				timerStage = 0;
 				wrongPin();
 			}
 			else if(inID >= 0 && inID < 4)
 			{
-				// If user typed pin before the timer finish stop the timer
-				timerStage = 0;
 				correctPin(inID);
 			}
+			
+			pinDigitCnt = 0;
+			scanningStage = 2;
+			timerStage = 2;
 		}
 	}
 	
 	// Changing the status to the standby
 	if(scanningStage == 2)
 	{
-		timerStage = 2;
 		if(timerStage == 0)
 		{
 			scanningStage = 0;
-			pinDigitCnt = 0;
 			standby();
 		}
 	}
 }
 
+// Interrupt Handler for creating 5s and 3s timers
 ISR(TIMER1_OVF_vect)
 {
-	volatile static uint8_t timerCnt = 0;		// Delay Counter
 	char string1[2] = "  ";
 	
-	// 5s count
-	if(timerStage == 1)
+	// Standby status for the counter
+	if(timerStage == 0)
+		timerCnt = 0;	
+	// 5s Count
+	else if(timerStage == 1)
 	{
 		timerCnt++;
 		if(timerCnt >= 6)
@@ -214,11 +231,9 @@ ISR(TIMER1_OVF_vect)
 		// Configure LCD
 		lcd_gotoxy(2,0);
 		lcd_puts("Remaining time: ");
-		if(timerCnt != 0)
-			lcd_puts(itoa((6-timerCnt), string1, 10));
-		else
-			lcd_puts(itoa(timerCnt, string1, 10));
+		lcd_puts(itoa((6-timerCnt), string1, 10));
 	}
+	// 3s Count
 	else if(timerStage == 2)
 	{
 		timerCnt++;
@@ -227,11 +242,50 @@ ISR(TIMER1_OVF_vect)
 			timerCnt = 0;
 			timerStage = 0;
 		}
+		
+		// Configure LCD
+		lcd_gotoxy(2,0);
+		lcd_puts("Remaining time: ");
+		lcd_puts(itoa((4-timerCnt), string1, 10));
 	}
-	
-	uart_puts(itoa(timerStage, string1, 10));
 }
 
+// Interrupt Handler for creating PWM signals for buzzers
+ISR(TIMER2_OVF_vect)
+{
+	volatile static uint8_t buzzerCnt = 0;
+	
+	// Buzzer at standby
+	if(buzzerStage == 0)
+	{
+		GPIO_write_low(&PORTB, Buzzer);
+	}
+	
+	// Button press buzzer
+	else if(buzzerStage == 1)
+	{
+		GPIO_write_high(&PORTB, Buzzer);
+		
+		buzzerCnt++;
+		if(buzzerCnt == 10)
+		{
+			buzzerCnt = 0;
+			buzzerStage = 0;
+		}
+	}
+	// Correct Pin Buzzer
+	else if(buzzerStage == 2)
+	{
+		GPIO_write_high(&PORTB, Buzzer);
+		
+		buzzerCnt++;
+		if(buzzerCnt == 50)
+		{
+			buzzerCnt = 0;
+			buzzerStage = 0;
+		}
+	}
+}
 /* Function definitions ----------------------------------------------*/
 void standby()
 {
@@ -249,7 +303,7 @@ void standby()
 	GPIO_write_low(&PORTB, redLed);
 	
 	// Lock the door
-	GPIO_write_low(&DDRB, Relay);
+	GPIO_write_low(&PORTB, Relay);
 	
 	// Clear the lcd screen
 	lcd_clrscr();
@@ -264,6 +318,15 @@ void standby()
 	lcd_puts("# --> Door Bell");
 }
 
+void ringDoorBell() 
+{
+	// Clear the lcd screen
+	lcd_clrscr();
+	// Print to lcd screen
+	lcd_gotoxy(0,2);
+	lcd_puts("Door bell is ringed");
+}
+
 void correctPin(uint8_t ID)
 {	
 	// Unlock the door
@@ -272,11 +335,17 @@ void correctPin(uint8_t ID)
 	// Light up the green led
 	GPIO_write_high(&PORTB, greenLed);
 	
+	// Correct Pin Buzzer
+	buzzerStage = 2;
+	
 	// Clear the lcd screen
 	lcd_clrscr();
 	// Print to lcd screen
-	lcd_gotoxy(2,2);
+	lcd_gotoxy(0,1);
 	lcd_puts("Correct pin.");
+	lcd_gotoxy(0,2);
+	lcd_puts("Hello ");
+	lcd_puts(names[ID]);
 	
 	// UART
 	uart_puts(names[ID]);
@@ -319,6 +388,7 @@ int8_t comparePins(char input[])
 			else
 			{
 				pinId = -1;
+				break;
 			}
 		}
 		// If an active pin is found, stop comparing
