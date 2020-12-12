@@ -19,7 +19,7 @@ This project mainly aims to implement a door lock system using the microcontroll
 * 1x Microcontroller [ATmega328p]
 * 1x Display [Hd44780 (4x20)]
 * 1x Keypad [4x3]
-* 2x AudiOuts [1 as Buzzer, 1 as Door Bell]
+* 2x AudioOuts [1 as Buzzer, 1 as Door Bell]
 * 2x LEDs [1 green, 1 red]
 * 3x DC Voltage Sources [5v]
 * 1x Relay [SPST]
