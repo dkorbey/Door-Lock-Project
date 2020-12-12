@@ -26,7 +26,7 @@ This project mainly aims to implement a door lock system using the microcontroll
 
 ## Code description and simulations
 
-While implementing our code, we used several libraries from the previous laboratory exercises of this semester. (i.e. `uart.h`, `gpio.h`, `timer.h`, `lcd.h` etc.)
+While implementing our code, we used several [libraries](https://github.com/dkorbey/Door-Lock-Project/tree/main/Libraries) from the previous laboratory exercises of this semester. (i.e. `uart.h`, `gpio.h`, `timer.h`, `lcd.h` etc.)
 We also implemented our own libraries [keypad.c](https://github.com/dkorbey/Door-Lock-Project/blob/main/Dumbledoor/Dumbledoor/keypad.c) and [keypad.h](https://github.com/dkorbey/Door-Lock-Project/blob/main/Dumbledoor/Dumbledoor/keypad.h) exclusively for this project.
 It was necessary to use interrupt handlers to create delay instead of using delay function from the delay.h library.
 
