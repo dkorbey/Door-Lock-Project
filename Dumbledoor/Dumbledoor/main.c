@@ -17,7 +17,7 @@
 #define Relay		PB3
 #define doorBell	PB4
 #define Buzzer		PB5
-#define redLed		PB6		// Red led indicates wrong Pin or an error
+#define redLed		PB6		// Red led indicates wrong Pin 
 #define greenLed	PB7		// Green Led indicates correct Pin
 
 /* Includes ----------------------------------------------------------*/
@@ -32,7 +32,6 @@
 
 /* Function declarations ---------------------------------------------*/
 void standby();						// Put system to the standby state
-void errorF();						// Error Function
 void ringDoorBell();				// Rings the door bell
 void correctPin(uint8_t ID);		// Put system to the correct pin state
 void wrongPin();					// Put system to the wrong pin state
