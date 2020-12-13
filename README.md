@@ -43,7 +43,8 @@ List of libraries used in this application:
 * avr/interrupt.h: Interrupts standard C library for AVR-GCC
 * stdlib.h: To use itoa() function, which transforms numerical variables to string
 
-We use all 3 timers in our project, in the table below you can see why and with which prescaler we use the timers,
+
+We use all 3 timers in our project, in the table below you can see why and with which prescaler we use the them,
 |           TIMER          | PRESCALER |                                                                       REASON                                                                       |
 |:------------------------:|:---------:|:---------------------------------------------------------------------------------------------------------------------------------------------------|
 |      Timer/Counter0      |    4ms    | For scanning the keypad at every overflow,  and configure the sytem according the pressed key.                                                     |
