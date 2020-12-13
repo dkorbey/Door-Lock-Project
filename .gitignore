@@ -1,5 +1,2 @@
 # Ignoring the test folder
 Test/
-
-# Ignoring libraries folder, since the same files are in the project file
-Libraries/
