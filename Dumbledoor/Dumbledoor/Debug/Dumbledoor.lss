@@ -15,19 +15,19 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   5 .debug_aranges 000001a8  00000000  00000000  00001048  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   0000275d  00000000  00000000  000011f0  2**0
+  6 .debug_info   0000275e  00000000  00000000  000011f0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000d36  00000000  00000000  0000394d  2**0
+  7 .debug_abbrev 00000d25  00000000  00000000  0000394e  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   0000125f  00000000  00000000  00004683  2**0
+  8 .debug_line   0000125f  00000000  00000000  00004673  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  000004b0  00000000  00000000  000058e4  2**2
+  9 .debug_frame  000004b0  00000000  00000000  000058d4  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    000007d0  00000000  00000000  00005d94  2**0
+ 10 .debug_str    000007d0  00000000  00000000  00005d84  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00001307  00000000  00000000  00006564  2**0
+ 11 .debug_loc    00001307  00000000  00000000  00006554  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 000001a8  00000000  00000000  0000786b  2**0
+ 12 .debug_ranges 000001a8  00000000  00000000  0000785b  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -190,42 +190,60 @@ Disassembly of section .text:
  13e:	08 95       	ret
 
 00000140 <keypad_init>:
+uint8_t columns[3] = {CN0,CN1,CN2};
+
+/* Function definitions ----------------------------------------------*/
+void keypad_init() {
+	//Set all columns to output
+	GPIO_config_output(&DDRC, CN0);
  140:	60 e0       	ldi	r22, 0x00	; 0
  142:	87 e2       	ldi	r24, 0x27	; 39
  144:	90 e0       	ldi	r25, 0x00	; 0
  146:	0e 94 53 00 	call	0xa6	; 0xa6 <GPIO_config_output>
+	GPIO_config_output(&DDRC, CN1);
  14a:	61 e0       	ldi	r22, 0x01	; 1
  14c:	87 e2       	ldi	r24, 0x27	; 39
  14e:	90 e0       	ldi	r25, 0x00	; 0
  150:	0e 94 53 00 	call	0xa6	; 0xa6 <GPIO_config_output>
+	GPIO_config_output(&DDRC, CN2);
  154:	62 e0       	ldi	r22, 0x02	; 2
  156:	87 e2       	ldi	r24, 0x27	; 39
  158:	90 e0       	ldi	r25, 0x00	; 0
  15a:	0e 94 53 00 	call	0xa6	; 0xa6 <GPIO_config_output>
+	//Set all columns to high
+	GPIO_write_high(&PORTC, CN0);
  15e:	60 e0       	ldi	r22, 0x00	; 0
  160:	88 e2       	ldi	r24, 0x28	; 40
  162:	90 e0       	ldi	r25, 0x00	; 0
  164:	0e 94 7e 00 	call	0xfc	; 0xfc <GPIO_write_high>
+	GPIO_write_high(&PORTC, CN1);
  168:	61 e0       	ldi	r22, 0x01	; 1
  16a:	88 e2       	ldi	r24, 0x28	; 40
  16c:	90 e0       	ldi	r25, 0x00	; 0
  16e:	0e 94 7e 00 	call	0xfc	; 0xfc <GPIO_write_high>
+	GPIO_write_high(&PORTC, CN2);
  172:	62 e0       	ldi	r22, 0x02	; 2
  174:	88 e2       	ldi	r24, 0x28	; 40
  176:	90 e0       	ldi	r25, 0x00	; 0
  178:	0e 94 7e 00 	call	0xfc	; 0xfc <GPIO_write_high>
+	
+	//Set all rows to input with pull-up resistor
+	GPIO_config_input_pullup(&DDRC, RN0);
  17c:	66 e0       	ldi	r22, 0x06	; 6
  17e:	87 e2       	ldi	r24, 0x27	; 39
  180:	90 e0       	ldi	r25, 0x00	; 0
  182:	0e 94 5f 00 	call	0xbe	; 0xbe <GPIO_config_input_pullup>
+	GPIO_config_input_pullup(&DDRC, RN1);
  186:	65 e0       	ldi	r22, 0x05	; 5
  188:	87 e2       	ldi	r24, 0x27	; 39
  18a:	90 e0       	ldi	r25, 0x00	; 0
  18c:	0e 94 5f 00 	call	0xbe	; 0xbe <GPIO_config_input_pullup>
+	GPIO_config_input_pullup(&DDRC, RN2);
  190:	64 e0       	ldi	r22, 0x04	; 4
  192:	87 e2       	ldi	r24, 0x27	; 39
  194:	90 e0       	ldi	r25, 0x00	; 0
  196:	0e 94 5f 00 	call	0xbe	; 0xbe <GPIO_config_input_pullup>
+	GPIO_config_input_pullup(&DDRC, RN3);
  19a:	63 e0       	ldi	r22, 0x03	; 3
  19c:	87 e2       	ldi	r24, 0x27	; 39
  19e:	90 e0       	ldi	r25, 0x00	; 0
@@ -233,6 +251,10 @@ Disassembly of section .text:
  1a4:	08 95       	ret
 
 000001a6 <keypad_scan>:
+}
+
+/*--------------------------------------------------------------------*/
+uint8_t keypad_scan() {
  1a6:	7f 92       	push	r7
  1a8:	8f 92       	push	r8
  1aa:	9f 92       	push	r9
@@ -264,23 +286,38 @@ Disassembly of section .text:
  1de:	f1 e0       	ldi	r31, 0x01	; 1
  1e0:	bf 2e       	mov	r11, r31
  1e2:	f0 2d       	mov	r31, r0
+	static uint8_t isKeyPressed = 0;
+	uint8_t rowN = -1;          // Row Number
+	uint8_t colN = -1;          // Column Number
+	char pKey = ' ';            // Pressed Key
  1e4:	68 94       	set
  1e6:	77 24       	eor	r7, r7
  1e8:	75 f8       	bld	r7, 5
  1ea:	07 e0       	ldi	r16, 0x07	; 7
  1ec:	11 e0       	ldi	r17, 0x01	; 1
+	
+	for(uint8_t i = 0; i<3; i++)
+	{
+		
+		//Set all columns to high
+		GPIO_write_high(&PORTC, CN0);
  1ee:	60 e0       	ldi	r22, 0x00	; 0
  1f0:	88 e2       	ldi	r24, 0x28	; 40
  1f2:	90 e0       	ldi	r25, 0x00	; 0
  1f4:	0e 94 7e 00 	call	0xfc	; 0xfc <GPIO_write_high>
+		GPIO_write_high(&PORTC, CN1);
  1f8:	61 e0       	ldi	r22, 0x01	; 1
  1fa:	88 e2       	ldi	r24, 0x28	; 40
  1fc:	90 e0       	ldi	r25, 0x00	; 0
  1fe:	0e 94 7e 00 	call	0xfc	; 0xfc <GPIO_write_high>
+		GPIO_write_high(&PORTC, CN2);
  202:	62 e0       	ldi	r22, 0x02	; 2
  204:	88 e2       	ldi	r24, 0x28	; 40
  206:	90 e0       	ldi	r25, 0x00	; 0
  208:	0e 94 7e 00 	call	0xfc	; 0xfc <GPIO_write_high>
+	
+		// Make current column low and set the variable
+		GPIO_write_low(&PORTC, columns[i]);
  20c:	f7 01       	movw	r30, r14
  20e:	61 91       	ld	r22, Z+
  210:	7f 01       	movw	r14, r30
@@ -294,6 +331,12 @@ Disassembly of section .text:
  222:	9f 2e       	mov	r9, r31
  224:	f0 2d       	mov	r31, r0
  226:	e6 01       	movw	r28, r12
+		// Check each row
+		for(uint8_t j = 0; j<4; j++)
+		{
+			
+			// If it is low the button is pressed (current row x low valued column)
+			if(GPIO_read(&PINC, rows[j]) == 0)
  228:	f4 01       	movw	r30, r8
  22a:	61 91       	ld	r22, Z+
  22c:	4f 01       	movw	r8, r30
@@ -302,32 +345,85 @@ Disassembly of section .text:
  232:	0e 94 96 00 	call	0x12c	; 0x12c <GPIO_read>
  236:	81 11       	cpse	r24, r1
  238:	01 c0       	rjmp	.+2      	; 0x23c <keypad_scan+0x96>
+			{
+				rowN = j;
+				// From the row and column number get the pressed key
+				pKey = keyPadChar[rowN][colN];
  23a:	78 80       	ld	r7, Y
  23c:	23 96       	adiw	r28, 0x03	; 3
+		// Make current column low and set the variable
+		GPIO_write_low(&PORTC, columns[i]);
+		colN = i;
+		
+		// Check each row
+		for(uint8_t j = 0; j<4; j++)
  23e:	80 16       	cp	r8, r16
  240:	91 06       	cpc	r9, r17
  242:	91 f7       	brne	.-28     	; 0x228 <keypad_scan+0x82>
+				pKey = keyPadChar[rowN][colN];
+			}
+		}
+		
+		// If a key pressed stop the current scanning cycle
+		if(pKey != ' ')
  244:	f0 e2       	ldi	r31, 0x20	; 32
  246:	7f 12       	cpse	r7, r31
  248:	0c c0       	rjmp	.+24     	; 0x262 <keypad_scan+0xbc>
  24a:	8f ef       	ldi	r24, 0xFF	; 255
  24c:	c8 1a       	sub	r12, r24
  24e:	d8 0a       	sbc	r13, r24
+	static uint8_t isKeyPressed = 0;
+	uint8_t rowN = -1;          // Row Number
+	uint8_t colN = -1;          // Column Number
+	char pKey = ' ';            // Pressed Key
+	
+	for(uint8_t i = 0; i<3; i++)
  250:	ea 14       	cp	r14, r10
  252:	fb 04       	cpc	r15, r11
  254:	61 f6       	brne	.-104    	; 0x1ee <keypad_scan+0x48>
  256:	0b c0       	rjmp	.+22     	; 0x26e <keypad_scan+0xc8>
+	
+	// To return the scanned key, wait for user to remove his finger from the button.
+	// Prevents sending the same input, several times.
+	if(pKey != ' ' && isKeyPressed == 0)
+	{
+		isKeyPressed = 1;
  258:	81 e0       	ldi	r24, 0x01	; 1
  25a:	80 93 6e 02 	sts	0x026E, r24	; 0x80026e <__data_end>
+		return pKey;
  25e:	87 2d       	mov	r24, r7
  260:	09 c0       	rjmp	.+18     	; 0x274 <keypad_scan+0xce>
+			break;
+	}
+	
+	// To return the scanned key, wait for user to remove his finger from the button.
+	// Prevents sending the same input, several times.
+	if(pKey != ' ' && isKeyPressed == 0)
  262:	80 91 6e 02 	lds	r24, 0x026E	; 0x80026e <__data_end>
  266:	88 23       	and	r24, r24
  268:	b9 f3       	breq	.-18     	; 0x258 <keypad_scan+0xb2>
+		return pKey;
+	}	
+	else
+	{
+		pKey = ' ';
+		return pKey;
  26a:	80 e2       	ldi	r24, 0x20	; 32
  26c:	03 c0       	rjmp	.+6      	; 0x274 <keypad_scan+0xce>
+		isKeyPressed = 1;
+		return pKey;
+	}
+	else if(pKey == ' ')
+	{
+		isKeyPressed = 0;
  26e:	10 92 6e 02 	sts	0x026E, r1	; 0x80026e <__data_end>
+		return pKey;
  272:	80 e2       	ldi	r24, 0x20	; 32
+	{
+		pKey = ' ';
+		return pKey;
+	}
+	
  274:	df 91       	pop	r29
  276:	cf 91       	pop	r28
  278:	1f 91       	pop	r17
@@ -1228,7 +1324,7 @@ int main(void)
  84e:	81 60       	ori	r24, 0x01	; 1
  850:	80 83       	st	Z, r24
 	
-	// Configure Timer/Counter1 for creating delays
+	// Configure Timer/Counter1 for counting timers
 	// Enable interrupt and set the overflow prescaler to 1s
 	TIM1_overflow_1s();
  852:	e1 e8       	ldi	r30, 0x81	; 129
@@ -1693,7 +1789,7 @@ ISR(TIMER0_OVF_vect)
  b00:	ff 93       	push	r31
 	volatile static char pressedKey = ' ';		// Pressed Key
 	volatile static uint8_t pinDigitCnt = 0;	// Contains the index value of the pin
-	volatile static uint8_t scanningStage = 0;	// Get Pin --> 0: None, 1: getPin, 2: Standby
+	volatile static uint8_t scanningStage = 0;	// Scanning Stage --> 0: None, 1: getPin, 2: Standby
 	
 	// Scan the Keypad
 	pressedKey = keypad_scan();
@@ -1709,7 +1805,7 @@ ISR(TIMER0_OVF_vect)
  b12:	81 e0       	ldi	r24, 0x01	; 1
  b14:	80 93 74 02 	sts	0x0274, r24	; 0x800274 <buzzerStage>
 	
-	// If user pressed #
+	// If user pressed #, ring the door bell
 	if(pressedKey == '#' && scanningStage == 0)
  b18:	80 91 13 01 	lds	r24, 0x0113	; 0x800113 <pressedKey.2012>
  b1c:	83 32       	cpi	r24, 0x23	; 35
@@ -1720,7 +1816,7 @@ ISR(TIMER0_OVF_vect)
 	{
 		ringDoorBell();
  b28:	0e 94 46 04 	call	0x88c	; 0x88c <ringDoorBell>
-		// Wait 3s and than standby
+		// Wait 3s and then standby
 		scanningStage = 2;
  b2c:	82 e0       	ldi	r24, 0x02	; 2
  b2e:	80 93 71 02 	sts	0x0271, r24	; 0x800271 <scanningStage.2014>
@@ -1728,7 +1824,7 @@ ISR(TIMER0_OVF_vect)
  b32:	80 93 76 02 	sts	0x0276, r24	; 0x800276 <timerStage>
  b36:	19 c0       	rjmp	.+50     	; 0xb6a <__vector_16+0x8a>
 	}
-	//If user pressed *
+	// If user pressed *, configure the system to get typed pin
 	else if(pressedKey == '*' && scanningStage == 0)
  b38:	80 91 13 01 	lds	r24, 0x0113	; 0x800113 <pressedKey.2012>
  b3c:	8a 32       	cpi	r24, 0x2A	; 42
@@ -1737,7 +1833,7 @@ ISR(TIMER0_OVF_vect)
  b44:	81 11       	cpse	r24, r1
  b46:	11 c0       	rjmp	.+34     	; 0xb6a <__vector_16+0x8a>
 	{
-		scanningStage = 1;			// Enable getPin
+		scanningStage = 1;	// Enable getPin
  b48:	81 e0       	ldi	r24, 0x01	; 1
  b4a:	80 93 71 02 	sts	0x0271, r24	; 0x800271 <scanningStage.2014>
 		timerStage = 1;		// Start 5 second timer
@@ -1758,7 +1854,7 @@ ISR(TIMER0_OVF_vect)
  b66:	0e 94 a9 01 	call	0x352	; 0x352 <lcd_puts>
 	}
 		
-	// If getPin enabled get the typed pin
+	// If scanningStage is 1 get the typed pin
 	if(scanningStage == 1)
  b6a:	80 91 71 02 	lds	r24, 0x0271	; 0x800271 <scanningStage.2014>
  b6e:	81 30       	cpi	r24, 0x01	; 1
@@ -1845,6 +1941,7 @@ ISR(TIMER0_OVF_vect)
 		
 			pinDigitCnt = 0;
  bee:	10 92 70 02 	sts	0x0270, r1	; 0x800270 <pinDigitCnt.2013>
+			// Wait 3s then, configure system for standby stage
 			scanningStage = 2;
  bf2:	82 e0       	ldi	r24, 0x02	; 2
  bf4:	80 93 71 02 	sts	0x0271, r24	; 0x800271 <scanningStage.2014>

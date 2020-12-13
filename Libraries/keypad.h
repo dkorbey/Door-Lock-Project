@@ -6,7 +6,7 @@
  * Keypad library for AVR-GCC.
  * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
  *
- * Copyright (c) 2019-2020 Demirkan K. Baglamac and Rasit Demiroren
+ * Copyright (c) 2020-2021 Demirkan K. Baglamac and Rasit Demiroren
  * This work is licensed under the terms of the MIT license.
  *
  **********************************************************************/
@@ -46,15 +46,19 @@
 
 /* Function prototypes -----------------------------------------------*/
 /**
- * @brief    Sets all row pins as 0utput and high, 
- *           sets all column pins as input with pull-up resistor
+ * @brief    Sets all column pins as output and sets high, 
+ *           sets all row pins as input with pull-up resistor
  * @return   none
  */
 void keypad_init();
 
 /**
- * @brief    Scans the keypad
- * @return   Returns the pressed key
+ * @brief    Scans the keypad, sets one column low and scan all the rows.
+ *			 If, the read value is low than then we can understand that the 
+ *			 (low read row x low set column) button is pressed.
+ *           Repeat this process for all the columns.
+ * @return   Returns the pressed key as a string. 
+ *           If none of the keys pressed returns ' '.
  */
 uint8_t  keypad_scan();
 

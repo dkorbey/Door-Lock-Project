@@ -12,6 +12,7 @@
 #include "keypad.h"
 
 /* Global Variables --------------------------------------------------*/
+// Setting the key values of the Keypad buttons
 char keyPadChar[4][3] = {
 	{'1','2','3'},
 	{'4','5','6'},
@@ -44,7 +45,7 @@ uint8_t keypad_scan() {
 	static uint8_t isKeyPressed = 0;
 	uint8_t rowN = -1;          // Row Number
 	uint8_t colN = -1;          // Column Number
-	char pKey = ' ';           // Pressed Key
+	char pKey = ' ';            // Pressed Key
 	
 	for(uint8_t i = 0; i<3; i++)
 	{
@@ -76,6 +77,8 @@ uint8_t keypad_scan() {
 			break;
 	}
 	
+	// To return the scanned key, wait for user to remove his finger from the button.
+	// Prevents sending the same input, several times.
 	if(pKey != ' ' && isKeyPressed == 0)
 	{
 		isKeyPressed = 1;

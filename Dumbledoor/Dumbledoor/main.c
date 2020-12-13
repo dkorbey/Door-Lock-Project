@@ -36,32 +36,35 @@ void errorF();						// Error Function
 void ringDoorBell();				// Rings the door bell
 void correctPin(uint8_t ID);		// Put system to the correct pin state
 void wrongPin();					// Put system to the wrong pin state
-int8_t comparePins(char input[]);	//Compares the typed pin with the correct pins,
+int8_t comparePins(char input[]);	// Compares the typed pin with the correct pins,
 									// if correct returns the user ID if not returns -1
 							
 /* Global Variables --------------------------------------------------*/
-char inPin[4] = "    ";		// Input Pin (the pin user pressed)
-int8_t inID = -1;			// Input ID (the ID of the typed Pin, if pin is wrong the Id value is -1)
-uint8_t timerStage = 0;		// Sets the stage of the delay. 0: No Counter, 1: 5s Counter, 2: 3s Counter
-uint8_t timerCnt = 0;		// Delay Counter
-uint8_t wrongTypeCnt = 0;	// Stores the wrong attempts of entering the pin
-uint8_t buzzerStage = 0;	// Sets the buzzer stage  0: Standby, 1: button press, 2: correct pin, 3: wrong pin, 4: door bell
-uint8_t correctAttempts = 0;
-uint8_t wrongAttempts = 0;
+char inPin[4] = "    ";			// Input Pin (the pin user pressed)
+int8_t inID = -1;				// Input ID (the ID of the typed Pin, if pin is wrong the Id value is -1)
+uint8_t timerStage = 0;			// Sets the stage of the delay. 0: No Counter, 1: 5s Counter, 2: 3s Counter
+uint8_t timerCnt = 0;			// Delay Counter
+uint8_t wrongTypeCnt = 0;		// Stores the wrong attempts of entering the pin
+uint8_t buzzerStage = 0;		// Sets the buzzer stage  0: Standby, 1: button press, 2: correct pin, 3: wrong pin, 4: door bell
+uint8_t correctAttempts = 0;	// Number of total correct entries
+uint8_t wrongAttempts = 0;		// Number of total wrong entries
 
+// Correct pin values
 const char pins[4][4] = {
-						"1234",		// ID = 0
-						"4324",		// ID = 1
-						"1962",		// ID = 2
-						"7034"		// ID = 3
-						};
+	"3467",		// ID = 0
+	"4324",		// ID = 1
+	"1962",		// ID = 2
+	"7034"		// ID = 3
+};
+// Names of the pin owners						
 const char names[4][13] = {
-						"Mr Harrman",	// ID = 0
-						"Mrs Leyla",	// ID = 1
-						"Mr Baglamac",	// ID = 2
-						"Mr Demiroren"	// ID = 3
-						};
-						
+	"Mr Harrman",	// ID = 0
+	"Mrs Leyla",	// ID = 1
+	"Mr Baglamac",	// ID = 2
+	"Mr Demiroren"	// ID = 3
+};
+
+// Custom characters for the lcd display						
 uint8_t customChar[16] = {
 	// addr 0: Heart
 	0b00000, 0b00000, 0b01010, 0b11111, 0b01110, 0b00100, 0b00000, 0b00000,
@@ -114,7 +117,7 @@ int main(void)
     TIM0_overflow_4ms();
     TIM0_overflow_interrupt_enable();
 	
-	// Configure Timer/Counter1 for creating delays
+	// Configure Timer/Counter1 for counting timers
 	// Enable interrupt and set the overflow prescaler to 1s
 	TIM1_overflow_1s();
 	TIM1_overflow_interrupt_enable();
@@ -145,7 +148,7 @@ ISR(TIMER0_OVF_vect)
 {
 	volatile static char pressedKey = ' ';		// Pressed Key
 	volatile static uint8_t pinDigitCnt = 0;	// Contains the index value of the pin
-	volatile static uint8_t scanningStage = 0;	// Get Pin --> 0: None, 1: getPin, 2: Standby
+	volatile static uint8_t scanningStage = 0;	// Scanning Stage --> 0: None, 1: getPin, 2: Standby
 	
 	// Scan the Keypad
 	pressedKey = keypad_scan();
@@ -154,18 +157,18 @@ ISR(TIMER0_OVF_vect)
 	if(pressedKey != ' ')
 		buzzerStage = 1;
 	
-	// If user pressed #
+	// If user pressed #, ring the door bell
 	if(pressedKey == '#' && scanningStage == 0)
 	{
 		ringDoorBell();
-		// Wait 3s and than standby
+		// Wait 3s and then standby
 		scanningStage = 2;
 		timerStage = 2;
 	}
-	//If user pressed *
+	// If user pressed *, configure the system to get typed pin
 	else if(pressedKey == '*' && scanningStage == 0)
 	{
-		scanningStage = 1;			// Enable getPin
+		scanningStage = 1;	// Enable getPin
 		timerStage = 1;		// Start 5 second timer
 		pinDigitCnt = 0;	// Set pin input index to 0
 						
@@ -175,7 +178,7 @@ ISR(TIMER0_OVF_vect)
 		lcd_puts("--Enter the pin--");
 	}
 		
-	// If getPin enabled get the typed pin
+	// If scanningStage is 1 get the typed pin
 	if(scanningStage == 1)
 	{
 		// Scan the entered pin
@@ -214,6 +217,7 @@ ISR(TIMER0_OVF_vect)
 			}
 		
 			pinDigitCnt = 0;
+			// Wait 3s then, configure system for standby stage
 			scanningStage = 2;
 			timerStage = 2;
 		}
