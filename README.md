@@ -44,7 +44,11 @@ List of libraries used in this application:
 * stdlib.h: To use itoa() function, which transforms numerical variables to string
 
 We use all 3 timers in our project, in the table below you can see why and with which prescaler we use the timers,
-
+|           TIMER          | PRESCALER |                                                                       REASON                                                                       |
+|:------------------------:|:---------:|:---------------------------------------------------------------------------------------------------------------------------------------------------|
+|      Timer/Counter0      |    4ms    | For scanning the keypad at every overflow,  and configure the sytem according the pressed key.                                                     |
+|      Timer/Counter1      |     1s    | For creating counters (5s and 3s) which is used in the application,  for example it starts counting to 5 after the user start typing the password. |
+|      Timer/Counter2      |    16ms   | To create PWM signals for buzzer and the door bell.                                                                                                |
 
 
 ## Video/Animation
