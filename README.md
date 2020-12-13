@@ -69,7 +69,7 @@ The table of the functions used in this project:
 &nbsp;
 
 You can find the circuit diagram created in simulide below.
-![Program Flowchart](Images/circuit_diagram_new.png.png)
+![Circuit Diagram](Images/circuit_diagram_new.png)
 
 ## Video/Animation
 
