@@ -13,6 +13,9 @@
 
 /**
  * @file  keypad.h
+ * @defgroup dumbledoor_keypad KeyPad Library <keypad.h>
+ * @code #include <keypad.h> @endcode
+ *
  * @brief Keypad module library for AVR-GCC.
  *
  * @details
