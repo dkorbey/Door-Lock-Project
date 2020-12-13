@@ -186,7 +186,7 @@ ISR(TIMER0_OVF_vect)
 				
 			// Configure lcd
 			lcd_gotoxy((pinDigitCnt + 8),2);
-			lcd_putc(pressedKey);
+			lcd_putc('*');
 				
 			// Increase the counter
 			pinDigitCnt++;
@@ -407,9 +407,13 @@ void ringDoorBell()
 	lcd_gotoxy(2,2);
 	lcd_puts("Door bell is");
 	lcd_gotoxy(2,3);
-	lcd_puts("ringed. ");
+	lcd_puts("rang. ");
 	lcd_putc(1);
 	lcd_putc(1);
+	
+	// UART
+	uart_puts("Door bell is rang.");
+	uart_puts("\r\n");
 }
 
 void correctPin(uint8_t ID)
@@ -434,8 +438,8 @@ void correctPin(uint8_t ID)
 	lcd_gotoxy(2,1);
 	lcd_puts("Correct pin.");
 	lcd_gotoxy(2,2);
+	lcd_puts("Hello ");
 	lcd_putc(0);
-	lcd_puts("Hello");
 	lcd_putc(0);
 	lcd_gotoxy(2,3);
 	lcd_puts(names[ID]);
