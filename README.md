@@ -1,7 +1,7 @@
-# Digital-Electronics-2 Final Project: Door Lock System 
-# "The Mighty Dumbledoor"
+# Digital-Electronics-2 Final Project: Door Lock System <br/> "The Mighty Dumbledoor :mage:"
 
 
+ 
 ### Team members
 
 Demirkan Korbey Bağlamaç & Raşit Demirören
