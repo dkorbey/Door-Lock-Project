@@ -32,6 +32,13 @@ While implementing our code, we used several [libraries](https://github.com/dkor
 We also implemented our own library [keypad.h](https://github.com/dkorbey/Door-Lock-Project/blob/main/Dumbledoor/Dumbledoor/keypad.h) ([keypad.c](https://github.com/dkorbey/Door-Lock-Project/blob/main/Dumbledoor/Dumbledoor/keypad.c)) exclusively for this project. You can find the html documentation of our keypad
 library created with doxygen [here](https://dkorbey.github.io/Door-Lock-Project/keypad_8h.html).
 
+List of libraries used in this application:
+* [gpio.h](https://dkorbey.github.io/Door-Lock-Project/gpio_8h.html)
+* [lcd.h](https://dkorbey.github.io/Door-Lock-Project/lcd_8h.html)
+* [timer.h](https://dkorbey.github.io/Door-Lock-Project/timer_8h.html)
+* [uart.h](https://dkorbey.github.io/Door-Lock-Project/uart_8h.html)
+* [keypad.h](https://dkorbey.github.io/Door-Lock-Project/keypad_8h.html)
+
 
 
 
