@@ -11,7 +11,8 @@ Demirkan Korbey Bağlamaç & Raşit Demirören
 
 ### Project objectives
 
-This project mainly aims to implement a door lock system using the microcontroller ATmega328p and C programming language. </br>
+This project mainly aims to implement a door lock system using the microcontroller ATmega328p and C programming language. 
+
 Here you can find the flowchart of our program:
 ![Program Flowchart](Images/flow_chart.png)
 
@@ -33,11 +34,14 @@ We also implemented our own library [keypad.h](https://github.com/dkorbey/Door-L
 library created with doxygen [here](https://dkorbey.github.io/Door-Lock-Project/keypad_8h.html).
 
 List of libraries used in this application:
-* [gpio.h](https://dkorbey.github.io/Door-Lock-Project/gpio_8h.html)
-* [lcd.h](https://dkorbey.github.io/Door-Lock-Project/lcd_8h.html)
-* [timer.h](https://dkorbey.github.io/Door-Lock-Project/timer_8h.html)
-* [uart.h](https://dkorbey.github.io/Door-Lock-Project/uart_8h.html)
-* [keypad.h](https://dkorbey.github.io/Door-Lock-Project/keypad_8h.html)
+* [gpio.h](https://dkorbey.github.io/Door-Lock-Project/gpio_8h.html): For controlling AVR's gpio pins
+* [lcd.h](https://dkorbey.github.io/Door-Lock-Project/lcd_8h.html): For using the LCD module
+* [timer.h](https://dkorbey.github.io/Door-Lock-Project/timer_8h.html): For defining timers
+* [uart.h](https://dkorbey.github.io/Door-Lock-Project/uart_8h.html): For using UART communication
+* [keypad.h](https://dkorbey.github.io/Door-Lock-Project/keypad_8h.html): For using the keypad module
+* avr/io.h: AVR device-specific IO definitions
+* avr/interrupt.h: Interrupts standard C library for AVR-GCC
+* stdlib.h: To use itoa() function, which transforms number variables to string
 
 
 
