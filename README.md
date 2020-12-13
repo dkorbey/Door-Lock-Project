@@ -30,7 +30,7 @@ Here you can find the flowchart of our program:
 
 While implementing our code, we used several [libraries](https://github.com/dkorbey/Door-Lock-Project/tree/main/Libraries) from the previous laboratory exercises of this semester. (i.e. `uart.h`, `gpio.h`, `timer.h`, `lcd.h` etc.)
 We also implemented our own library [keypad.h](https://github.com/dkorbey/Door-Lock-Project/blob/main/Dumbledoor/Dumbledoor/keypad.h) ([keypad.c](https://github.com/dkorbey/Door-Lock-Project/blob/main/Dumbledoor/Dumbledoor/keypad.c)) exclusively for this project. You can find the html documentation of our keypad
-library created with doxygen [here](https://htmlpreview.github.io/?https://github.com/dkorbey/Door-Lock-Project/blob/main/Doxygen/html/keypad_8h.html).
+library created with doxygen [here](https://dkorbey.github.io/Door-Lock-Project/keypad_8h.html).
 
 
 
