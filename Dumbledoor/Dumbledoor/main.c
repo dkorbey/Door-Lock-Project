@@ -22,7 +22,7 @@
 
 /* Includes ----------------------------------------------------------*/
 #include <avr/io.h>			// AVR device-specific IO definitions
-#include <avr/interrupt.h>	// Interrupts standard C library for AVR-GCC
+#include <avr/interrupt.h>		// Interrupts standard C library for AVR-GCC
 #include <stdlib.h>			// To use itoa() function
 #include "timer.h"			// Timer library for AVR-GCC
 #include "lcd.h"			// LCD library for AVR-GCC
@@ -31,21 +31,21 @@
 #include "uart.h"			// UART library for AVR-GCC
 
 /* Function declarations ---------------------------------------------*/
-void standby();						// Put system to the standby state
-void ringDoorBell();				// Rings the door bell
+void standby();				// Put system to the standby state
+void ringDoorBell();			// Rings the door bell
 void correctPin(uint8_t ID);		// Put system to the correct pin state
-void wrongPin();					// Put system to the wrong pin state
+void wrongPin();			// Put system to the wrong pin state
 int8_t comparePins(char input[]);	// Compares the typed pin with the correct pins,
-									// if correct returns the user ID if not returns -1
+					// if correct returns the user ID if not returns -1
 							
 /* Global Variables --------------------------------------------------*/
 char inPin[4] = "    ";			// Input Pin (the pin user pressed)
-int8_t inID = -1;				// Input ID (the ID of the typed Pin, if pin is wrong the Id value is -1)
+int8_t inID = -1;			// Input ID (the ID of the typed Pin, if pin is wrong the Id value is -1)
 uint8_t timerStage = 0;			// Sets the stage of the delay. 0: No Counter, 1: 5s Counter, 2: 3s Counter
 uint8_t timerCnt = 0;			// Delay Counter
 uint8_t wrongTypeCnt = 0;		// Stores the wrong attempts of entering the pin
 uint8_t buzzerStage = 0;		// Sets the buzzer stage  0: Standby, 1: button press, 2: correct pin, 3: wrong pin, 4: door bell
-uint8_t correctAttempts = 0;	// Number of total correct entries
+uint8_t correctAttempts = 0;		// Number of total correct entries
 uint8_t wrongAttempts = 0;		// Number of total wrong entries
 
 // Correct pin values
@@ -111,10 +111,10 @@ int main(void)
 	// Set the program to standby state
 	standby();
 	
-    // Configure Timer/Counter0 for scanning the key pad
-    // Enable interrupt and set the overflow prescaler to 4ms
-    TIM0_overflow_4ms();
-    TIM0_overflow_interrupt_enable();
+    	// Configure Timer/Counter0 for scanning the key pad
+    	// Enable interrupt and set the overflow prescaler to 4ms
+   	 TIM0_overflow_4ms();
+    	TIM0_overflow_interrupt_enable();
 	
 	// Configure Timer/Counter1 for counting timers
 	// Enable interrupt and set the overflow prescaler to 1s
@@ -126,23 +126,23 @@ int main(void)
 	TIM2_overflow_16ms();
 	TIM2_overflow_interrupt_enable();
 	
-    // Initialize UART to asynchronous, 8N1, 9600
-    uart_init(UART_BAUD_SELECT(9600, F_CPU));
+   	 // Initialize UART to asynchronous, 8N1, 9600
+    	uart_init(UART_BAUD_SELECT(9600, F_CPU));
 	
-    // Enables interrupts by setting the global interrupt mask
-    sei();
+    	// Enables interrupts by setting the global interrupt mask
+    	sei();
 	
-    /* Replace with your application code */
-    while (1) 
-    {
-    }
+   	 /* Replace with your application code */
+    	while (1) 
+    	{
+    	}
 	
 	// Will never reach this
 	return 0;
 }
 
 /* Interrupt handlers ------------------------------------------------*/
-//	Interrupt Handler for scanning keypad, getting the typed pin and then compare the pin
+// Interrupt Handler for scanning keypad, getting the typed pin and then compare the pin
 ISR(TIMER0_OVF_vect)
 {
 	volatile static char pressedKey = ' ';		// Pressed Key
@@ -210,6 +210,7 @@ ISR(TIMER0_OVF_vect)
 			{
 				wrongPin();
 			}
+			// Typed pin is correct
 			else if(inID >= 0 && inID < 4)
 			{
 				correctPin(inID);
