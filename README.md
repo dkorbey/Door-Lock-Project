@@ -36,8 +36,6 @@ library created with doxygen [here](https://dkorbey.github.io/Door-Lock-Project/
 
 You can find the `main.c` [here](https://github.com/dkorbey/Door-Lock-Project/blob/main/Dumbledoor/Dumbledoor/main.c).
 
-&nbsp;
-
 List of libraries used in this application:
 * [gpio.h](https://dkorbey.github.io/Door-Lock-Project/gpio_8h.html): For controlling AVR's gpio pins
 * [lcd.h](https://dkorbey.github.io/Door-Lock-Project/lcd_8h.html): For using the LCD module
