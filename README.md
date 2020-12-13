@@ -4,8 +4,7 @@
  
 ### Team members
 
-Demirkan Korbey Bağlamaç & Raşit Demirören
-
+Demirkan Korbey Bağlamaç & Raşit Demirören <br/>
 [Link to our GitHub project folder](https://github.com/dkorbey/Door-Lock-Project)
 
 
