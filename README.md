@@ -66,6 +66,10 @@ The table of the functions used in this project:
 |     `wrongPin()`     |     none     |     none     | Runs when the typed pin is wrong and configures the system accordingly.<br>(Lights up the red led, lock the door, activates the buzzer, etc. )                                                                                       |
 |    `comparePins()`   | char input[] | int8_t pinId | Gets the typed pin as a parameter and then compares the typed pin with the  defined correct pins and determine whether is it correct or not. <br>And if the typed pin is correct returns the user id(`pinID`). If its wrong returns -1. |
 
+&nbsp;
+
+You can find the circuit diagram created in simulide below.
+![Program Flowchart](Images/circuit_diagram_new.png.png)
 
 ## Video/Animation
 
