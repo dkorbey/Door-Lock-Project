@@ -43,7 +43,6 @@ char inPin[4] = "    ";			// Input Pin (the pin user pressed)
 int8_t inID = -1;			// Input ID (the ID of the typed Pin, if pin is wrong the Id value is -1)
 uint8_t timerStage = 0;			// Sets the stage of the delay. 0: No Counter, 1: 5s Counter, 2: 3s Counter
 uint8_t timerCnt = 0;			// Delay Counter
-uint8_t wrongTypeCnt = 0;		// Stores the wrong attempts of entering the pin
 uint8_t buzzerStage = 0;		// Sets the buzzer stage  0: Standby, 1: button press, 2: correct pin, 3: wrong pin, 4: door bell
 uint8_t correctAttempts = 0;		// Number of total correct entries
 uint8_t wrongAttempts = 0;		// Number of total wrong entries

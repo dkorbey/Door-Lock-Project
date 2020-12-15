@@ -15,19 +15,19 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   5 .debug_aranges 000001a8  00000000  00000000  00001048  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   0000275e  00000000  00000000  000011f0  2**0
+  6 .debug_info   0000274c  00000000  00000000  000011f0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000d25  00000000  00000000  0000394e  2**0
+  7 .debug_abbrev 00000d25  00000000  00000000  0000393c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   0000125f  00000000  00000000  00004673  2**0
+  8 .debug_line   0000125f  00000000  00000000  00004661  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  000004b0  00000000  00000000  000058d4  2**2
+  9 .debug_frame  000004b0  00000000  00000000  000058c0  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    000007d0  00000000  00000000  00005d84  2**0
+ 10 .debug_str    000007c3  00000000  00000000  00005d70  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00001307  00000000  00000000  00006554  2**0
+ 11 .debug_loc    00001307  00000000  00000000  00006533  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 000001a8  00000000  00000000  0000785b  2**0
+ 12 .debug_ranges 000001a8  00000000  00000000  0000783a  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -852,17 +852,17 @@ ISR(TIMER2_OVF_vect)
  546:	0e 94 7e 00 	call	0xfc	; 0xfc <GPIO_write_high>
 		
 		buzzerCnt++;
- 54a:	80 91 6f 02 	lds	r24, 0x026F	; 0x80026f <buzzerCnt.2026>
+ 54a:	80 91 6f 02 	lds	r24, 0x026F	; 0x80026f <buzzerCnt.2024>
  54e:	8f 5f       	subi	r24, 0xFF	; 255
- 550:	80 93 6f 02 	sts	0x026F, r24	; 0x80026f <buzzerCnt.2026>
+ 550:	80 93 6f 02 	sts	0x026F, r24	; 0x80026f <buzzerCnt.2024>
 		if(buzzerCnt == 10)
- 554:	80 91 6f 02 	lds	r24, 0x026F	; 0x80026f <buzzerCnt.2026>
+ 554:	80 91 6f 02 	lds	r24, 0x026F	; 0x80026f <buzzerCnt.2024>
  558:	8a 30       	cpi	r24, 0x0A	; 10
  55a:	09 f0       	breq	.+2      	; 0x55e <__vector_9+0x62>
  55c:	d9 c0       	rjmp	.+434    	; 0x710 <__vector_9+0x214>
 		{
 			buzzerCnt = 0;
- 55e:	10 92 6f 02 	sts	0x026F, r1	; 0x80026f <buzzerCnt.2026>
+ 55e:	10 92 6f 02 	sts	0x026F, r1	; 0x80026f <buzzerCnt.2024>
 			buzzerStage = 0;
  562:	10 92 74 02 	sts	0x0274, r1	; 0x800274 <buzzerStage>
  566:	d4 c0       	rjmp	.+424    	; 0x710 <__vector_9+0x214>
@@ -880,17 +880,17 @@ ISR(TIMER2_OVF_vect)
  572:	0e 94 7e 00 	call	0xfc	; 0xfc <GPIO_write_high>
 		
 		buzzerCnt++;
- 576:	80 91 6f 02 	lds	r24, 0x026F	; 0x80026f <buzzerCnt.2026>
+ 576:	80 91 6f 02 	lds	r24, 0x026F	; 0x80026f <buzzerCnt.2024>
  57a:	8f 5f       	subi	r24, 0xFF	; 255
- 57c:	80 93 6f 02 	sts	0x026F, r24	; 0x80026f <buzzerCnt.2026>
+ 57c:	80 93 6f 02 	sts	0x026F, r24	; 0x80026f <buzzerCnt.2024>
 		if(buzzerCnt == 50)
- 580:	80 91 6f 02 	lds	r24, 0x026F	; 0x80026f <buzzerCnt.2026>
+ 580:	80 91 6f 02 	lds	r24, 0x026F	; 0x80026f <buzzerCnt.2024>
  584:	82 33       	cpi	r24, 0x32	; 50
  586:	09 f0       	breq	.+2      	; 0x58a <__vector_9+0x8e>
  588:	c3 c0       	rjmp	.+390    	; 0x710 <__vector_9+0x214>
 		{
 			buzzerCnt = 0;
- 58a:	10 92 6f 02 	sts	0x026F, r1	; 0x80026f <buzzerCnt.2026>
+ 58a:	10 92 6f 02 	sts	0x026F, r1	; 0x80026f <buzzerCnt.2024>
 			buzzerStage = 0;
  58e:	10 92 74 02 	sts	0x0274, r1	; 0x800274 <buzzerStage>
  592:	be c0       	rjmp	.+380    	; 0x710 <__vector_9+0x214>
@@ -908,11 +908,11 @@ ISR(TIMER2_OVF_vect)
  59e:	0e 94 7e 00 	call	0xfc	; 0xfc <GPIO_write_high>
 		
 		buzzerCnt++;
- 5a2:	80 91 6f 02 	lds	r24, 0x026F	; 0x80026f <buzzerCnt.2026>
+ 5a2:	80 91 6f 02 	lds	r24, 0x026F	; 0x80026f <buzzerCnt.2024>
  5a6:	8f 5f       	subi	r24, 0xFF	; 255
- 5a8:	80 93 6f 02 	sts	0x026F, r24	; 0x80026f <buzzerCnt.2026>
+ 5a8:	80 93 6f 02 	sts	0x026F, r24	; 0x80026f <buzzerCnt.2024>
 		if((buzzerCnt % 10) == 0)
- 5ac:	20 91 6f 02 	lds	r18, 0x026F	; 0x80026f <buzzerCnt.2026>
+ 5ac:	20 91 6f 02 	lds	r18, 0x026F	; 0x80026f <buzzerCnt.2024>
  5b0:	8d ec       	ldi	r24, 0xCD	; 205
  5b2:	28 9f       	mul	r18, r24
  5b4:	81 2d       	mov	r24, r1
@@ -935,13 +935,13 @@ ISR(TIMER2_OVF_vect)
  5d2:	0e 94 8a 00 	call	0x114	; 0x114 <GPIO_toggle>
 		}
 		if(buzzerCnt == 50)
- 5d6:	80 91 6f 02 	lds	r24, 0x026F	; 0x80026f <buzzerCnt.2026>
+ 5d6:	80 91 6f 02 	lds	r24, 0x026F	; 0x80026f <buzzerCnt.2024>
  5da:	82 33       	cpi	r24, 0x32	; 50
  5dc:	09 f0       	breq	.+2      	; 0x5e0 <__vector_9+0xe4>
  5de:	98 c0       	rjmp	.+304    	; 0x710 <__vector_9+0x214>
 		{
 			buzzerCnt = 0;
- 5e0:	10 92 6f 02 	sts	0x026F, r1	; 0x80026f <buzzerCnt.2026>
+ 5e0:	10 92 6f 02 	sts	0x026F, r1	; 0x80026f <buzzerCnt.2024>
 			buzzerStage = 0;
  5e4:	10 92 74 02 	sts	0x0274, r1	; 0x800274 <buzzerStage>
  5e8:	93 c0       	rjmp	.+294    	; 0x710 <__vector_9+0x214>
@@ -960,11 +960,11 @@ ISR(TIMER2_OVF_vect)
  5f6:	0e 94 7e 00 	call	0xfc	; 0xfc <GPIO_write_high>
 		
 		buzzerCnt++;
- 5fa:	80 91 6f 02 	lds	r24, 0x026F	; 0x80026f <buzzerCnt.2026>
+ 5fa:	80 91 6f 02 	lds	r24, 0x026F	; 0x80026f <buzzerCnt.2024>
  5fe:	8f 5f       	subi	r24, 0xFF	; 255
- 600:	80 93 6f 02 	sts	0x026F, r24	; 0x80026f <buzzerCnt.2026>
+ 600:	80 93 6f 02 	sts	0x026F, r24	; 0x80026f <buzzerCnt.2024>
 		if(buzzerCnt == 10)
- 604:	80 91 6f 02 	lds	r24, 0x026F	; 0x80026f <buzzerCnt.2026>
+ 604:	80 91 6f 02 	lds	r24, 0x026F	; 0x80026f <buzzerCnt.2024>
  608:	8a 30       	cpi	r24, 0x0A	; 10
  60a:	29 f4       	brne	.+10     	; 0x616 <__vector_9+0x11a>
 			GPIO_toggle(&PORTB, doorBell);
@@ -973,7 +973,7 @@ ISR(TIMER2_OVF_vect)
  610:	90 e0       	ldi	r25, 0x00	; 0
  612:	0e 94 8a 00 	call	0x114	; 0x114 <GPIO_toggle>
 		if(buzzerCnt == 15)
- 616:	80 91 6f 02 	lds	r24, 0x026F	; 0x80026f <buzzerCnt.2026>
+ 616:	80 91 6f 02 	lds	r24, 0x026F	; 0x80026f <buzzerCnt.2024>
  61a:	8f 30       	cpi	r24, 0x0F	; 15
  61c:	29 f4       	brne	.+10     	; 0x628 <__vector_9+0x12c>
 			GPIO_toggle(&PORTB, doorBell);
@@ -982,7 +982,7 @@ ISR(TIMER2_OVF_vect)
  622:	90 e0       	ldi	r25, 0x00	; 0
  624:	0e 94 8a 00 	call	0x114	; 0x114 <GPIO_toggle>
 		if(buzzerCnt == 20)
- 628:	80 91 6f 02 	lds	r24, 0x026F	; 0x80026f <buzzerCnt.2026>
+ 628:	80 91 6f 02 	lds	r24, 0x026F	; 0x80026f <buzzerCnt.2024>
  62c:	84 31       	cpi	r24, 0x14	; 20
  62e:	29 f4       	brne	.+10     	; 0x63a <__vector_9+0x13e>
 			GPIO_toggle(&PORTB, doorBell);
@@ -991,7 +991,7 @@ ISR(TIMER2_OVF_vect)
  634:	90 e0       	ldi	r25, 0x00	; 0
  636:	0e 94 8a 00 	call	0x114	; 0x114 <GPIO_toggle>
 		if(buzzerCnt == 30)
- 63a:	80 91 6f 02 	lds	r24, 0x026F	; 0x80026f <buzzerCnt.2026>
+ 63a:	80 91 6f 02 	lds	r24, 0x026F	; 0x80026f <buzzerCnt.2024>
  63e:	8e 31       	cpi	r24, 0x1E	; 30
  640:	29 f4       	brne	.+10     	; 0x64c <__vector_9+0x150>
 			GPIO_toggle(&PORTB, doorBell);
@@ -1000,7 +1000,7 @@ ISR(TIMER2_OVF_vect)
  646:	90 e0       	ldi	r25, 0x00	; 0
  648:	0e 94 8a 00 	call	0x114	; 0x114 <GPIO_toggle>
 		if(buzzerCnt == 35)
- 64c:	80 91 6f 02 	lds	r24, 0x026F	; 0x80026f <buzzerCnt.2026>
+ 64c:	80 91 6f 02 	lds	r24, 0x026F	; 0x80026f <buzzerCnt.2024>
  650:	83 32       	cpi	r24, 0x23	; 35
  652:	29 f4       	brne	.+10     	; 0x65e <__vector_9+0x162>
 			GPIO_toggle(&PORTB, doorBell);
@@ -1009,7 +1009,7 @@ ISR(TIMER2_OVF_vect)
  658:	90 e0       	ldi	r25, 0x00	; 0
  65a:	0e 94 8a 00 	call	0x114	; 0x114 <GPIO_toggle>
 		if(buzzerCnt == 40)
- 65e:	80 91 6f 02 	lds	r24, 0x026F	; 0x80026f <buzzerCnt.2026>
+ 65e:	80 91 6f 02 	lds	r24, 0x026F	; 0x80026f <buzzerCnt.2024>
  662:	88 32       	cpi	r24, 0x28	; 40
  664:	29 f4       	brne	.+10     	; 0x670 <__vector_9+0x174>
 			GPIO_toggle(&PORTB, doorBell);
@@ -1018,7 +1018,7 @@ ISR(TIMER2_OVF_vect)
  66a:	90 e0       	ldi	r25, 0x00	; 0
  66c:	0e 94 8a 00 	call	0x114	; 0x114 <GPIO_toggle>
 		if(buzzerCnt == 50)
- 670:	80 91 6f 02 	lds	r24, 0x026F	; 0x80026f <buzzerCnt.2026>
+ 670:	80 91 6f 02 	lds	r24, 0x026F	; 0x80026f <buzzerCnt.2024>
  674:	82 33       	cpi	r24, 0x32	; 50
  676:	29 f4       	brne	.+10     	; 0x682 <__vector_9+0x186>
 			GPIO_toggle(&PORTB, doorBell);
@@ -1027,7 +1027,7 @@ ISR(TIMER2_OVF_vect)
  67c:	90 e0       	ldi	r25, 0x00	; 0
  67e:	0e 94 8a 00 	call	0x114	; 0x114 <GPIO_toggle>
 		if(buzzerCnt == 60)
- 682:	80 91 6f 02 	lds	r24, 0x026F	; 0x80026f <buzzerCnt.2026>
+ 682:	80 91 6f 02 	lds	r24, 0x026F	; 0x80026f <buzzerCnt.2024>
  686:	8c 33       	cpi	r24, 0x3C	; 60
  688:	29 f4       	brne	.+10     	; 0x694 <__vector_9+0x198>
 			GPIO_toggle(&PORTB, doorBell);
@@ -1036,7 +1036,7 @@ ISR(TIMER2_OVF_vect)
  68e:	90 e0       	ldi	r25, 0x00	; 0
  690:	0e 94 8a 00 	call	0x114	; 0x114 <GPIO_toggle>
 		if(buzzerCnt == 65)
- 694:	80 91 6f 02 	lds	r24, 0x026F	; 0x80026f <buzzerCnt.2026>
+ 694:	80 91 6f 02 	lds	r24, 0x026F	; 0x80026f <buzzerCnt.2024>
  698:	81 34       	cpi	r24, 0x41	; 65
  69a:	29 f4       	brne	.+10     	; 0x6a6 <__vector_9+0x1aa>
 			GPIO_toggle(&PORTB, doorBell);
@@ -1045,7 +1045,7 @@ ISR(TIMER2_OVF_vect)
  6a0:	90 e0       	ldi	r25, 0x00	; 0
  6a2:	0e 94 8a 00 	call	0x114	; 0x114 <GPIO_toggle>
 		if(buzzerCnt == 70)
- 6a6:	80 91 6f 02 	lds	r24, 0x026F	; 0x80026f <buzzerCnt.2026>
+ 6a6:	80 91 6f 02 	lds	r24, 0x026F	; 0x80026f <buzzerCnt.2024>
  6aa:	86 34       	cpi	r24, 0x46	; 70
  6ac:	29 f4       	brne	.+10     	; 0x6b8 <__vector_9+0x1bc>
 			GPIO_toggle(&PORTB, doorBell);
@@ -1054,7 +1054,7 @@ ISR(TIMER2_OVF_vect)
  6b2:	90 e0       	ldi	r25, 0x00	; 0
  6b4:	0e 94 8a 00 	call	0x114	; 0x114 <GPIO_toggle>
 		if(buzzerCnt == 80)
- 6b8:	80 91 6f 02 	lds	r24, 0x026F	; 0x80026f <buzzerCnt.2026>
+ 6b8:	80 91 6f 02 	lds	r24, 0x026F	; 0x80026f <buzzerCnt.2024>
  6bc:	80 35       	cpi	r24, 0x50	; 80
  6be:	29 f4       	brne	.+10     	; 0x6ca <__vector_9+0x1ce>
 			GPIO_toggle(&PORTB, doorBell);
@@ -1063,7 +1063,7 @@ ISR(TIMER2_OVF_vect)
  6c4:	90 e0       	ldi	r25, 0x00	; 0
  6c6:	0e 94 8a 00 	call	0x114	; 0x114 <GPIO_toggle>
 		if(buzzerCnt == 85)
- 6ca:	80 91 6f 02 	lds	r24, 0x026F	; 0x80026f <buzzerCnt.2026>
+ 6ca:	80 91 6f 02 	lds	r24, 0x026F	; 0x80026f <buzzerCnt.2024>
  6ce:	85 35       	cpi	r24, 0x55	; 85
  6d0:	29 f4       	brne	.+10     	; 0x6dc <__vector_9+0x1e0>
 			GPIO_toggle(&PORTB, doorBell);
@@ -1072,7 +1072,7 @@ ISR(TIMER2_OVF_vect)
  6d6:	90 e0       	ldi	r25, 0x00	; 0
  6d8:	0e 94 8a 00 	call	0x114	; 0x114 <GPIO_toggle>
 		if(buzzerCnt == 90)
- 6dc:	80 91 6f 02 	lds	r24, 0x026F	; 0x80026f <buzzerCnt.2026>
+ 6dc:	80 91 6f 02 	lds	r24, 0x026F	; 0x80026f <buzzerCnt.2024>
  6e0:	8a 35       	cpi	r24, 0x5A	; 90
  6e2:	29 f4       	brne	.+10     	; 0x6ee <__vector_9+0x1f2>
 			GPIO_toggle(&PORTB, doorBell);
@@ -1081,7 +1081,7 @@ ISR(TIMER2_OVF_vect)
  6e8:	90 e0       	ldi	r25, 0x00	; 0
  6ea:	0e 94 8a 00 	call	0x114	; 0x114 <GPIO_toggle>
 		if(buzzerCnt == 100)
- 6ee:	80 91 6f 02 	lds	r24, 0x026F	; 0x80026f <buzzerCnt.2026>
+ 6ee:	80 91 6f 02 	lds	r24, 0x026F	; 0x80026f <buzzerCnt.2024>
  6f2:	84 36       	cpi	r24, 0x64	; 100
  6f4:	29 f4       	brne	.+10     	; 0x700 <__vector_9+0x204>
 			GPIO_toggle(&PORTB, doorBell);
@@ -1091,12 +1091,12 @@ ISR(TIMER2_OVF_vect)
  6fc:	0e 94 8a 00 	call	0x114	; 0x114 <GPIO_toggle>
 			
 		if(buzzerCnt == 100)
- 700:	80 91 6f 02 	lds	r24, 0x026F	; 0x80026f <buzzerCnt.2026>
+ 700:	80 91 6f 02 	lds	r24, 0x026F	; 0x80026f <buzzerCnt.2024>
  704:	84 36       	cpi	r24, 0x64	; 100
  706:	21 f4       	brne	.+8      	; 0x710 <__vector_9+0x214>
 		{
 			buzzerCnt = 0;
- 708:	10 92 6f 02 	sts	0x026F, r1	; 0x80026f <buzzerCnt.2026>
+ 708:	10 92 6f 02 	sts	0x026F, r1	; 0x80026f <buzzerCnt.2024>
 			buzzerStage = 0;
  70c:	10 92 74 02 	sts	0x0274, r1	; 0x800274 <buzzerStage>
 		}
@@ -1308,16 +1308,16 @@ int main(void)
 	standby();
  838:	0e 94 99 03 	call	0x732	; 0x732 <standby>
 	
-    // Configure Timer/Counter0 for scanning the key pad
-    // Enable interrupt and set the overflow prescaler to 4ms
-    TIM0_overflow_4ms();
+    	// Configure Timer/Counter0 for scanning the key pad
+    	// Enable interrupt and set the overflow prescaler to 4ms
+   	 TIM0_overflow_4ms();
  83c:	85 b5       	in	r24, 0x25	; 37
  83e:	8d 7f       	andi	r24, 0xFD	; 253
  840:	85 bd       	out	0x25, r24	; 37
  842:	85 b5       	in	r24, 0x25	; 37
  844:	84 60       	ori	r24, 0x04	; 4
  846:	85 bd       	out	0x25, r24	; 37
-    TIM0_overflow_interrupt_enable();
+    	TIM0_overflow_interrupt_enable();
  848:	ee e6       	ldi	r30, 0x6E	; 110
  84a:	f0 e0       	ldi	r31, 0x00	; 0
  84c:	80 81       	ld	r24, Z
@@ -1357,14 +1357,14 @@ int main(void)
  87c:	81 60       	ori	r24, 0x01	; 1
  87e:	80 83       	st	Z, r24
 	
-    // Initialize UART to asynchronous, 8N1, 9600
-    uart_init(UART_BAUD_SELECT(9600, F_CPU));
+   	// Initialize UART to asynchronous, 8N1, 9600
+    	uart_init(UART_BAUD_SELECT(9600, F_CPU));
  880:	89 e0       	ldi	r24, 0x09	; 9
  882:	90 e0       	ldi	r25, 0x00	; 0
  884:	0e 94 77 06 	call	0xcee	; 0xcee <uart_init>
 	
-    // Enables interrupts by setting the global interrupt mask
-    sei();
+    	// Enables interrupts by setting the global interrupt mask
+    	sei();
  888:	78 94       	sei
  88a:	ff cf       	rjmp	.-2      	; 0x88a <main+0xe0>
 
@@ -1758,6 +1758,7 @@ int8_t comparePins(char input[])
 	}
 	
 	return pinId;
+}
  ad8:	df 91       	pop	r29
  ada:	cf 91       	pop	r28
  adc:	1f 91       	pop	r17
@@ -1767,7 +1768,7 @@ int8_t comparePins(char input[])
 }
 
 /* Interrupt handlers ------------------------------------------------*/
-//	Interrupt Handler for scanning keypad, getting the typed pin and then compare the pin
+// Interrupt Handler for scanning keypad, getting the typed pin and then compare the pin
 ISR(TIMER0_OVF_vect)
 {
  ae0:	1f 92       	push	r1
@@ -1794,11 +1795,11 @@ ISR(TIMER0_OVF_vect)
 	// Scan the Keypad
 	pressedKey = keypad_scan();
  b02:	0e 94 d3 00 	call	0x1a6	; 0x1a6 <keypad_scan>
- b06:	80 93 13 01 	sts	0x0113, r24	; 0x800113 <pressedKey.2012>
+ b06:	80 93 13 01 	sts	0x0113, r24	; 0x800113 <pressedKey.2010>
 	
 	// Key Press Buzzer
 	if(pressedKey != ' ')
- b0a:	80 91 13 01 	lds	r24, 0x0113	; 0x800113 <pressedKey.2012>
+ b0a:	80 91 13 01 	lds	r24, 0x0113	; 0x800113 <pressedKey.2010>
  b0e:	80 32       	cpi	r24, 0x20	; 32
  b10:	19 f0       	breq	.+6      	; 0xb18 <__vector_16+0x38>
 		buzzerStage = 1;
@@ -1807,10 +1808,10 @@ ISR(TIMER0_OVF_vect)
 	
 	// If user pressed #, ring the door bell
 	if(pressedKey == '#' && scanningStage == 0)
- b18:	80 91 13 01 	lds	r24, 0x0113	; 0x800113 <pressedKey.2012>
+ b18:	80 91 13 01 	lds	r24, 0x0113	; 0x800113 <pressedKey.2010>
  b1c:	83 32       	cpi	r24, 0x23	; 35
  b1e:	61 f4       	brne	.+24     	; 0xb38 <__vector_16+0x58>
- b20:	80 91 71 02 	lds	r24, 0x0271	; 0x800271 <scanningStage.2014>
+ b20:	80 91 71 02 	lds	r24, 0x0271	; 0x800271 <scanningStage.2012>
  b24:	81 11       	cpse	r24, r1
  b26:	08 c0       	rjmp	.+16     	; 0xb38 <__vector_16+0x58>
 	{
@@ -1819,27 +1820,27 @@ ISR(TIMER0_OVF_vect)
 		// Wait 3s and then standby
 		scanningStage = 2;
  b2c:	82 e0       	ldi	r24, 0x02	; 2
- b2e:	80 93 71 02 	sts	0x0271, r24	; 0x800271 <scanningStage.2014>
+ b2e:	80 93 71 02 	sts	0x0271, r24	; 0x800271 <scanningStage.2012>
 		timerStage = 2;
  b32:	80 93 76 02 	sts	0x0276, r24	; 0x800276 <timerStage>
  b36:	19 c0       	rjmp	.+50     	; 0xb6a <__vector_16+0x8a>
 	}
 	// If user pressed *, configure the system to get typed pin
 	else if(pressedKey == '*' && scanningStage == 0)
- b38:	80 91 13 01 	lds	r24, 0x0113	; 0x800113 <pressedKey.2012>
+ b38:	80 91 13 01 	lds	r24, 0x0113	; 0x800113 <pressedKey.2010>
  b3c:	8a 32       	cpi	r24, 0x2A	; 42
  b3e:	a9 f4       	brne	.+42     	; 0xb6a <__vector_16+0x8a>
- b40:	80 91 71 02 	lds	r24, 0x0271	; 0x800271 <scanningStage.2014>
+ b40:	80 91 71 02 	lds	r24, 0x0271	; 0x800271 <scanningStage.2012>
  b44:	81 11       	cpse	r24, r1
  b46:	11 c0       	rjmp	.+34     	; 0xb6a <__vector_16+0x8a>
 	{
 		scanningStage = 1;	// Enable getPin
  b48:	81 e0       	ldi	r24, 0x01	; 1
- b4a:	80 93 71 02 	sts	0x0271, r24	; 0x800271 <scanningStage.2014>
+ b4a:	80 93 71 02 	sts	0x0271, r24	; 0x800271 <scanningStage.2012>
 		timerStage = 1;		// Start 5 second timer
  b4e:	80 93 76 02 	sts	0x0276, r24	; 0x800276 <timerStage>
 		pinDigitCnt = 0;	// Set pin input index to 0
- b52:	10 92 70 02 	sts	0x0270, r1	; 0x800270 <pinDigitCnt.2013>
+ b52:	10 92 70 02 	sts	0x0270, r1	; 0x800270 <pinDigitCnt.2011>
 						
 		// Configure lcd
 		lcd_clrscr();
@@ -1856,27 +1857,27 @@ ISR(TIMER0_OVF_vect)
 		
 	// If scanningStage is 1 get the typed pin
 	if(scanningStage == 1)
- b6a:	80 91 71 02 	lds	r24, 0x0271	; 0x800271 <scanningStage.2014>
+ b6a:	80 91 71 02 	lds	r24, 0x0271	; 0x800271 <scanningStage.2012>
  b6e:	81 30       	cpi	r24, 0x01	; 1
  b70:	09 f0       	breq	.+2      	; 0xb74 <__vector_16+0x94>
  b72:	45 c0       	rjmp	.+138    	; 0xbfe <__vector_16+0x11e>
 	{
 		// Scan the entered pin
 		if(pressedKey != '*' && pressedKey != '#' && pressedKey!= ' ')
- b74:	80 91 13 01 	lds	r24, 0x0113	; 0x800113 <pressedKey.2012>
+ b74:	80 91 13 01 	lds	r24, 0x0113	; 0x800113 <pressedKey.2010>
  b78:	8a 32       	cpi	r24, 0x2A	; 42
  b7a:	f1 f0       	breq	.+60     	; 0xbb8 <__vector_16+0xd8>
- b7c:	80 91 13 01 	lds	r24, 0x0113	; 0x800113 <pressedKey.2012>
+ b7c:	80 91 13 01 	lds	r24, 0x0113	; 0x800113 <pressedKey.2010>
  b80:	83 32       	cpi	r24, 0x23	; 35
  b82:	d1 f0       	breq	.+52     	; 0xbb8 <__vector_16+0xd8>
- b84:	80 91 13 01 	lds	r24, 0x0113	; 0x800113 <pressedKey.2012>
+ b84:	80 91 13 01 	lds	r24, 0x0113	; 0x800113 <pressedKey.2010>
  b88:	80 32       	cpi	r24, 0x20	; 32
  b8a:	b1 f0       	breq	.+44     	; 0xbb8 <__vector_16+0xd8>
 		{
 			// Put the pressed key into inputPin var
 			inPin[pinDigitCnt] = pressedKey;
- b8c:	e0 91 70 02 	lds	r30, 0x0270	; 0x800270 <pinDigitCnt.2013>
- b90:	80 91 13 01 	lds	r24, 0x0113	; 0x800113 <pressedKey.2012>
+ b8c:	e0 91 70 02 	lds	r30, 0x0270	; 0x800270 <pinDigitCnt.2011>
+ b90:	80 91 13 01 	lds	r24, 0x0113	; 0x800113 <pressedKey.2010>
  b94:	f0 e0       	ldi	r31, 0x00	; 0
  b96:	eb 5d       	subi	r30, 0xDB	; 219
  b98:	fe 4f       	sbci	r31, 0xFE	; 254
@@ -1884,7 +1885,7 @@ ISR(TIMER0_OVF_vect)
 				
 			// Configure lcd
 			lcd_gotoxy((pinDigitCnt + 8),2);
- b9c:	80 91 70 02 	lds	r24, 0x0270	; 0x800270 <pinDigitCnt.2013>
+ b9c:	80 91 70 02 	lds	r24, 0x0270	; 0x800270 <pinDigitCnt.2011>
  ba0:	62 e0       	ldi	r22, 0x02	; 2
  ba2:	88 5f       	subi	r24, 0xF8	; 248
  ba4:	0e 94 8b 01 	call	0x316	; 0x316 <lcd_gotoxy>
@@ -1894,9 +1895,9 @@ ISR(TIMER0_OVF_vect)
 				
 			// Increase the counter
 			pinDigitCnt++;
- bae:	80 91 70 02 	lds	r24, 0x0270	; 0x800270 <pinDigitCnt.2013>
+ bae:	80 91 70 02 	lds	r24, 0x0270	; 0x800270 <pinDigitCnt.2011>
  bb2:	8f 5f       	subi	r24, 0xFF	; 255
- bb4:	80 93 70 02 	sts	0x0270, r24	; 0x800270 <pinDigitCnt.2013>
+ bb4:	80 93 70 02 	sts	0x0270, r24	; 0x800270 <pinDigitCnt.2011>
 		}
 		
 		// If 5s is up or the user typed all the digits of the pin enter here
@@ -1905,7 +1906,7 @@ ISR(TIMER0_OVF_vect)
  bb8:	80 91 76 02 	lds	r24, 0x0276	; 0x800276 <timerStage>
  bbc:	88 23       	and	r24, r24
  bbe:	21 f0       	breq	.+8      	; 0xbc8 <__vector_16+0xe8>
- bc0:	80 91 70 02 	lds	r24, 0x0270	; 0x800270 <pinDigitCnt.2013>
+ bc0:	80 91 70 02 	lds	r24, 0x0270	; 0x800270 <pinDigitCnt.2011>
  bc4:	84 30       	cpi	r24, 0x04	; 4
  bc6:	40 f1       	brcs	.+80     	; 0xc18 <__vector_16+0x138>
 		{	
@@ -1931,6 +1932,7 @@ ISR(TIMER0_OVF_vect)
  be0:	0e 94 ed 04 	call	0x9da	; 0x9da <wrongPin>
  be4:	04 c0       	rjmp	.+8      	; 0xbee <__vector_16+0x10e>
 			}
+			// Typed pin is correct
 			else if(inID >= 0 && inID < 4)
  be6:	84 30       	cpi	r24, 0x04	; 4
  be8:	10 f4       	brcc	.+4      	; 0xbee <__vector_16+0x10e>
@@ -1940,11 +1942,11 @@ ISR(TIMER0_OVF_vect)
 			}
 		
 			pinDigitCnt = 0;
- bee:	10 92 70 02 	sts	0x0270, r1	; 0x800270 <pinDigitCnt.2013>
+ bee:	10 92 70 02 	sts	0x0270, r1	; 0x800270 <pinDigitCnt.2011>
 			// Wait 3s then, configure system for standby stage
 			scanningStage = 2;
  bf2:	82 e0       	ldi	r24, 0x02	; 2
- bf4:	80 93 71 02 	sts	0x0271, r24	; 0x800271 <scanningStage.2014>
+ bf4:	80 93 71 02 	sts	0x0271, r24	; 0x800271 <scanningStage.2012>
 			timerStage = 2;
  bf8:	80 93 76 02 	sts	0x0276, r24	; 0x800276 <timerStage>
  bfc:	0d c0       	rjmp	.+26     	; 0xc18 <__vector_16+0x138>
@@ -1953,7 +1955,7 @@ ISR(TIMER0_OVF_vect)
 	
 	// Changing the status to the standby
 	if(scanningStage == 2)
- bfe:	80 91 71 02 	lds	r24, 0x0271	; 0x800271 <scanningStage.2014>
+ bfe:	80 91 71 02 	lds	r24, 0x0271	; 0x800271 <scanningStage.2012>
  c02:	82 30       	cpi	r24, 0x02	; 2
  c04:	59 f4       	brne	.+22     	; 0xc1c <__vector_16+0x13c>
 	{
@@ -1963,7 +1965,7 @@ ISR(TIMER0_OVF_vect)
  c0c:	07 c0       	rjmp	.+14     	; 0xc1c <__vector_16+0x13c>
 		{
 			scanningStage = 0;
- c0e:	10 92 71 02 	sts	0x0271, r1	; 0x800271 <scanningStage.2014>
+ c0e:	10 92 71 02 	sts	0x0271, r1	; 0x800271 <scanningStage.2012>
 			standby();
  c12:	0e 94 99 03 	call	0x732	; 0x732 <standby>
 		}
@@ -1976,7 +1978,7 @@ ISR(TIMER0_OVF_vect)
 	
 	// Changing the status to the standby
 	if(scanningStage == 2)
- c18:	80 91 71 02 	lds	r24, 0x0271	; 0x800271 <scanningStage.2014>
+ c18:	80 91 71 02 	lds	r24, 0x0271	; 0x800271 <scanningStage.2012>
 		{
 			scanningStage = 0;
 			standby();

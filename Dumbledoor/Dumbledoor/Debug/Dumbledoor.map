@@ -39,8 +39,6 @@ Discarded input sections
  .text          0x00000000        0x0 main.o
  .data          0x00000000        0x0 main.o
  .bss           0x00000000        0x0 main.o
- .bss.wrongTypeCnt
-                0x00000000        0x1 main.o
  .text          0x00000000        0x0 uart.o
  .data          0x00000000        0x0 uart.o
  .bss           0x00000000        0x0 uart.o
@@ -455,7 +453,7 @@ END GROUP
  .data.keyPadChar
                 0x00800107        0xc keypad.o
                 0x00800107                keyPadChar
- .data.pressedKey.2012
+ .data.pressedKey.2010
                 0x00800113        0x1 main.o
  .data.customChar
                 0x00800114       0x10 main.o
@@ -484,11 +482,11 @@ END GROUP
  *(.bss*)
  .bss.isKeyPressed.1631
                 0x0080026e        0x1 keypad.o
- .bss.buzzerCnt.2026
+ .bss.buzzerCnt.2024
                 0x0080026f        0x1 main.o
- .bss.pinDigitCnt.2013
+ .bss.pinDigitCnt.2011
                 0x00800270        0x1 main.o
- .bss.scanningStage.2014
+ .bss.scanningStage.2012
                 0x00800271        0x1 main.o
  .bss.wrongAttempts
                 0x00800272        0x1 main.o
@@ -612,14 +610,14 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x275e
+.debug_info     0x00000000     0x274c
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x5f4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega328p/avr5/crtatmega328p.o
  .debug_info    0x000005f4      0x210 gpio.o
  .debug_info    0x00000804      0x37c keypad.o
  .debug_info    0x00000b80      0x772 lcd.o
- .debug_info    0x000012f2     0x1160 main.o
- .debug_info    0x00002452      0x30c uart.o
+ .debug_info    0x000012f2     0x114e main.o
+ .debug_info    0x00002440      0x30c uart.o
 
 .debug_abbrev   0x00000000      0xd25
  *(.debug_abbrev)
@@ -647,7 +645,7 @@ END GROUP
  .debug_frame   0x00000208      0x1c8 main.o
  .debug_frame   0x000003d0       0xe0 uart.o
 
-.debug_str      0x00000000      0x7d0
+.debug_str      0x00000000      0x7c3
  *(.debug_str)
  .debug_str     0x00000000      0x208 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega328p/avr5/crtatmega328p.o
  .debug_str     0x00000208      0x1e4 gpio.o
@@ -656,9 +654,9 @@ END GROUP
                                 0x230 (size before relaxing)
  .debug_str     0x000004a8      0x111 lcd.o
                                 0x2a2 (size before relaxing)
- .debug_str     0x000005b9      0x157 main.o
-                                0x380 (size before relaxing)
- .debug_str     0x00000710       0xc0 uart.o
+ .debug_str     0x000005b9      0x14a main.o
+                                0x373 (size before relaxing)
+ .debug_str     0x00000703       0xc0 uart.o
                                 0x27f (size before relaxing)
 
 .debug_loc      0x00000000     0x1307
