@@ -502,7 +502,7 @@ int8_t comparePins(char input[])
 	for(uint8_t a = 0; a<4; a++)
 	{
 		// Compare 4-digit input pin with the registers pin
-		// Ex. pi
+		// Ex. Check if (input[0] == pins[2][0])
 		for(uint8_t b = 0; b<4; b++)
 		{
 			if(input[b] == pins[a][b])
