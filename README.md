@@ -72,7 +72,7 @@ You can find the circuit diagram created in simulide below.
 ![Circuit Diagram](Images/circuit_diagram_new.png)
 
 ## Video/Animation
-Steps we did in the gif below:
+Steps we did in the gif demonstration below:
 1. Typing a wrong pin (Red led lights up, Wrong pin buzzer)
 2. Typing one of the correct pins (Green led lights up, Correct pin buzzer, Relay closes which means the door opens)
 3. Rang the door bell
