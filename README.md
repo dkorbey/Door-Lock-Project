@@ -73,6 +73,7 @@ You can find the circuit diagram created in simulide below.
 
 ## Video/Animation
 
+![gif](https://user-images.githubusercontent.com/71753650/102151350-f60a5c00-3e72-11eb-8a1c-2ee4ed34fbe6.gif)
 
 ## References
 
