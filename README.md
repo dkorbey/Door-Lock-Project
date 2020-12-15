@@ -14,7 +14,7 @@ Demirkan Korbey Bağlamaç & Raşit Demirören
 This project mainly aims to implement a door lock system using the microcontroller ATmega328p and C programming language. 
 
 Here you can find the flowchart of our program:
-![Program Flowchart](Images/flow_chart.png)
+
 
 
 ## Hardware description
