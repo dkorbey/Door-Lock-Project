@@ -14,7 +14,7 @@ Demirkan Korbey Bağlamaç & Raşit Demirören
 This project mainly aims to implement a door lock system using the microcontroller ATmega328p and C programming language. 
 
 Here you can find the flowchart of our program:
-![Program Flowchart](https://github.com/dkorbey/Door-Lock-Project/blob/main/Images/flow_chart.png)
+![Program Flowchart](Images/flow_chart.png)
 
 
 ## Hardware description
@@ -81,3 +81,5 @@ Write your text here.
 1. [Keypad Tutorial 1](https://lastminuteengineers.com/arduino-keypad-tutorial/)
 2. [Keypad Tutorial 2](https://www.geeksforgeeks.org/telephone-keypad-scanner/)
 3. [Relay Switch Circuit](https://www.electronics-tutorials.ws/blog/relay-switch-circuit.html )
+4. [Flowchart Maker](https://app.diagrams.net/)
+5. [Doxygen](https://www.doxygen.nl/index.html)
