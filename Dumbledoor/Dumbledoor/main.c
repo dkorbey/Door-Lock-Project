@@ -126,13 +126,13 @@ int main(void)
 	TIM2_overflow_16ms();
 	TIM2_overflow_interrupt_enable();
 	
-   	 // Initialize UART to asynchronous, 8N1, 9600
+   	// Initialize UART to asynchronous, 8N1, 9600
     	uart_init(UART_BAUD_SELECT(9600, F_CPU));
 	
     	// Enables interrupts by setting the global interrupt mask
     	sei();
 	
-   	 /* Replace with your application code */
+   	/* Replace with your application code */
     	while (1) 
     	{
     	}
