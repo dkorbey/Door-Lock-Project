@@ -401,7 +401,7 @@ void standby()
 
 void ringDoorBell() 
 {	
-	// Correct Pin Buzzer
+	// Door Bell Buzzer
 	buzzerStage = 4;
 	
 	// Clear the lcd screen
