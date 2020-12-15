@@ -73,7 +73,7 @@ You can find the circuit diagram created in simulide below.
 
 ## Video/Animation
 
-Write your text here.
+![Program Flowchart](gif.gif)
 
 
 ## References
