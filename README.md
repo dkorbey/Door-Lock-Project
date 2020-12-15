@@ -73,7 +73,7 @@ You can find the circuit diagram created in simulide below.
 
 ## Video/Animation
 
-![gif_circuit](gif.gif)
+[gif_circuit](gif.gif)
 
 
 ## References
