@@ -468,7 +468,7 @@ void wrongPin()
 	// Light up the red led
 	GPIO_write_high(&PORTB, redLed);
 	
-	// Correct Pin Buzzer
+	// Wrong Pin Buzzer
 	buzzerStage = 3;
 	
 	// Update Wrong Attempts
