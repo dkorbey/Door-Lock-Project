@@ -81,6 +81,8 @@ Note: For each step, we sent the necessary information to uart.
 
 ![gif](https://user-images.githubusercontent.com/71753650/102151350-f60a5c00-3e72-11eb-8a1c-2ee4ed34fbe6.gif)
 
+And lastly [here](https://youtu.be/56NG8_SvZJ0) you can find the video demonstration of our project.
+
 ## References
 
 1. [Keypad Tutorial 1](https://lastminuteengineers.com/arduino-keypad-tutorial/)
