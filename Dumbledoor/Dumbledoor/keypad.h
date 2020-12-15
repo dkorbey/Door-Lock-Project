@@ -57,8 +57,8 @@ void keypad_init();
 
 /**
  * @brief    Scans the keypad, sets one column low and scan all the rows.
- * If, the read value is low than then we can understand that the 
- * (low read row x low set column) button is pressed.
+ *           If, the read value is low than then we can understand that the 
+ *           (low read row x low set column) button is pressed.
  *           Repeat this process for all the columns.
  * @return   Returns the pressed key as a string. 
  *           If none of the keys pressed returns ' '.
